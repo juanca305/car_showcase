@@ -34,10 +34,14 @@ export default async function Home() {
           <section>
             {/* WE HAVE CARS */}
             <div className="home__cars-wrapper">
-              {allCars?.map((car) => (
+              {/* {allCars?.map((car) => (
                 <CarCard car={car} />
               )
-              )}
+              )} */}
+              {allCars?.map((car, index) => (
+                <CarCard key={`${car.make}-${car.model}-${car.year}-${index}`} car={car} />
+              ))}
+
             </div>
           </section>
         ) : (
