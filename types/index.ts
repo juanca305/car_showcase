@@ -15,17 +15,28 @@ export interface SearchManufacturerProps {
     setManufacturer: (manufacturer: string) => void;
 }
 
-export interface CarProps {
-city_mpg: string;
-class: string;
-combination_mpg: string;
-cylinders: number;
-displacement: number;
-drive: string;
-fuel_type: string;
-highway_mpg: string;
-make: string;
-model: string;
-transmission: string;
-year: number;
+export interface CarImage {
+  angle: "main" | "front" | "rear" | "roof";
+  url: string;
 }
+
+export interface CarProps {
+  _id: string;
+  make: string;
+  model: string;
+  trim?: string;
+  year: number;
+  color?: string;
+  seats?: number;
+  fuelType?: string;
+  transmission?: string;
+  mileage?: number;
+  pricePerDay: number;
+  images: CarImage[];
+  description?: string;
+  features?: string[];
+  available: boolean;
+  createdAt?: string;
+  slug?: string;
+}
+
