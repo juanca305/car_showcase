@@ -14,14 +14,12 @@ const CarCard = ({ car }: CarCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // Obtener imagen principal
-  
   //const mainImage = car.images.find(img => img.angle === "main")?.url || "/hero.png";
 
   const mainImage =
   car.images?.find(img => img.angle === "main")?.url ??
   car.images?.[0]?.url ??
   "/hero.png";
-
 
   return (
     <div className="car-card group">

@@ -1,5 +1,7 @@
 import { CarProps, FilterProps } from "@/types";
 
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
 interface FetchCarsResponse {
   data: CarProps[];
 }
@@ -36,7 +38,11 @@ export async function fetchCars(filters: FilterProps): Promise<CarProps[]> {
     console.log("Fetching cars with query:", query.toString());
 
     // --- Fetch from backend
-    const response = await fetch(`http://localhost:5000/api/cars?${query.toString()}`, {
+    // const response = await fetch(`http://localhost:5000/api/cars?${query.toString()}`, {
+    //   cache: "no-store",
+    // });
+
+     const response = await fetch(`${BASE_URL}/api/cars?${query.toString()}`, {
       cache: "no-store",
     });
 
@@ -79,102 +85,6 @@ export async function fetchCars(filters: FilterProps): Promise<CarProps[]> {
     return [];
   }
 }
-
-//******************************************************* */
-// import { CarProps, FilterProps } from "@/types";
-
-// interface FetchCarsResponse {
-//   data: CarProps[];
-// }
-
-// export async function fetchCars(filters: FilterProps): Promise<CarProps[]> {
-//   try {
-//     // Build query string from filters
-//     const query = new URLSearchParams();
-
-//     if (filters.make) query.append("make", filters.make);
-//     if (filters.model) query.append("model", filters.model);
-//     if (filters.fuelType) query.append("fuelType", filters.fuelType);
-//     if (filters.transmission) query.append("transmission", filters.transmission);
-//     if (filters.year) query.append("year", filters.year.toString());
-//     if (filters.priceMin) query.append("priceMin", filters.priceMin.toString());
-//     if (filters.priceMax) query.append("priceMax", filters.priceMax.toString());
-//     if (filters.page) query.append("page", filters.page.toString());
-//     if (filters.limit) query.append("limit", filters.limit.toString());
-
-//     const response = await fetch(`http://localhost:5000/api/cars?${query.toString()}`, {
-//       cache: "no-store",
-//     });
-
-//     if (!response.ok) {
-//       throw new Error(`Failed to fetch cars: ${response.statusText}`);
-//     }
-
-//     const json: FetchCarsResponse = await response.json();
-
-//     if (!json.data || !Array.isArray(json.data)) {
-//       throw new Error("Invalid data format from backend");
-//     }
-
-//     // Fill optional properties with defaults
-//     const cars: CarProps[] = json.data.map(car => ({
-//       _id: car._id,
-//       make: car.make,
-//       model: car.model,
-//       trim: car.trim || "",
-//       year: car.year,
-//       color: car.color || "Unknown",
-//       seats: car.seats || 0,
-//       fuelType: car.fuelType || "Gasoline",
-//       transmission: car.transmission || "Manual",
-//       mileage: car.mileage || 0,
-//       pricePerDay: car.pricePerDay,
-//       images: car.images || [],
-//       description: car.description || "",
-//       features: car.features || [],
-//       available: car.available ?? true,
-//       createdAt: car.createdAt || "",
-//       slug: car.slug || "",
-//     }));
-
-//     return cars;
-//   } catch (error) {
-//     console.error("Error fetching cars:", error);
-//     return [];
-//   }
-// }
-
-//************************************************* */
-// import { CarProps, FilterProps } from "@/types";
-
-// interface FetchCarsResponse {
-//   data: CarProps[];
-// }
-
-// export async function fetchCars(filters: FilterProps): Promise<CarProps[]> {
-//   try {
-//     const response = await fetch("http://localhost:5000/api/cars", {
-//       cache: "no-store",
-//     });
-
-//     if (!response.ok) {
-//       throw new Error(`Failed to fetch cars: ${response.statusText}`);
-//     }
-
-//     const json: FetchCarsResponse = await response.json();
-
-//     if (!json.data || !Array.isArray(json.data)) {
-//       throw new Error("Invalid data format from backend");
-//     }
-
-//     return json.data;
-//   } catch (error) {
-//     console.error("Error fetching cars:", error);
-//     return [];
-//   }
-// }
-
-///********************************************************** */
 
 
 
