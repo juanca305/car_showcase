@@ -1,4 +1,6 @@
 import { CarCard, CustomFilter, Hero, SearchBar } from "@/components";
+import ClearFiltersButton from "@/components/ClearFiltersButton";
+import { fuels, yearsOfProduction } from "@/constants";
 import { fetchCars } from "@/utils";
 
 export default async function Home({ searchParams }: { searchParams: any }) {
@@ -41,13 +43,19 @@ export default async function Home({ searchParams }: { searchParams: any }) {
         <div className="home__filters">
           <SearchBar />
           <div className="home__filter-container">
-            <CustomFilter title="fuel" />
-            <CustomFilter title="year" />
+            <CustomFilter title="fuelType" options={fuels} />
+            <CustomFilter title="year" options={yearsOfProduction} />
             {/* Future filters */}
             {/* <CustomFilter title="transmission" /> */}
             {/* <CustomFilter title="price range" /> */}
           </div>
         </div>
+
+        {/* Clear Filters Button */}
+        <div className="flex justify-end mt-4">
+          <ClearFiltersButton />
+        </div>
+
 
         {!isDataEmpty ? (
           <section>
@@ -56,6 +64,8 @@ export default async function Home({ searchParams }: { searchParams: any }) {
                 <CarCard key={car._id || index} car={car} />
               ))}
             </div>
+
+            
           </section>
         ) : (
           <div className="home__error-container">
