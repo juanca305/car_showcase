@@ -1,10 +1,11 @@
-import { CarCard, CustomFilter, Hero, SearchBar } from "@/components";
+import { CarCard, CustomFilter, Hero, SearchBar, ShowMore, BackToTop } from "@/components";
+//import BackToTop from "@/components/BackToTop";
 import ClearFiltersButton from "@/components/ClearFiltersButton";
 import { fuels, yearsOfProduction } from "@/constants";
 import { fetchCars } from "@/utils";
 
 export default async function Home({ searchParams }: { searchParams: any }) {
-  // Extract filters with defaults
+  // 1️⃣ Extract filters with defaults
   const make = searchParams?.make || "";
   const model = searchParams?.model || "";
   const fuelType = searchParams?.fuelType || "";
@@ -13,10 +14,10 @@ export default async function Home({ searchParams }: { searchParams: any }) {
   const priceMin = searchParams?.priceMin || "";
   const priceMax = searchParams?.priceMax || "";
   const page = Number(searchParams?.page) || 1;
-  const limit = Number(searchParams?.limit) || 12;
+  const limit = Number(searchParams?.limit) || 3;
 
-  // Fetch filtered cars
-  const allCars = await fetchCars({
+  // 2️⃣ Fetch filtered cars (now destructure data + meta)
+  const { data: allCars, meta } = await fetchCars({
     make,
     model,
     fuelType,
@@ -28,8 +29,10 @@ export default async function Home({ searchParams }: { searchParams: any }) {
     limit,
   });
 
+  // 3️⃣ Compute helper booleans
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1;
-
+  const isNext = meta && page < meta.pages; // ✅ only true if another page exists
+  
   return (
     <main className="overflow-hidden">
       <Hero />
@@ -45,9 +48,6 @@ export default async function Home({ searchParams }: { searchParams: any }) {
           <div className="home__filter-container">
             <CustomFilter title="fuelType" options={fuels} />
             <CustomFilter title="year" options={yearsOfProduction} />
-            {/* Future filters */}
-            {/* <CustomFilter title="transmission" /> */}
-            {/* <CustomFilter title="price range" /> */}
           </div>
         </div>
 
@@ -55,7 +55,6 @@ export default async function Home({ searchParams }: { searchParams: any }) {
         <div className="flex justify-end mt-4">
           <ClearFiltersButton />
         </div>
-
 
         {!isDataEmpty ? (
           <section>
@@ -65,7 +64,11 @@ export default async function Home({ searchParams }: { searchParams: any }) {
               ))}
             </div>
 
-            
+            {/* ✅ Updated ShowMore with true pagination logic */}
+            <ShowMore
+              pageNumber={page}
+              isNext={isNext}
+            />
           </section>
         ) : (
           <div className="home__error-container">
@@ -74,7 +77,10 @@ export default async function Home({ searchParams }: { searchParams: any }) {
           </div>
         )}
       </div>
+      <BackToTop />
     </main>
   );
 }
+
+
 

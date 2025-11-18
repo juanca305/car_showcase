@@ -7,7 +7,8 @@ import CustomFilter from "./CustomFilter";
 import SearchManufacturer from "./SearchManufacturer";
 import CarCard from "./CarCard";
 import CarDetails from "./CarDetails";
-
+import ShowMore from "./ShowMore";
+import BackToTop from "./BackToTop";
 export {
     Hero,
     CustomButton,
@@ -17,5 +18,7 @@ export {
     CustomFilter,
     SearchManufacturer,
     CarCard,
-    CarDetails
+    CarDetails,
+    ShowMore,
+    BackToTop
 }

@@ -13,9 +13,8 @@ interface CarCardProps {
 const CarCard = ({ car }: CarCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Obtener imagen principal
-  //const mainImage = car.images.find(img => img.angle === "main")?.url || "/hero.png";
-
+  // Getting the main image
+  
   const mainImage =
   car.images?.find(img => img.angle === "main")?.url ??
   car.images?.[0]?.url ??
@@ -33,7 +32,7 @@ const CarCard = ({ car }: CarCardProps) => {
         <span className="self-end text-[14px] font-medium">/day</span>
       </p>
 
-      {/* Imagen principal */}
+      {/* Main image */}
       <div className="relative w-full h-40 my-3 object-contain">
         <Image
           src={mainImage}
@@ -44,7 +43,6 @@ const CarCard = ({ car }: CarCardProps) => {
         />
       </div>
 
-      {/* Características */}
       <div className="relative flex w-full mt-2">
         <div className="flex group-hover:invisible w-full justify-between text-gray">
           <div className="flex flex-col items-center gap-2">
@@ -61,7 +59,6 @@ const CarCard = ({ car }: CarCardProps) => {
           </div>
         </div>
 
-        {/* Botón */}
         <div className="car-card__btn-container">
           <CustomButton
             title="View More"
