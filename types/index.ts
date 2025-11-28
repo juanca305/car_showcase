@@ -24,6 +24,7 @@ export interface CarProps {
   _id: string;
   make: string;
   model: string;
+  category?: string;
   trim?: string;
   year: number;
   color?: string;
@@ -66,7 +67,7 @@ export interface FilterProps {
   page?: number;
   limit?: number;
   seats?: number;
-  category?: string; 
+  category?: string;
 }
 
 export interface OptionProps {

@@ -10,6 +10,7 @@ export default async function Home({ searchParams }: { searchParams: any }) {
   // 1️⃣ Extract filters with defaults
   const make = searchParams?.make || "";
   const model = searchParams?.model || "";
+  const category = searchParams?.category || "";
   const fuelType = searchParams?.fuelType || "";
   const transmission = searchParams?.transmission || "";
   const year = searchParams?.year || "";
@@ -31,6 +32,7 @@ export default async function Home({ searchParams }: { searchParams: any }) {
     priceMax,
     page,
     limit,
+    category,
   });
 
   // 3️⃣ Compute helper booleans
