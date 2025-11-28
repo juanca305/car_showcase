@@ -65,6 +65,8 @@ export interface FilterProps {
   priceMax?: number;
   page?: number;
   limit?: number;
+  seats?: number;
+  category?: string; 
 }
 
 export interface OptionProps {
@@ -74,7 +76,9 @@ export interface OptionProps {
 
 export interface CustomFilterProps {
   title: string;
-  options: OptionProps[]
+  value: string;
+  options: OptionProps[];
+  handleChange?: (value: string) => void; // ✅ callback when selection changes
 }
 
 export interface ShowMoreProps {

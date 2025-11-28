@@ -9,6 +9,14 @@ import CarCard from "./CarCard";
 import CarDetails from "./CarDetails";
 import ShowMore from "./ShowMore";
 import BackToTop from "./BackToTop";
+import PriceFilter from "./PriceFilter";
+import SeatsFilter from "./SeatsFilter";
+import FuelFilter from "./FuelFilter";
+import TransmissionFilter from "./TransmissionFilter";
+import YearFilter from "./YearFilter";
+import CategoryFilter from "./CategoryFilter";
+
+
 export {
     Hero,
     CustomButton,
@@ -20,5 +28,11 @@ export {
     CarCard,
     CarDetails,
     ShowMore,
-    BackToTop
+    BackToTop,
+    PriceFilter,
+    SeatsFilter,
+    FuelFilter,
+    TransmissionFilter,
+    YearFilter,
+    CategoryFilter
 }

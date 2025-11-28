@@ -21,15 +21,17 @@ export async function fetchCars(
       model,
       fuelType,
       transmission,
+      seats,
       year,
       priceMin,
       priceMax,
       page = 1,
       limit = 12,
+      category,
     } = filters;
 
     const query = new URLSearchParams();
-
+    if (seats) query.append("seats", seats.toString());
     if (make) query.append("make", encodeURIComponent(make));
     if (model) query.append("model", encodeURIComponent(model));
     if (fuelType) query.append("fuelType", encodeURIComponent(fuelType));
@@ -37,6 +39,8 @@ export async function fetchCars(
     if (year) query.append("year", year.toString());
     if (priceMin) query.append("priceMin", priceMin.toString());
     if (priceMax) query.append("priceMax", priceMax.toString());
+    if (category) query.append("category", encodeURIComponent(category));
+
     query.append("page", page.toString());
     query.append("limit", limit.toString());
 

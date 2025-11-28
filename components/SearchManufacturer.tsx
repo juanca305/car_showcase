@@ -31,12 +31,13 @@ const SearchManufacturer = ({ make, setMake }: SearchMakeProps) => {
     loadMakes();
   }, []);
 
+
   const filteredMakes =
     query === ""
       ? makes
       : makes.filter((item) =>
-          item.toLowerCase().replace(/\s+/g, "").includes(query.toLowerCase().replace(/\s+/g, ""))
-        );
+        item.toLowerCase().replace(/\s+/g, "").includes(query.toLowerCase().replace(/\s+/g, ""))
+      );
 
   return (
     <div className="search-manufacturer">
@@ -64,8 +65,7 @@ const SearchManufacturer = ({ make, setMake }: SearchMakeProps) => {
                   key={item}
                   value={item}
                   className={({ active, selected }) =>
-                    `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                      active ? "bg-primary-blue text-white" : "text-gray-900"
+                    `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-primary-blue text-white" : "text-gray-900"
                     } ${selected ? "font-medium" : "font-normal"}`
                   }
                 >
@@ -74,9 +74,8 @@ const SearchManufacturer = ({ make, setMake }: SearchMakeProps) => {
                       <span className="block truncate">{item}</span>
                       {selected && (
                         <span
-                          className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                            active ? "text-white" : "text-teal-600"
-                          }`}
+                          className={`absolute inset-y-0 left-0 flex items-center pl-3 ${active ? "text-white" : "text-teal-600"
+                            }`}
                         >
                           ✔
                         </span>

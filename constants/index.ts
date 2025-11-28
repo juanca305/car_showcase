@@ -43,7 +43,7 @@ export const manufacturers = [
 ];
 
 export const yearsOfProduction = [
-  { title: "Year", value: "" },
+  // { title: "Year", value: "" },
   { title: "2015", value: "2015" },
   { title: "2016", value: "2016" },
   { title: "2017", value: "2017" },
@@ -108,4 +108,30 @@ export const footerLinks = [
       { title: "Facebook", url: "/" },
     ],
   },
+];
+
+// export const carCategories = [
+//   { title: "Category", value: "" },
+//   { title: "Economy", value: "economy" },
+//   { title: "Compact", value: "compact" },
+//   { title: "Midsize", value: "midsize" },
+//   { title: "Full-size", value: "fullsize" },
+//   { title: "SUV", value: "suv" },
+//   { title: "Luxury", value: "luxury" },
+//   { title: "Convertible", value: "convertible" },
+//   { title: "Van", value: "van" },
+// ];
+
+export const carCategories = [
+  { title: "All Categories", value: "" },
+  { title: "Sedan", value: "Sedan" },
+  { title: "SUV", value: "SUV" },
+  { title: "Hatchback", value: "Hatchback" },
+  { title: "Convertible", value: "Convertible" },
+  { title: "Minivan", value: "Minivan" },
+  { title: "Pickup", value: "Pickup" },
+  { title: "Coupe", value: "Coupe" },
+  { title: "Luxury", value: "Luxury" },
+  { title: "Electric", value: "Electric" },
+  { title: "Sports Car", value: "Sports Car" },
 ];

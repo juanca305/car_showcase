@@ -1,8 +1,10 @@
-import { CarCard, CustomFilter, Hero, SearchBar, ShowMore, BackToTop } from "@/components";
-//import BackToTop from "@/components/BackToTop";
+
+import { CarCard, CustomFilter, Hero, SearchBar, ShowMore, BackToTop, PriceFilter, FuelFilter, SeatsFilter, TransmissionFilter, YearFilter, CategoryFilter } from "@/components";
 import ClearFiltersButton from "@/components/ClearFiltersButton";
 import { fuels, yearsOfProduction } from "@/constants";
 import { fetchCars } from "@/utils";
+
+import { useRouter } from 'next/navigation';
 
 export default async function Home({ searchParams }: { searchParams: any }) {
   // 1️⃣ Extract filters with defaults
@@ -11,6 +13,7 @@ export default async function Home({ searchParams }: { searchParams: any }) {
   const fuelType = searchParams?.fuelType || "";
   const transmission = searchParams?.transmission || "";
   const year = searchParams?.year || "";
+  const seats = searchParams?.seats || "";
   const priceMin = searchParams?.priceMin || "";
   const priceMax = searchParams?.priceMax || "";
   const page = Number(searchParams?.page) || 1;
@@ -23,6 +26,7 @@ export default async function Home({ searchParams }: { searchParams: any }) {
     fuelType,
     transmission,
     year,
+    seats,
     priceMin,
     priceMax,
     page,
@@ -32,7 +36,7 @@ export default async function Home({ searchParams }: { searchParams: any }) {
   // 3️⃣ Compute helper booleans
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1;
   const isNext = meta && page < meta.pages; // ✅ only true if another page exists
-  
+
   return (
     <main className="overflow-hidden">
       <Hero />
@@ -45,9 +49,14 @@ export default async function Home({ searchParams }: { searchParams: any }) {
 
         <div className="home__filters">
           <SearchBar />
+
           <div className="home__filter-container">
-            <CustomFilter title="fuelType" options={fuels} />
-            <CustomFilter title="year" options={yearsOfProduction} />
+            <CategoryFilter />
+            <SeatsFilter /> {/* fully client controlled */}
+            <FuelFilter />
+            <TransmissionFilter />
+            <YearFilter />
+            <PriceFilter />
           </div>
         </div>
 
