@@ -33,13 +33,16 @@ const CarCard = ({ car }: CarCardProps) => {
       </p>
 
       {/* Main image */}
-      <div className="relative w-full h-40 my-3 object-contain">
+      {/* <div className="relative w-full h-40 my-3 object-contain"> */}
+      <div className="relative w-full aspect-[4/3] my-3 rounded-xl overflow-hidden">
+
         <Image
           src={mainImage}
           alt={`${car.make} ${car.model}`}
           fill
           priority
-          className="object-contain"
+          //className="object-contain"
+          className="object-cover"
         />
       </div>
 

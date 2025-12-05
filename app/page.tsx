@@ -18,7 +18,7 @@ export default async function Home({ searchParams }: { searchParams: any }) {
   const priceMin = searchParams?.priceMin || "";
   const priceMax = searchParams?.priceMax || "";
   const page = Number(searchParams?.page) || 1;
-  const limit = Number(searchParams?.limit) || 3;
+  const limit = Number(searchParams?.limit) || 8;
 
   // 2️⃣ Fetch filtered cars (now destructure data + meta)
   const { data: allCars, meta } = await fetchCars({
