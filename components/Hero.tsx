@@ -5,28 +5,33 @@ import CustomButton from "./CustomButton"
 
 const Hero = () => {
   const handleScroll = () => {
-
+    const element = document.getElementById("discover");
+    element?.scrollIntoView({ behavior: "smooth" });
   }
   return (
+
     <div className="hero">
       <div className="flex-1 pt-36 padding-x">
         <h1 className="hero__title">
-          Find, book or rent a car --quickly and easily!
+          A Smarter Way to Buy Your Next Car
         </h1>
 
-        <p className="hero__subtitle">
-          Streemline your car rental experience with our effortless booking process.
+        <p className="hero__subtitle ">
+          Explore new and pre-owned vehicles, compare options, estimate payments,
+          and start your car-buying journey online.
         </p>
 
         <CustomButton
-          title="Explore Cars"
-          containerStyles="bg-primary-blue text-white rounded-full mt-10"
+          title="Browse Inventory"
+          containerStyles="bg-luxury-accent text-white rounded-full mt-10"
+          // containerStyles="bg-primary-blue text-white rounded-full mt-10"
           handleClick={handleScroll}
         />
+
       </div>
       <div className="hero__image-container">
         <div className="hero__image">
-          <Image src="/hero.png" alt="hero" fill className="object-contain" />
+          <Image src="/jeep_gray.png" alt="hero" fill className="object-contain" />
         </div>
         <div className="hero__image-overlay" />
 

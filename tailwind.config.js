@@ -23,13 +23,23 @@ module.exports = {
           100: "rgba(59,60,152,0.02)",
         },
         grey: "#747A88",
+
+        // ✅ Luxury semantic colors
+        luxury: {
+          bg: "#020617",
+          surface: "#0f172a",
+          text: "#f1f5f9",
+          muted: "#cbd5e1",
+          accent: "#2563eb",
+          accentHover: "#1d4ed8",
+        },
       },
+
       backgroundImage: {
-        'pattern': "url('/pattern.png')",
-        'hero-bg': "url('/hero-bg.png')"
-      }
+        pattern: "url('/pattern.png')",
+        "hero-bg": "url('/showroom_ok_5.png')",
+      },
     },
   },
   plugins: [],
 };
-

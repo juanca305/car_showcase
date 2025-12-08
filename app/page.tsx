@@ -18,6 +18,8 @@ export default async function Home({ searchParams }: { searchParams: any }) {
   const priceMin = searchParams?.priceMin || "";
   const priceMax = searchParams?.priceMax || "";
   const page = Number(searchParams?.page) || 1;
+  
+  // Set the amount of car cards per page ***/
   const limit = Number(searchParams?.limit) || 8;
 
   // 2️⃣ Fetch filtered cars (now destructure data + meta)

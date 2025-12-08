@@ -14,11 +14,11 @@ const CarCard = ({ car }: CarCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // Getting the main image
-  
+
   const mainImage =
-  car.images?.find(img => img.angle === "main")?.url ??
-  car.images?.[0]?.url ??
-  "/hero.png";
+    car.images?.find(img => img.angle === "main")?.url ??
+    car.images?.[0]?.url ??
+    "/hero.png";
 
   return (
     <div className="car-card group">
@@ -33,16 +33,17 @@ const CarCard = ({ car }: CarCardProps) => {
       </p>
 
       {/* Main image */}
-      {/* <div className="relative w-full h-40 my-3 object-contain"> */}
-      <div className="relative w-full aspect-[4/3] my-3 rounded-xl overflow-hidden">
+      <div className="relative w-full aspect-[4/3] my-2 sm:my-3  rounded-lg overflow-hidden bg-gray-100">
+        {/* Shimmer placeholder */}
+        {/* Loading shimmer (appears under the image while loading) */}
+        <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 z-10" />
 
         <Image
           src={mainImage}
           alt={`${car.make} ${car.model}`}
           fill
           priority
-          //className="object-contain"
-          className="object-cover"
+          className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-[1.015] p-[4px] z-20"
         />
       </div>
 

@@ -50,6 +50,10 @@
   @apply text-[27px] text-black-100 font-light mt-5;
 }
 
+.hero__subtitle-1 {
+  @apply text-[27px] text-luxury-muted font-light mt-5;
+}
+
 .hero__image-container {
   @apply xl:flex-[1.5] flex justify-end items-end w-full xl:h-screen;
 }
@@ -88,18 +92,27 @@
 
 /* START: Car Card styles */
 .car-card {
-  @apply flex flex-col p-6 justify-center items-start text-black-100 bg-primary-blue-100 hover:bg-white hover:shadow-md rounded-3xl;
+  @apply flex flex-col p-4 sm:p-5 md:p-6
+ justify-center items-start text-black-100 bg-primary-blue-100 hover:bg-white hover:shadow-md rounded-3xl transform transition-all duration-300 ease-in-out;
+}
+
+.car-card:hover {
+  @apply -translate-y-1 shadow-xl;
 }
 
 .car-card__content {
   @apply w-full flex justify-between items-start gap-2;
 }
 
-.car-card__content-title {
+/* .car-card__content-title {
   @apply text-[22px] leading-[26px] font-bold capitalize;
+} */
+
+.car-card__content-title {
+  @apply text-[18px] leading-[22px] font-bold capitalize sm:text-[20px] sm:leading-[24px] md:text-[22px] md:leading-[26px];
 }
 
-.car-card__price {
+/* .car-card__price {
   @apply flex mt-6 text-[32px] leading-[38px] font-extrabold;
 }
 
@@ -109,6 +122,21 @@
 
 .car-card__price-day {
   @apply self-end text-[14px] leading-[17px] font-medium;
+} */
+
+/*Price container*/
+.car-card__price {
+  @apply flex mt-6 text-[24px] leading-[28px] font-extrabold sm:text-[28px] sm:leading-[32px] md:text-[32px] md:leading-[38px];
+}
+
+/* Dollar sign */
+.car-card__price-dollar {
+  @apply self-start text-[12px] leading-[15px] font-semibold sm:text-[13px] sm:leading-[16px] md:text-[14px] md:leading-[17px];
+}
+
+/* /day text */
+.car-card__price-day {
+  @apply self-end text-[12px] leading-[15px] font-medium sm:text-[13px] sm:leading-[16px] md:text-[14px] md:leading-[17px];
 }
 
 .car-card__image {
@@ -217,5 +245,3 @@
   @apply cursor-default select-none py-2 pl-10 pr-4;
 }
 /* END: search manufacturer styles */
-
-
