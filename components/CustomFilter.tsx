@@ -7,18 +7,51 @@ import { CustomFilterProps } from '@/types';
 
 const CustomFilter = ({ title, options, value, handleChange }: CustomFilterProps) => {
   return (
-    <div className='w-fit'>
+    <div className="w-full sm:w-auto">
       <Listbox value={value} onChange={handleChange}>
-        <div className='relative w-fit z-10'>
-          <Listbox.Button className='custom-filter__btn'>
+        <div className='relative w-full z-10'>
+          {/* <Listbox.Button className='custom-filter__btn'> */}
+          {/* <Listbox.Button className="
+              custom-filter__btn
+              filter-shell
+              w-full
+              min-w-[140px]
+            "> */}
+            <Listbox.Button className="filter-shell group w-full min-w-[140px]">
+
             <span className='block truncate'>{options.find(opt => opt.value === value)?.title || options[0].title}</span>
-            <Image
+            {/* <Image
               src="/chevron-up-down.svg"
               width={20}
               height={20}
               className='ml-4 object-contain'
               alt='chevron-up-down'
+            /> */}
+
+            <Image
+              src="/chevron-up-down.svg"
+              width={18}
+              height={18}
+              alt="chevron"
+              // className="
+              //   ml-3
+              //   opacity-70
+              //   invert
+              //   transition
+              //   group-hover:opacity-100
+              //   group-data-[headlessui-state=open]:rotate-180
+              // "
+              //className="ml-3 shrink-0 opacity-70"
+               className="
+                  ml-3
+                  shrink-0
+                  opacity-80
+                  invert
+                  transition
+                  group-hover:opacity-100
+                "
             />
+
           </Listbox.Button>
 
           <Transition
@@ -27,7 +60,24 @@ const CustomFilter = ({ title, options, value, handleChange }: CustomFilterProps
             leaveFrom='opacity-100'
             leaveTo='opacity-0'
           >
-            <Listbox.Options className='custom-filter__options'>
+            {/* <Listbox.Options className='custom-filter__options'> */}
+            <Listbox.Options className="
+                absolute
+                top-full
+                left-0
+                mt-2
+                z-50
+                w-full
+                max-h-64
+                overflow-auto
+                rounded-xl
+                bg-luxury-surface
+                border
+                border-luxury-border
+                shadow-xl
+                text-sm
+              ">
+
               {options.map(option => (
                 <Listbox.Option
                   // key={option.title}
@@ -35,10 +85,10 @@ const CustomFilter = ({ title, options, value, handleChange }: CustomFilterProps
                   value={option.value} // ✅ pass value string
                   disabled={option.value === ""}
                   className={({ active, disabled }) =>
-                    `relative cursor-default select-none py-2 px-4 ${
-                      disabled ? 'text-gray-400 cursor-not-allowed' :
-                      active ? 'bg-primary-blue text-white' :
-                      'text-gray-900'
+                    `relative cursor-default select-none py-2 px-4 ${disabled ? 'text-gray-400 cursor-not-allowed' :
+                      active
+                        ? "bg-luxury-accent/15 text-luxury-text"
+                        : "text-luxury-muted hover:bg-luxury-accent/10 hover:text-luxury-text"
                     }`
                   }
                 >
@@ -60,89 +110,3 @@ const CustomFilter = ({ title, options, value, handleChange }: CustomFilterProps
 export default CustomFilter;
 
 
-//***************************************************** */
-// 'use client'
-
-// import { Fragment } from 'react';
-// import Image from 'next/image';
-// import { useRouter } from 'next/navigation';
-// import { Listbox, Transition } from '@headlessui/react';
-// import { CustomFilterProps } from '@/types';
-
-// const CustomFilter = ({ title, options, value, handleChange }: CustomFilterProps) => {
-//   const router = useRouter();
-//   //const [selected, setSelected] = useState(options[0]);
-//   const selected = options.find(option => option.value === value) || options[0];
-
-
-//   // const handleUpdateParams = (e: { title: string, value: string }) => {
-//   //   const newPathName = updateSearchParams(title, e.value.toLowerCase());
-
-//   //   router.push(newPathName);
-//   // }
-
-//   return (
-//     <div className='w-fit'>
-//       <Listbox
-//         value={selected}
-//         // onChange={(e) => {
-//         //   setSelected(e)
-//         //   handleUpdateParams(e)CustomFilter.tsx now looks like this: 
-//         // }}
-
-//         onChange={(e) => handleChange?.(e.value)}
-//  >
-//         <div className='relative w-fit z-10'>
-//           <Listbox.Button className='custom-filter__btn'>
-//             <span className='block truncate'>{selected.title}</span>
-//             <Image
-//               src="/chevron-up-down.svg"
-//               width={20}
-//               height={20}
-//               className='ml-4 object-contain'
-//               alt='chevron-up-down'
-//             />
-//           </Listbox.Button>
-//           <Transition
-//             as={Fragment}
-//             leave='transition ease-in duration-100'
-//             leaveFrom='opacity-100'
-//             leaveTo='opacity-0'
-//           >
-//             <Listbox.Options className='custom-filter__options'>
-//               {options.map((option) => (
-//                 <Listbox.Option
-//                   key={option.title}
-//                   value={option}
-//                   disabled={option.value === ""} // 👈 disable the placeholder option
-//                   className={({ active, disabled }) =>
-//                     `relative cursor-default select-none py-2 px-4 ${disabled
-//                       ? 'text-gray-400 cursor-not-allowed' // style for disabled option
-//                       : active
-//                         ? 'bg-primary-blue text-white'
-//                         : 'text-gray-900'
-//                     }`
-//                   }
-//                 >
-//                   {({ selected }) => (
-//                     <span
-//                       className={`block truncate ${selected ? 'font-medium' : 'font-normal'
-//                         }`}
-//                     >
-//                       {option.title}
-//                     </span>
-//                   )}
-//                 </Listbox.Option>
-//               ))}
-
-//             </Listbox.Options>
-
-//           </Transition>
-
-//         </div>
-//       </Listbox>
-//     </div>
-//   )
-// }
-
-// export default CustomFilter

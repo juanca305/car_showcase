@@ -238,13 +238,13 @@
 /* END: Car Details styles */
 
 /* START: Custom Filter styles */
-.custom-filter__btn {
+/* .custom-filter__btn {
   @apply relative w-full min-w-[127px] flex justify-between items-center cursor-default rounded-lg bg-white py-2 px-3 text-left shadow-md sm:text-sm border;
 }
 
 .custom-filter__options {
   @apply absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm;
-}
+} */
 /* END: Custom Filter styles */
 
 /* START: Footer styles */
@@ -410,5 +410,169 @@
     outline-none;
 }
 /* END: Unified Input Shell */
+
+/* FILTER / INPUT SURFACE (shared) */
+/* .filter-shell {
+  @apply
+    bg-luxury-surface
+    border
+    border-luxury-border
+    rounded-xl
+    h-[48px]
+    flex
+    items-center
+    px-4
+    text-sm
+    text-luxury-text
+    transition;
+}
+
+.filter-shell:hover {
+  @apply border-luxury-borderStrong;
+}
+
+.filter-shell:focus-within {
+  @apply
+    border-luxury-accent
+    ring-2
+    ring-luxury-accent/20;
+} */
+
+.filter-shell {
+  @apply
+    relative
+    h-[48px]
+    px-3
+    flex
+    items-center
+    justify-between
+    rounded-xl
+    bg-luxury-surface
+    border
+    border-luxury-border
+    text-sm
+    text-luxury-text
+    transition;
+}
+
+.filter-shell:hover {
+  @apply border-luxury-accent/60;
+}
+
+.filter-shell:focus-within {
+  @apply
+    border-luxury-accent
+    ring-2
+    ring-luxury-accent/20;
+}
+
+/* .filter-shell {
+  @apply
+    relative
+    h-[48px]
+    px-4
+    flex
+    items-center
+    justify-between
+    rounded-xl
+    bg-luxury-surface
+    border
+    border-luxury-border
+    text-sm
+    text-luxury-text
+    transition
+    duration-150;
+}
+
+.filter-shell:hover {
+  @apply border-luxury-accent/60;
+}
+
+.filter-shell:focus-within {
+  @apply
+    border-luxury-accent
+    ring-2
+    ring-luxury-accent/20;
+} */
+
+
+.filter-input {
+  @apply
+    h-[48px]
+    w-full
+    rounded-xl
+    bg-luxury-surface
+    border
+    border-luxury-border
+    px-4
+    text-sm
+    text-luxury-text
+    placeholder-luxury-muted
+    outline-none
+    transition;
+}
+
+.filter-input:hover {
+  @apply border-luxury-borderStrong;
+}
+
+.filter-input:focus {
+  @apply
+    border-luxury-accent
+    ring-2
+    ring-luxury-accent/20;
+}
+
+.filter-apply-btn {
+  @apply
+    h-[48px]
+    px-5
+    rounded-xl
+    bg-luxury-accent
+    text-white
+    text-sm
+    font-medium
+    transition;
+}
+
+.filter-apply-btn:hover {
+  @apply bg-luxury-accentHover;
+}
+
+.filter-clear-btn {
+  @apply
+    h-[48px]
+    px-5
+    rounded-xl
+    bg-transparent
+    border
+    border-luxury-border
+    text-luxury-muted
+    text-sm
+    transition;
+}
+
+.filter-clear-btn:hover {
+  @apply
+    text-luxury-text
+    border-luxury-borderStrong
+    bg-luxury-accent/5;
+}
+
+.price-group {
+  @apply
+    flex
+    items-center
+    gap-3
+    px-3
+    py-2
+    rounded-2xl
+    bg-luxury-accent/5
+    border
+    border-luxury-border;
+}
+
+
+
 
 
