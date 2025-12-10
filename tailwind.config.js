@@ -32,6 +32,12 @@ module.exports = {
           muted: "#cbd5e1",
           accent: "#2563eb",
           accentHover: "#1d4ed8",
+
+          // ✅ Borders & dividers
+          border: "rgba(148, 163, 184, 0.12)", // subtle
+          borderStrong: "rgba(148, 163, 184, 0.25)", // focused/active
+          divider: "rgba(148, 163, 184, 0.08)", // section separators
+          glass: "rgba(255, 255, 255, 0.12)", // glassmorphism
         },
       },
 

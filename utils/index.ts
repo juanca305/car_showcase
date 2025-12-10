@@ -31,15 +31,26 @@ export async function fetchCars(
     } = filters;
 
     const query = new URLSearchParams();
+
+    // if (seats) query.append("seats", seats.toString());
+    // if (make) query.append("make", encodeURIComponent(make));
+    // if (model) query.append("model", encodeURIComponent(model));
+    // if (fuelType) query.append("fuelType", encodeURIComponent(fuelType));
+    // if (transmission) query.append("transmission", encodeURIComponent(transmission));
+    // if (year) query.append("year", year.toString());
+    // if (priceMin) query.append("priceMin", priceMin.toString());
+    // if (priceMax) query.append("priceMax", priceMax.toString());
+    // if (category) query.append("category", encodeURIComponent(category));
+
     if (seats) query.append("seats", seats.toString());
-    if (make) query.append("make", encodeURIComponent(make));
-    if (model) query.append("model", encodeURIComponent(model));
-    if (fuelType) query.append("fuelType", encodeURIComponent(fuelType));
-    if (transmission) query.append("transmission", encodeURIComponent(transmission));
+    if (make) query.append("make", make);
+    if (model) query.append("model", model);
+    if (fuelType) query.append("fuelType", fuelType);
+    if (transmission) query.append("transmission", transmission);
     if (year) query.append("year", year.toString());
     if (priceMin) query.append("priceMin", priceMin.toString());
     if (priceMax) query.append("priceMax", priceMax.toString());
-    if (category) query.append("category", encodeURIComponent(category));
+    if (category) query.append("category", category);
 
     query.append("page", page.toString());
     query.append("limit", limit.toString());
@@ -97,4 +108,3 @@ export const updateSearchParams = (type: string, value: string) => {
   const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
   return newPathname;
 };
-

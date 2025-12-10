@@ -18,7 +18,7 @@ export default async function Home({ searchParams }: { searchParams: any }) {
   const priceMin = searchParams?.priceMin || "";
   const priceMax = searchParams?.priceMax || "";
   const page = Number(searchParams?.page) || 1;
-  
+
   // Set the amount of car cards per page ***/
   const limit = Number(searchParams?.limit) || 8;
 
@@ -44,15 +44,77 @@ export default async function Home({ searchParams }: { searchParams: any }) {
   return (
     <main className="overflow-hidden">
       <Hero />
-
-      <div className="mt-12 padding-x padding-y max-width" id="discover">
-        <div className="home__text-container">
+      <div id="discover" className="
+          mt-12
+          sm:mt-16
+          xl:mt-20
+          padding-x
+          padding-y
+          max-width
+          bg-luxury-bg
+          border-t
+          border-luxury-divider
+        "
+      >
+        {/* <div className="home__text-container">
           <h1 className="text-4xl font-extrabold">Car Catalogue</h1>
           <p>Explore the cars you might like</p>
+        </div> */}
+
+        {/* <h1 className="text-4xl font-extrabold tracking-tight text-luxury-text">
+          Find Your Next Vehicle
+        </h1>
+        <p className="text-sm sm:text-base text-luxury-muted">
+          Compare models, features, and pricing — all in one place
+        </p> */}
+
+        {/* <div className="home__text-container">
+          <h1
+            className="
+              text-2xl
+              sm:text-3xl
+              lg:text-4xl
+              font-extrabold
+              tracking-tight
+              text-luxury-text
+            "
+          >
+            Find Your Next Vehicle
+          </h1>
+          <p
+            className="
+              mt-1
+              text-sm
+              sm:text-base
+              text-luxury-muted
+              max-w-2xl
+            "
+          >
+            Compare models, features, and pricing — all in one place
+          </p>
+        </div> */}
+
+        <div className="home__text-container">
+          <h1 className="section__title">Find Your Next Vehicle</h1>
+          <p className="section__subtitle">
+            Compare models, features, and pricing — all in one place
+          </p>
         </div>
 
         <div className="home__filters">
-          <SearchBar />
+          <div className="
+              w-full
+              mt-8
+              p-4
+              sm:p-5
+              rounded-2xl
+              bg-luxury-surface
+              border
+              border-luxury-border
+            "
+          >
+            <SearchBar />
+          </div>
 
           <div className="home__filter-container">
             <CategoryFilter />
