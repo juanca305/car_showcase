@@ -122,7 +122,7 @@ export default async function Home({ searchParams }: { searchParams: any }) {
             <FuelFilter />
             <TransmissionFilter />
             <YearFilter />
-            <PriceFilter />
+            {/* <PriceFilter /> */}
           </div>
         </div>
 
