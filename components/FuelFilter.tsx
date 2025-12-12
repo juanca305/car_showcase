@@ -21,11 +21,6 @@ export default function FuelFilter() {
 
     if (value) params.set("fuelType", value);
     else params.delete("fuelType"); // remove filter if empty
-
-    //router.push(`/?${params.toString()}`);
-
-    // ❌ scroll: true (default) makes page jump
-    // ✅ scroll: false prevents it
     router.push(`/?${params.toString()}`, { scroll: false });
   };
 

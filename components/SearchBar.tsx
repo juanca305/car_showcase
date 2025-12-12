@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import SearchManufacturer from "./SearchManufacturer";
 import CategoryFilter from "./CategoryFilter";
-import PriceFilter from "./PriceFilter";
+//import PriceFilter from "./PriceFilter";
 
 export default function SearchBar() {
   const router = useRouter();
@@ -150,12 +150,8 @@ export default function SearchBar() {
   );
 
   return (
-    // <div className="flex flex-col sm:flex-row gap-4 w-full items-start">
     <div className="flex flex-col sm:flex-row gap-6 sm:gap-4 w-full items-center sm:items-start">
       {/* LEFT SIDE — Make + Model */}
-      {/* <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto"> */}
-      <div className="filter-group flex flex-col sm:flex-row gap-3">
-
         {/* Manufacturer */}
         <div className="relative w-full sm:w-[250px]">
           <SearchManufacturer make={make} setMake={setMake} />
@@ -213,13 +209,6 @@ export default function SearchBar() {
             </ul>
           )}
         </div>
-      </div>
-
-      {/* RIGHT SIDE — Price Filter */}
-      <div className="filter-group sm:ml-auto">
-        <PriceFilter />
-      </div>
-
     </div>
   );
 }

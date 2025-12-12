@@ -7,53 +7,26 @@ import { CustomFilterProps } from '@/types';
 
 const CustomFilter = ({ title, options, value, handleChange }: CustomFilterProps) => {
   return (
-    <div className="w-full sm:w-auto">
+    <div className="w-full sm:w-auto overflow-visible relative">
       <Listbox value={value} onChange={handleChange}>
-        <div className='relative w-full z-10'>
-          {/* <Listbox.Button className='custom-filter__btn'> */}
-          {/* <Listbox.Button className="
-              custom-filter__btn
-              filter-shell
-              w-full
-              min-w-[140px]
-            "> */}
-            <Listbox.Button className="filter-shell group w-full min-w-[140px]">
-
+        <div className='w-full relative'>
+          <Listbox.Button className="filter-shell group w-full min-w-[140px]">
             <span className='block truncate'>{options.find(opt => opt.value === value)?.title || options[0].title}</span>
-            {/* <Image
-              src="/chevron-up-down.svg"
-              width={20}
-              height={20}
-              className='ml-4 object-contain'
-              alt='chevron-up-down'
-            /> */}
-
             <Image
               src="/chevron-up-down.svg"
               width={18}
               height={18}
               alt="chevron"
-              // className="
-              //   ml-3
-              //   opacity-70
-              //   invert
-              //   transition
-              //   group-hover:opacity-100
-              //   group-data-[headlessui-state=open]:rotate-180
-              // "
-              //className="ml-3 shrink-0 opacity-70"
-               className="
+              className="
                   ml-3
                   shrink-0
-                  opacity-80
+                  opacity-70
                   invert
                   transition
                   group-hover:opacity-100
                 "
             />
-
           </Listbox.Button>
-
           <Transition
             as={Fragment}
             leave='transition ease-in duration-100'
@@ -61,12 +34,12 @@ const CustomFilter = ({ title, options, value, handleChange }: CustomFilterProps
             leaveTo='opacity-0'
           >
             {/* <Listbox.Options className='custom-filter__options'> */}
+
             <Listbox.Options className="
                 absolute
                 top-full
                 left-0
                 mt-2
-                z-50
                 w-full
                 max-h-64
                 overflow-auto
@@ -76,8 +49,8 @@ const CustomFilter = ({ title, options, value, handleChange }: CustomFilterProps
                 border-luxury-border
                 shadow-xl
                 text-sm
+                z-[2000]
               ">
-
               {options.map(option => (
                 <Listbox.Option
                   // key={option.title}
@@ -100,6 +73,8 @@ const CustomFilter = ({ title, options, value, handleChange }: CustomFilterProps
                 </Listbox.Option>
               ))}
             </Listbox.Options>
+
+
           </Transition>
         </div>
       </Listbox>

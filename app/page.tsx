@@ -1,6 +1,7 @@
 
 import { CarCard, CustomFilter, Hero, SearchBar, ShowMore, BackToTop, PriceFilter, FuelFilter, SeatsFilter, TransmissionFilter, YearFilter, CategoryFilter } from "@/components";
 import ClearFiltersButton from "@/components/ClearFiltersButton";
+import FiltersPanelWrapper from "@/components/FiltersPanelWrapper";
 import { fuels, yearsOfProduction } from "@/constants";
 import { fetchCars } from "@/utils";
 
@@ -42,7 +43,7 @@ export default async function Home({ searchParams }: { searchParams: any }) {
   const isNext = meta && page < meta.pages; // ✅ only true if another page exists
 
   return (
-    <main className="overflow-hidden">
+    <main className="overflow-visible">
       <Hero />
       <div id="discover" className="
           mt-12
@@ -56,44 +57,6 @@ export default async function Home({ searchParams }: { searchParams: any }) {
           border-luxury-divider
         "
       >
-        {/* <div className="home__text-container">
-          <h1 className="text-4xl font-extrabold">Car Catalogue</h1>
-          <p>Explore the cars you might like</p>
-        </div> */}
-
-        {/* <h1 className="text-4xl font-extrabold tracking-tight text-luxury-text">
-          Find Your Next Vehicle
-        </h1>
-        <p className="text-sm sm:text-base text-luxury-muted">
-          Compare models, features, and pricing — all in one place
-        </p> */}
-
-        {/* <div className="home__text-container">
-          <h1
-            className="
-              text-2xl
-              sm:text-3xl
-              lg:text-4xl
-              font-extrabold
-              tracking-tight
-              text-luxury-text
-            "
-          >
-            Find Your Next Vehicle
-          </h1>
-          <p
-            className="
-              mt-1
-              text-sm
-              sm:text-base
-              text-luxury-muted
-              max-w-2xl
-            "
-          >
-            Compare models, features, and pricing — all in one place
-          </p>
-        </div> */}
-
         <div className="home__text-container">
           <h1 className="section__title">Find Your Next Vehicle</h1>
           <p className="section__subtitle">
@@ -116,14 +79,11 @@ export default async function Home({ searchParams }: { searchParams: any }) {
             <SearchBar />
           </div>
 
-          <div className="home__filter-container">
-            <CategoryFilter />
-            <SeatsFilter /> {/* fully client controlled */}
-            <FuelFilter />
-            <TransmissionFilter />
-            <YearFilter />
-            {/* <PriceFilter /> */}
+          {/* Make the Filters buttom stretch all width */}
+          <div className="w-full block">
+            <FiltersPanelWrapper />
           </div>
+
         </div>
 
         {/* Clear Filters Button */}
