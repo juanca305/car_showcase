@@ -1,3 +1,4 @@
+import BranchFilter from "@/components/BranchFilter";
 import { CarProps, FilterProps } from "@/types";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -28,6 +29,7 @@ export async function fetchCars(
       page = 1,
       limit = 12,
       category,
+      branch,
     } = filters;
 
     const query = new URLSearchParams();
@@ -51,6 +53,7 @@ export async function fetchCars(
     if (priceMin) query.append("priceMin", priceMin.toString());
     if (priceMax) query.append("priceMax", priceMax.toString());
     if (category) query.append("category", category);
+    if (branch) query.append("branch", encodeURIComponent(branch));
 
     query.append("page", page.toString());
     query.append("limit", limit.toString());

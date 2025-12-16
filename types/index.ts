@@ -68,6 +68,7 @@ export interface FilterProps {
   limit?: number;
   seats?: number;
   category?: string;
+  branch?: string;
 }
 
 export interface OptionProps {

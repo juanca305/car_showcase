@@ -110,20 +110,9 @@ export const footerLinks = [
   },
 ];
 
-// export const carCategories = [
-//   { title: "Category", value: "" },
-//   { title: "Economy", value: "economy" },
-//   { title: "Compact", value: "compact" },
-//   { title: "Midsize", value: "midsize" },
-//   { title: "Full-size", value: "fullsize" },
-//   { title: "SUV", value: "suv" },
-//   { title: "Luxury", value: "luxury" },
-//   { title: "Convertible", value: "convertible" },
-//   { title: "Van", value: "van" },
-// ];
 
 export const carCategories = [
-  { title: "All Categories", value: "" },
+  { title: "Body Style", value: "" },
   { title: "Sedan", value: "Sedan" },
   { title: "SUV", value: "SUV" },
   { title: "Hatchback", value: "Hatchback" },
@@ -135,3 +124,13 @@ export const carCategories = [
   { title: "Electric", value: "Electric" },
   { title: "Sports Car", value: "Sports Car" },
 ];
+
+export const dealerBranches = [
+  { title: "Dealership", value: "" },
+  { title: "West Kendall", value: "West Kendall" },
+  { title: "Dadeland", value: "Dadeland" },
+  { title: "Homestead", value: "Homestead" },
+  { title: "Doral", value: "Doral" },
+  { title: "Miami", value: "Miami" },
+];
+

@@ -1,5 +1,6 @@
 
 import { CarCard, CustomFilter, Hero, SearchBar, ShowMore, BackToTop, PriceFilter, FuelFilter, SeatsFilter, TransmissionFilter, YearFilter, CategoryFilter } from "@/components";
+import BranchFilter from "@/components/BranchFilter";
 import ClearFiltersButton from "@/components/ClearFiltersButton";
 import FiltersPanelWrapper from "@/components/FiltersPanelWrapper";
 import { fuels, yearsOfProduction } from "@/constants";
@@ -19,6 +20,8 @@ export default async function Home({ searchParams }: { searchParams: any }) {
   const priceMin = searchParams?.priceMin || "";
   const priceMax = searchParams?.priceMax || "";
   const page = Number(searchParams?.page) || 1;
+  const branch = searchParams?.branch || "";
+
 
   // Set the amount of car cards per page ***/
   const limit = Number(searchParams?.limit) || 8;
@@ -36,6 +39,7 @@ export default async function Home({ searchParams }: { searchParams: any }) {
     page,
     limit,
     category,
+    branch,
   });
 
   // 3️⃣ Compute helper booleans

@@ -8,6 +8,7 @@ import FuelFilter from "./FuelFilter";
 import TransmissionFilter from "./TransmissionFilter";
 import YearFilter from "./YearFilter";
 import PriceFilter from "./PriceFilter";
+import BranchFilter from "./BranchFilter";
 
 export default function FiltersPanelWrapper() {
   const [open, setOpen] = useState(false);
@@ -19,6 +20,7 @@ export default function FiltersPanelWrapper() {
       
       {/* Desktop Filters */}
       <div className="home__filter-container hidden sm:flex ">
+        <BranchFilter />
         <CategoryFilter />
         <SeatsFilter />
         <FuelFilter />
@@ -57,6 +59,7 @@ export default function FiltersPanelWrapper() {
 
             {/* Mobil Filters */}
             <div className="flex flex-col gap-5 relative">
+              <BranchFilter />
               <CategoryFilter />
               <SeatsFilter />
               <FuelFilter />
