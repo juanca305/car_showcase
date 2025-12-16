@@ -566,10 +566,25 @@
     text-sm
     pointer-events-none;
 }
+ 
+  /* .price-filter-wrapper {
+  @apply flex flex-col sm:flex-row items-center gap-2 sm:gap-3 sm:min-h-[56px];
+}    */
 
 .price-filter-wrapper {
-  @apply flex flex-col sm:flex-row items-center gap-2 sm:gap-3 sm:min-h-[56px];
+  @apply
+    flex flex-col sm:flex-row items-center
+    gap-2 sm:gap-3
+
+    /* desktop / tablet only */
+    sm:px-3
+    sm:py-2
+    sm:rounded-xl
+    sm:border
+    sm:border-luxury-border
+    sm:bg-luxury-surface/40;
 }
+
 
 .price-controls {
   @apply flex items-center gap-3 sm:gap-4;
