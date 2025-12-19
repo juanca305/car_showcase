@@ -30,6 +30,7 @@ export async function fetchCars(
       limit = 12,
       category,
       branch,
+      condition,
     } = filters;
 
     const query = new URLSearchParams();
@@ -53,7 +54,9 @@ export async function fetchCars(
     if (priceMin) query.append("priceMin", priceMin.toString());
     if (priceMax) query.append("priceMax", priceMax.toString());
     if (category) query.append("category", category);
-    if (branch) query.append("branch", encodeURIComponent(branch));
+    if (branch) query.append("branch", branch);
+    if (condition) query.append("condition", condition);
+
 
     query.append("page", page.toString());
     query.append("limit", limit.toString());
@@ -93,6 +96,9 @@ export async function fetchCars(
       available: car.available ?? true,
       createdAt: car.createdAt || "",
       slug: car.slug || "",
+      condition: car.condition,
+      certified: car.certified ?? false,
+      branch: car.branch,
     }));
 
     return {

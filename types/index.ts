@@ -20,6 +20,11 @@ export interface CarImage {
   url: string;
 }
 
+export interface Location {
+  branch: string;
+}
+
+
 export interface CarProps {
   _id: string;
   make: string;
@@ -39,6 +44,9 @@ export interface CarProps {
   available: boolean;
   createdAt?: string;
   slug?: string;
+  branch: Location;
+  condition?: string;
+  certified?: boolean;
 }
 
 // export interface FilterProps {
@@ -69,6 +77,7 @@ export interface FilterProps {
   seats?: number;
   category?: string;
   branch?: string;
+  condition?: string;
 }
 
 export interface OptionProps {

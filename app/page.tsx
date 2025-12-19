@@ -2,6 +2,7 @@
 import { CarCard, CustomFilter, Hero, SearchBar, ShowMore, BackToTop, PriceFilter, FuelFilter, SeatsFilter, TransmissionFilter, YearFilter, CategoryFilter } from "@/components";
 import BranchFilter from "@/components/BranchFilter";
 import ClearFiltersButton from "@/components/ClearFiltersButton";
+import ConditionFilter from "@/components/ConditionFilter";
 import FiltersPanelWrapper from "@/components/FiltersPanelWrapper";
 import { fuels, yearsOfProduction } from "@/constants";
 import { fetchCars } from "@/utils";
@@ -21,7 +22,7 @@ export default async function Home({ searchParams }: { searchParams: any }) {
   const priceMax = searchParams?.priceMax || "";
   const page = Number(searchParams?.page) || 1;
   const branch = searchParams?.branch || "";
-
+  const condition = searchParams?.condition || "";
 
   // Set the amount of car cards per page ***/
   const limit = Number(searchParams?.limit) || 8;
@@ -40,6 +41,7 @@ export default async function Home({ searchParams }: { searchParams: any }) {
     limit,
     category,
     branch,
+    condition,
   });
 
   // 3️⃣ Compute helper booleans
@@ -69,26 +71,61 @@ export default async function Home({ searchParams }: { searchParams: any }) {
         </div>
 
         <div className="home__filters">
-          <div className="
-              w-full
-              mt-8
-              p-4
-              sm:p-5
-              rounded-2xl
-              bg-luxury-surface
-              border
-              border-luxury-border
-            "
+          <div
+            className="
+                w-full
+                mt-8
+                p-4 
+                sm:p-5
+                rounded-2xl
+                bg-luxury-surface
+                border
+                border-luxury-border
+                shadow-sm
+              "
           >
-            <SearchBar />
+            {/* Top row: Make / Model / Condition */}
+            <div
+              className="
+                flex
+                flex-col
+                xl:flex-row
+                gap-4 
+                xl:gap-6
+                items-stretch
+              "
+            >
+              {/* Make + Model */}
+              <div className="flex-1 flex items-center">
+                <SearchBar />
+              </div>
+
+              {/* 🔹 Divider (mobile + tablet only) */}
+              <div className="block xl:hidden">
+                <div className="my-2 h-px bg-luxury-border/60" />
+              </div>
+
+              {/* Condition */}
+              <div
+                className="
+                  xl:w-[260px]
+                  flex
+                  items-center
+                  justify-center
+                "
+              > 
+                <ConditionFilter />
+              </div>
+            </div>
           </div>
 
-          {/* Make the Filters buttom stretch all width */}
-          <div className="w-full block">
+          {/* Secondary filters panel */}
+          <div className="w-full block mt-4">
             <FiltersPanelWrapper />
           </div>
-
         </div>
+
+
 
         {/* Clear Filters Button */}
         <div className="flex justify-end mt-4">

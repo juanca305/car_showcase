@@ -14,7 +14,8 @@ export default function ClearFiltersButton() {
     "category",
     "priceMin",
     "priceMax",
-    "branch"
+    "branch",
+    "condition",
   ];
 
   const hasFilters = filterKeys.some((key) => searchParams.has(key));

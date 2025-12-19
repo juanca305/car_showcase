@@ -538,6 +538,16 @@
     border-luxury-border;
 }
 
+.filter-divider {
+  @apply
+    hidden lg:block
+    w-px
+    h-10
+    bg-luxury-border/60
+    mx-3;
+}
+
+
 .input-shell,
 .filter-input {
   @apply shadow-sm;
