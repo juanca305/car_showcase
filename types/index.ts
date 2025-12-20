@@ -24,7 +24,6 @@ export interface Location {
   branch: string;
 }
 
-
 export interface CarProps {
   _id: string;
   make: string;
@@ -45,7 +44,7 @@ export interface CarProps {
   createdAt?: string;
   slug?: string;
   branch: Location;
-  condition?: string;
+  condition?: "new" | "used";
   certified?: boolean;
 }
 

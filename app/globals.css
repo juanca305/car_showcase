@@ -141,7 +141,7 @@
   .hero__image-overlay {
     transform: translateX(-6%) translateY(18%) scale(1.3);
     background-position: right -18% center;
-    filter: drop-shadow(0 30px 80px rgba(0,0,0,0.35));
+    filter: drop-shadow(0 30px 80px rgba(0, 0, 0, 0.35));
   }
 }
 
@@ -153,7 +153,7 @@
 }
 
 .home__filters {
-  @apply mt-6 sm:mt-12 w-full flex-between items-center flex-wrap gap-5 ;
+  @apply mt-6 sm:mt-12 w-full flex-between items-center flex-wrap gap-5;
 }
 
 .home__filter-container {
@@ -297,8 +297,7 @@
 }
 
 .search-manufacturer__input {
-  @apply
-    w-full
+  @apply w-full
     h-[48px]
     pl-12
     pr-4
@@ -336,8 +335,7 @@
 /* END: search manufacturer styles */
 /* START: Section Heading styles */
 .section__title {
-  @apply
-    text-2xl
+  @apply text-2xl
     sm:text-3xl
     lg:text-4xl
     font-extrabold
@@ -346,8 +344,7 @@
 }
 
 .section__subtitle {
-  @apply
-    mt-2
+  @apply mt-2
     sm:mt-3
     text-sm
     sm:text-base
@@ -358,8 +355,7 @@
 
 /* START: Unified Input Shell */
 .input-shell {
-  @apply
-    relative
+  @apply relative
     w-full
     h-[48px]
     flex
@@ -374,23 +370,19 @@
     ease-out;
 }
 
-
 /* ✅ Hover (mouse only) */
 .input-shell:hover {
-  @apply
-    border-x-luxury-borderStrong;
+  @apply border-x-luxury-borderStrong;
 }
 
 .input-shell:focus-within {
-  @apply
-    border-luxury-accent
+  @apply border-luxury-accent
     ring-2
     ring-luxury-accent/20;
 }
 
 .input-shell__icon {
-  @apply
-    absolute
+  @apply absolute
     left-3
     top-1/2
     -translate-y-1/2
@@ -400,8 +392,7 @@
 }
 
 .input-shell__input {
-  @apply
-    w-full
+  @apply w-full
     h-full
     bg-transparent
     pl-10
@@ -415,11 +406,9 @@
 }
 /* END: Unified Input Shell */
 
-
 /* FILTER / INPUT SURFACE (shared) */
 .filter-shell {
-  @apply
-    h-[48px]
+  @apply h-[48px]
     w-full
     min-w-[140px]
     px-4
@@ -436,21 +425,18 @@
     cursor-pointer;
 }
 
-
 .filter-shell:hover {
   @apply border-luxury-borderStrong;
 }
 
 .filter-shell:focus-within {
-  @apply
-    border-luxury-accent
+  @apply border-luxury-accent
     ring-2
     ring-luxury-accent/20;
 }
 
 .filter-input {
-  @apply
-    h-[48px]
+  @apply h-[48px]
     w-full
     rounded-xl
     bg-luxury-surface
@@ -469,15 +455,13 @@
 }
 
 .filter-input:focus {
-  @apply
-    border-luxury-accent
+  @apply border-luxury-accent
     ring-2
     ring-luxury-accent/20;
 }
 
 .filter-apply-btn {
-  @apply
-    h-[48px]
+  @apply h-[48px]
     px-3
     sm:px-5
     rounded-xl
@@ -493,8 +477,7 @@
 }
 
 .filter-clear-btn {
-  @apply
-    h-[48px]
+  @apply h-[48px]
     px-5
     rounded-xl
     bg-transparent
@@ -506,15 +489,13 @@
 }
 
 .filter-clear-btn:hover {
-  @apply
-    text-luxury-text
+  @apply text-luxury-text
     border-luxury-borderStrong
     bg-luxury-accent/5;
 }
 
 .price-group {
-  @apply
-    flex
+  @apply flex
     items-center
     gap-3
     px-3
@@ -526,8 +507,7 @@
 }
 
 .filter-group {
-  @apply
-    flex
+  @apply flex
     items-center
     gap-3
     px-4
@@ -539,14 +519,12 @@
 }
 
 .filter-divider {
-  @apply
-    hidden lg:block
+  @apply hidden lg:block
     w-px
     h-10
     bg-luxury-border/60
     mx-3;
 }
-
 
 .input-shell,
 .filter-input {
@@ -554,8 +532,7 @@
 }
 
 .price-label {
-  @apply
-    text-xs
+  @apply text-xs
     text-luxury-muted
     uppercase
     tracking-wide
@@ -567,8 +544,7 @@
 }
 
 .price-currency {
-  @apply
-    absolute
+  @apply absolute
     left-3
     top-1/2
     -translate-y-1/2
@@ -576,14 +552,13 @@
     text-sm
     pointer-events-none;
 }
- 
-  /* .price-filter-wrapper {
+
+/* .price-filter-wrapper {
   @apply flex flex-col sm:flex-row items-center gap-2 sm:gap-3 sm:min-h-[56px];
 }    */
 
 .price-filter-wrapper {
-  @apply
-    flex flex-col sm:flex-row items-center
+  @apply flex flex-col sm:flex-row items-center
     gap-2 sm:gap-3
 
     /* desktop / tablet only */
@@ -595,6 +570,585 @@
     sm:bg-luxury-surface/40;
 }
 
+.price-controls {
+  @apply flex items-center gap-3 sm:gap-4;
+}
+
+.price-input {
+  @apply w-[84px] sm:w-[96px];
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Manrope", sans-serif;
+}
+
+/* START: General styles */
+.max-width {
+  @apply max-w-[1440px] mx-auto;
+}
+
+.padding-x {
+  @apply sm:px-16 px-6;
+}
+
+.padding-y {
+  @apply py-4;
+}
+
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.flex-between {
+  @apply flex justify-between items-center;
+}
+
+.custom-btn {
+  @apply flex flex-row relative justify-center items-center py-3 px-6 outline-none;
+}
+/* END: General styles */
+
+/* START: Hero styles */
+.hero {
+  @apply flex
+    flex-col
+    xl:flex-row
+    gap-12
+    xl:gap-16
+    relative
+    z-0
+    max-w-[1440px]
+    mx-auto;
+}
+
+.hero__title {
+  @apply text-[38px]
+    sm:text-[48px]
+    md:text-[56px]
+    xl:text-[64px]
+    2xl:text-[72px]
+    font-bold
+    leading-tight;
+}
+
+.hero__subtitle {
+  @apply text-[16px]
+    sm:text-[18px]
+    md:text-[20px]
+    text-luxury-muted
+    font-light
+    mt-5
+    max-w-xl;
+}
+
+.hero__image-container {
+  @apply relative
+    w-full
+    flex
+    justify-center
+    items-center
+    xl:justify-end
+    xl:items-end
+    xl:flex-[1.4];
+}
+
+.hero__image {
+  @apply relative
+    w-[90%]
+    sm:w-[85%]
+    xl:w-full
+    h-[280px]
+    sm:h-[380px]
+    md:h-[420px]
+    xl:h-full
+    z-0;
+}
+
+.hero__image {
+  transform: translateY(8%);
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .hero__image {
+    transform: translateY(2%);
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero__image {
+    transform: translateY(16%);
+  }
+}
+
+.hero__image-overlay {
+  @apply absolute
+    inset-0
+    -z-10
+    w-full
+    aspect-[4/3]
+
+    bg-hero-bg
+    bg-no-repeat
+    bg-contain
+    bg-right;
+}
+
+/* Mobile */
+.hero__image-overlay {
+  transform: translateX(-5%) translateY(-10%) scale(1);
+  background-position: right -4% center;
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .hero__image-overlay {
+    transform: translateX(-2%) translateY(-26%) scale(0.75);
+    background-position: right -8% center;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1280px) {
+  .hero__image-overlay {
+    transform: translateX(-6%) translateY(18%) scale(1.3);
+    background-position: right -18% center;
+    filter: drop-shadow(0 30px 80px rgba(0, 0, 0, 0.35));
+  }
+}
+
+/* END: Hero styles */
+
+/* START: Home styles */
+.home__text-container {
+  @apply flex flex-col items-start justify-start gap-y-2.5 text-black-100;
+}
+
+.home__filters {
+  @apply mt-6 sm:mt-12 w-full flex-between items-center flex-wrap gap-5;
+}
+
+.home__filter-container {
+  @apply hidden sm:flex justify-start flex-nowrap items-center gap-2 overflow-visible sm:gap-4;
+}
+
+.home__cars-wrapper {
+  @apply grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-8 pt-14;
+}
+
+.home__error-container {
+  @apply mt-16 flex justify-center items-center flex-col gap-2;
+}
+/* END: Home styles */
+
+/* START: Car Card styles */
+.car-card {
+  @apply flex flex-col p-4 sm:p-5 md:p-6
+ justify-center items-start text-black-100 bg-primary-blue-100 hover:bg-white hover:shadow-md rounded-3xl transform transition-all duration-300 ease-in-out;
+}
+
+.car-card:hover {
+  @apply -translate-y-1 shadow-xl;
+}
+
+.car-card__content {
+  @apply w-full flex justify-between items-start gap-2;
+}
+
+.car-card__content-title {
+  @apply text-[18px] leading-[22px] font-bold capitalize sm:text-[20px] sm:leading-[24px] md:text-[22px] md:leading-[26px];
+}
+
+/*Price container*/
+.car-card__price {
+  @apply flex mt-6 text-[24px] leading-[28px] font-extrabold sm:text-[28px] sm:leading-[32px] md:text-[32px] md:leading-[38px];
+}
+
+/* Dollar sign */
+.car-card__price-dollar {
+  @apply self-start text-[12px] leading-[15px] font-semibold sm:text-[13px] sm:leading-[16px] md:text-[14px] md:leading-[17px];
+}
+
+/* /day text */
+.car-card__price-day {
+  @apply self-end text-[12px] leading-[15px] font-medium sm:text-[13px] sm:leading-[16px] md:text-[14px] md:leading-[17px];
+}
+
+.car-card__image {
+  @apply relative w-full h-40 my-3 object-contain;
+}
+
+.car-card__icon-container {
+  @apply flex group-hover:invisible w-full justify-between text-grey;
+}
+
+.car-card__icon {
+  @apply flex flex-col justify-center items-center gap-2;
+}
+
+.car-card__icon-text {
+  @apply text-[14px] leading-[17px];
+}
+
+.car-card__btn-container {
+  @apply hidden group-hover:flex absolute bottom-0 w-full z-10;
+}
+/* END: Car Card styles */
+
+/* START: Car Details styles */
+.car-details__dialog-panel {
+  @apply relative w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 text-left shadow-xl transition-all flex flex-col gap-5;
+}
+
+.car-details__close-btn {
+  @apply absolute top-2 right-2 z-10 w-fit p-2 bg-primary-blue-100 rounded-full;
+}
+
+.car-details__main-image {
+  @apply relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg;
+}
+/* END: Car Details styles */
+
+/* START: Custom Filter styles */
+/* .custom-filter__btn {
+  @apply relative w-full min-w-[127px] flex justify-between items-center cursor-default rounded-lg bg-white py-2 px-3 text-left shadow-md sm:text-sm border;
+}
+
+.custom-filter__options {
+  @apply absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm;
+} */
+/* END: Custom Filter styles */
+
+/* START: Footer styles */
+.footer {
+  @apply flex flex-col text-black-100  mt-5 border-t border-gray-100;
+}
+
+.footer__links-container {
+  @apply flex max-md:flex-col flex-wrap justify-between gap-5 sm:px-16 px-6 py-10;
+}
+
+.footer__rights {
+  @apply flex flex-col justify-start items-start gap-6;
+}
+
+.footer__links {
+  @apply flex-1 w-full flex md:justify-end flex-wrap max-md:mt-10 gap-20;
+}
+
+.footer__link {
+  @apply flex flex-col gap-6 text-base min-w-[170px];
+}
+
+.footer__copyrights {
+  @apply flex justify-between items-center flex-wrap mt-10 border-t border-gray-100 sm:px-16 px-6 py-10;
+}
+
+.footer__copyrights-link {
+  @apply flex-1 flex sm:justify-end justify-center max-sm:mt-4 gap-10;
+}
+/* END: Footer styles */
+
+/* START: searchbar styles */
+.searchbar {
+  @apply flex items-center justify-start max-sm:flex-col w-full relative max-sm:gap-4 max-w-3xl;
+}
+
+.searchbar__item {
+  @apply flex-1 max-sm:w-full flex justify-start items-center relative;
+}
+
+.searchbar__input {
+  @apply w-full h-[48px] pl-12 p-4 bg-light-white rounded-r-full max-sm:rounded-full outline-none cursor-pointer text-sm;
+}
+/* END: searchbar styles */
+
+/* START: search manufacturer styles */
+.search-manufacturer {
+  @apply flex-1 max-sm:w-full flex justify-start items-center;
+}
+
+.search-manufacturer__input {
+  @apply w-full
+    h-[48px]
+    pl-12
+    pr-4
+
+    /* ✅ Radius adapts to screen */
+    rounded-full
+    sm:rounded-xl
+
+    bg-slate-50
+
+    border
+    border-gray-300/60
+
+    text-sm
+    text-gray-900
+   placeholder-slate-400
+
+    outline-none
+    transition
+
+    focus:border-luxury-accent
+    focus:ring-2
+    focus:ring-luxury-accent/20
+
+    cursor-text;
+}
+
+.search-manufacturer__options {
+  @apply absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm;
+}
+
+.search-manufacturer__option {
+  @apply cursor-default select-none py-2 pl-10 pr-4;
+}
+/* END: search manufacturer styles */
+/* START: Section Heading styles */
+.section__title {
+  @apply text-2xl
+    sm:text-3xl
+    lg:text-4xl
+    font-extrabold
+    tracking-tight
+    text-luxury-text;
+}
+
+.section__subtitle {
+  @apply mt-2
+    sm:mt-3
+    text-sm
+    sm:text-base
+    text-luxury-muted
+    max-w-2xl;
+}
+/* END: Section Heading styles */
+
+/* START: Unified Input Shell */
+.input-shell {
+  @apply relative
+    w-full
+    h-[48px]
+    flex
+    items-center
+    rounded-full
+    sm:rounded-xl
+    bg-luxury-surface
+    border
+    border-luxury-border
+    transition
+    duration-150
+    ease-out;
+}
+
+/* ✅ Hover (mouse only) */
+.input-shell:hover {
+  @apply border-x-luxury-borderStrong;
+}
+
+.input-shell:focus-within {
+  @apply border-luxury-accent
+    ring-2
+    ring-luxury-accent/20;
+}
+
+.input-shell__icon {
+  @apply absolute
+    left-3
+    top-1/2
+    -translate-y-1/2
+    opacity-70
+    pointer-events-none
+    text-luxury-muted;
+}
+
+.input-shell__input {
+  @apply w-full
+    h-full
+    bg-transparent
+    pl-10
+    pr-4
+    text-sm
+    /* text-slate-900
+    placeholder-slate-400 */
+    text-luxury-text
+    placeholder-luxury-muted
+    outline-none;
+}
+/* END: Unified Input Shell */
+
+/* FILTER / INPUT SURFACE (shared) */
+.filter-shell {
+  @apply h-[48px]
+    w-full
+    min-w-[140px]
+    px-4
+    rounded-xl
+    bg-luxury-surface
+    border
+    border-luxury-border
+    text-sm
+    text-luxury-text
+    flex
+    items-center
+    justify-between
+    transition
+    cursor-pointer;
+}
+
+.filter-shell:hover {
+  @apply border-luxury-borderStrong;
+}
+
+.filter-shell:focus-within {
+  @apply border-luxury-accent
+    ring-2
+    ring-luxury-accent/20;
+}
+
+.filter-input {
+  @apply h-[48px]
+    w-full
+    rounded-xl
+    bg-luxury-surface
+    border
+    border-luxury-border
+    px-4
+    text-sm
+    text-luxury-text
+    placeholder-luxury-muted
+    outline-none
+    transition;
+}
+
+.filter-input:hover {
+  @apply border-luxury-borderStrong;
+}
+
+.filter-input:focus {
+  @apply border-luxury-accent
+    ring-2
+    ring-luxury-accent/20;
+}
+
+.filter-apply-btn {
+  @apply h-[48px]
+    px-3
+    sm:px-5
+    rounded-xl
+    bg-luxury-accent
+    text-white
+    text-sm
+    font-medium
+    transition;
+}
+
+.filter-apply-btn:hover {
+  @apply bg-luxury-accentHover;
+}
+
+.filter-clear-btn {
+  @apply h-[48px]
+    px-5
+    rounded-xl
+    bg-transparent
+    border
+    border-luxury-border
+    text-luxury-muted
+    text-sm
+    transition;
+}
+
+.filter-clear-btn:hover {
+  @apply text-luxury-text
+    border-luxury-borderStrong
+    bg-luxury-accent/5;
+}
+
+.price-group {
+  @apply flex
+    items-center
+    gap-3
+    px-3
+    py-2
+    rounded-2xl
+    bg-luxury-accent/5
+    border
+    border-luxury-border;
+}
+
+.filter-group {
+  @apply flex
+    items-center
+    gap-3
+    px-4
+    py-3
+    rounded-xl
+    bg-luxury-surface/25
+    border
+    border-luxury-border;
+}
+
+.filter-divider {
+  @apply hidden lg:block
+    w-px
+    h-10
+    bg-luxury-border/60
+    mx-3;
+}
+
+.input-shell,
+.filter-input {
+  @apply shadow-sm;
+}
+
+.price-label {
+  @apply text-xs
+    text-luxury-muted
+    uppercase
+    tracking-wide
+    mr-1;
+}
+
+.price-input {
+  @apply relative w-[110px];
+}
+
+.price-currency {
+  @apply absolute
+    left-3
+    top-1/2
+    -translate-y-1/2
+    text-luxury-muted
+    text-sm
+    pointer-events-none;
+}
+
+/* .price-filter-wrapper {
+  @apply flex flex-col sm:flex-row items-center gap-2 sm:gap-3 sm:min-h-[56px];
+}    */
+
+.price-filter-wrapper {
+  @apply flex flex-col sm:flex-row items-center
+    gap-2 sm:gap-3
+
+    /* desktop / tablet only */
+    sm:px-3
+    sm:py-2
+    sm:rounded-xl
+    sm:border
+    sm:border-luxury-border
+    sm:bg-luxury-surface/40;
+}
 
 .price-controls {
   @apply flex items-center gap-3 sm:gap-4;
@@ -604,8 +1158,808 @@
   @apply w-[84px] sm:w-[96px];
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Manrope", sans-serif;
+}
 
+/* START: General styles */
+.max-width {
+  @apply max-w-[1440px] mx-auto;
+}
+
+.padding-x {
+  @apply sm:px-16 px-6;
+}
+
+.padding-y {
+  @apply py-4;
+}
+
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.flex-between {
+  @apply flex justify-between items-center;
+}
+
+.custom-btn {
+  @apply flex flex-row relative justify-center items-center py-3 px-6 outline-none;
+}
+/* END: General styles */
+
+/* START: Hero styles */
+.hero {
+  @apply flex
+    flex-col
+    xl:flex-row
+    gap-12
+    xl:gap-16
+    relative
+    z-0
+    max-w-[1440px]
+    mx-auto;
+}
+
+.hero__title {
+  @apply text-[38px]
+    sm:text-[48px]
+    md:text-[56px]
+    xl:text-[64px]
+    2xl:text-[72px]
+    font-bold
+    leading-tight;
+}
+
+.hero__subtitle {
+  @apply text-[16px]
+    sm:text-[18px]
+    md:text-[20px]
+    text-luxury-muted
+    font-light
+    mt-5
+    max-w-xl;
+}
+
+.hero__image-container {
+  @apply relative
+    w-full
+    flex
+    justify-center
+    items-center
+    xl:justify-end
+    xl:items-end
+    xl:flex-[1.4];
+}
+
+.hero__image {
+  @apply relative
+    w-[90%]
+    sm:w-[85%]
+    xl:w-full
+    h-[280px]
+    sm:h-[380px]
+    md:h-[420px]
+    xl:h-full
+    z-0;
+}
+
+.hero__image {
+  transform: translateY(8%);
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .hero__image {
+    transform: translateY(2%);
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero__image {
+    transform: translateY(16%);
+  }
+}
+
+.hero__image-overlay {
+  @apply absolute
+    inset-0
+    -z-10
+    w-full
+    aspect-[4/3]
+
+    bg-hero-bg
+    bg-no-repeat
+    bg-contain
+    bg-right;
+}
+
+/* Mobile */
+.hero__image-overlay {
+  transform: translateX(-5%) translateY(-10%) scale(1);
+  background-position: right -4% center;
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .hero__image-overlay {
+    transform: translateX(-2%) translateY(-26%) scale(0.75);
+    background-position: right -8% center;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1280px) {
+  .hero__image-overlay {
+    transform: translateX(-6%) translateY(18%) scale(1.3);
+    background-position: right -18% center;
+    filter: drop-shadow(0 30px 80px rgba(0, 0, 0, 0.35));
+  }
+}
+
+/* END: Hero styles */
+
+/* START: Home styles */
+.home__text-container {
+  @apply flex flex-col items-start justify-start gap-y-2.5 text-black-100;
+}
+
+.home__filters {
+  @apply mt-6 sm:mt-12 w-full flex-between items-center flex-wrap gap-5;
+}
+
+.home__filter-container {
+  @apply hidden sm:flex justify-start flex-nowrap items-center gap-2 overflow-visible sm:gap-4;
+}
+
+.home__cars-wrapper {
+  @apply grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-8 pt-14;
+}
+
+.home__error-container {
+  @apply mt-16 flex justify-center items-center flex-col gap-2;
+}
+/* END: Home styles */
+
+/* START: Car Card styles */
+.car-card {
+  @apply flex flex-col p-4 sm:p-5 md:p-6
+ justify-center items-start text-black-100 bg-primary-blue-100 hover:bg-white hover:shadow-md rounded-3xl transform transition-all duration-300 ease-in-out;
+}
+
+.car-card:hover {
+  @apply -translate-y-1 shadow-xl;
+}
+
+.car-card__content {
+  @apply w-full flex justify-between items-start gap-2;
+}
+
+.car-card__content-title {
+  @apply text-[18px] leading-[22px] font-bold capitalize sm:text-[20px] sm:leading-[24px] md:text-[22px] md:leading-[26px];
+}
+
+/*Price container*/
+.car-card__price {
+  @apply flex mt-6 text-[24px] leading-[28px] font-extrabold sm:text-[28px] sm:leading-[32px] md:text-[32px] md:leading-[38px];
+}
+
+/* Dollar sign */
+.car-card__price-dollar {
+  @apply self-start text-[12px] leading-[15px] font-semibold sm:text-[13px] sm:leading-[16px] md:text-[14px] md:leading-[17px];
+}
+
+/* /day text */
+.car-card__price-day {
+  @apply self-end text-[12px] leading-[15px] font-medium sm:text-[13px] sm:leading-[16px] md:text-[14px] md:leading-[17px];
+}
+
+.car-card__image {
+  @apply relative w-full h-40 my-3 object-contain;
+}
+
+.car-card__icon-container {
+  @apply flex group-hover:invisible w-full justify-between text-grey;
+}
+
+.car-card__icon {
+  @apply flex flex-col justify-center items-center gap-2;
+}
+
+.car-card__icon-text {
+  @apply text-[14px] leading-[17px];
+}
+
+.car-card__btn-container {
+  @apply hidden group-hover:flex absolute bottom-0 w-full z-10;
+}
+/* END: Car Card styles */
+
+/* START: Car Details styles */
+.car-details__dialog-panel {
+  @apply relative w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 text-left shadow-xl transition-all flex flex-col gap-5;
+}
+
+.car-details__close-btn {
+  @apply absolute top-2 right-2 z-10 w-fit p-2 bg-primary-blue-100 rounded-full;
+}
+
+.car-details__main-image {
+  @apply relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg;
+}
+/* END: Car Details styles */
+
+/* START: Custom Filter styles */
+/* .custom-filter__btn {
+  @apply relative w-full min-w-[127px] flex justify-between items-center cursor-default rounded-lg bg-white py-2 px-3 text-left shadow-md sm:text-sm border;
+}
+
+.custom-filter__options {
+  @apply absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm;
+} */
+/* END: Custom Filter styles */
+
+/* START: Footer styles */
+.footer {
+  @apply flex flex-col text-black-100  mt-5 border-t border-gray-100;
+}
+
+.footer__links-container {
+  @apply flex max-md:flex-col flex-wrap justify-between gap-5 sm:px-16 px-6 py-10;
+}
+
+.footer__rights {
+  @apply flex flex-col justify-start items-start gap-6;
+}
+
+.footer__links {
+  @apply flex-1 w-full flex md:justify-end flex-wrap max-md:mt-10 gap-20;
+}
+
+.footer__link {
+  @apply flex flex-col gap-6 text-base min-w-[170px];
+}
+
+.footer__copyrights {
+  @apply flex justify-between items-center flex-wrap mt-10 border-t border-gray-100 sm:px-16 px-6 py-10;
+}
+
+.footer__copyrights-link {
+  @apply flex-1 flex sm:justify-end justify-center max-sm:mt-4 gap-10;
+}
+/* END: Footer styles */
+
+/* START: searchbar styles */
+.searchbar {
+  @apply flex items-center justify-start max-sm:flex-col w-full relative max-sm:gap-4 max-w-3xl;
+}
+
+.searchbar__item {
+  @apply flex-1 max-sm:w-full flex justify-start items-center relative;
+}
+
+.searchbar__input {
+  @apply w-full h-[48px] pl-12 p-4 bg-light-white rounded-r-full max-sm:rounded-full outline-none cursor-pointer text-sm;
+}
+/* END: searchbar styles */
+
+/* START: search manufacturer styles */
+.search-manufacturer {
+  @apply flex-1 max-sm:w-full flex justify-start items-center;
+}
+
+.search-manufacturer__input {
+  @apply w-full
+    h-[48px]
+    pl-12
+    pr-4
+
+    /* ✅ Radius adapts to screen */
+    rounded-full
+    sm:rounded-xl
+
+    bg-slate-50
+
+    border
+    border-gray-300/60
+
+    text-sm
+    text-gray-900
+   placeholder-slate-400
+
+    outline-none
+    transition
+
+    focus:border-luxury-accent
+    focus:ring-2
+    focus:ring-luxury-accent/20
+
+    cursor-text;
+}
+
+.search-manufacturer__options {
+  @apply absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm;
+}
+
+.search-manufacturer__option {
+  @apply cursor-default select-none py-2 pl-10 pr-4;
+}
+/* END: search manufacturer styles */
+/* START: Section Heading styles */
+.section__title {
+  @apply text-2xl
+    sm:text-3xl
+    lg:text-4xl
+    font-extrabold
+    tracking-tight
+    text-luxury-text;
+}
+
+.section__subtitle {
+  @apply mt-2
+    sm:mt-3
+    text-sm
+    sm:text-base
+    text-luxury-muted
+    max-w-2xl;
+}
+/* END: Section Heading styles */
+
+/* START: Unified Input Shell */
+.input-shell {
+  @apply relative
+    w-full
+    h-[48px]
+    flex
+    items-center
+    rounded-full
+    sm:rounded-xl
+    bg-luxury-surface
+    border
+    border-luxury-border
+    transition
+    duration-150
+    ease-out;
+}
+
+/* ✅ Hover (mouse only) */
+.input-shell:hover {
+  @apply border-x-luxury-borderStrong;
+}
+
+.input-shell:focus-within {
+  @apply border-luxury-accent
+    ring-2
+    ring-luxury-accent/20;
+}
+
+.input-shell__icon {
+  @apply absolute
+    left-3
+    top-1/2
+    -translate-y-1/2
+    opacity-70
+    pointer-events-none
+    text-luxury-muted;
+}
+
+.input-shell__input {
+  @apply w-full
+    h-full
+    bg-transparent
+    pl-10
+    pr-4
+    text-sm
+    /* text-slate-900
+    placeholder-slate-400 */
+    text-luxury-text
+    placeholder-luxury-muted
+    outline-none;
+}
+/* END: Unified Input Shell */
+
+/* FILTER / INPUT SURFACE (shared) */
+.filter-shell {
+  @apply h-[48px]
+    w-full
+    min-w-[140px]
+    px-4
+    rounded-xl
+    bg-luxury-surface
+    border
+    border-luxury-border
+    text-sm
+    text-luxury-text
+    flex
+    items-center
+    justify-between
+    transition
+    cursor-pointer;
+}
+
+.filter-shell:hover {
+  @apply border-luxury-borderStrong;
+}
+
+.filter-shell:focus-within {
+  @apply border-luxury-accent
+    ring-2
+    ring-luxury-accent/20;
+}
+
+.filter-input {
+  @apply h-[48px]
+    w-full
+    rounded-xl
+    bg-luxury-surface
+    border
+    border-luxury-border
+    px-4
+    text-sm
+    text-luxury-text
+    placeholder-luxury-muted
+    outline-none
+    transition;
+}
+
+.filter-input:hover {
+  @apply border-luxury-borderStrong;
+}
+
+.filter-input:focus {
+  @apply border-luxury-accent
+    ring-2
+    ring-luxury-accent/20;
+}
+
+.filter-apply-btn {
+  @apply h-[48px]
+    px-3
+    sm:px-5
+    rounded-xl
+    bg-luxury-accent
+    text-white
+    text-sm
+    font-medium
+    transition;
+}
+
+.filter-apply-btn:hover {
+  @apply bg-luxury-accentHover;
+}
+
+.filter-clear-btn {
+  @apply h-[48px]
+    px-5
+    rounded-xl
+    bg-transparent
+    border
+    border-luxury-border
+    text-luxury-muted
+    text-sm
+    transition;
+}
+
+.filter-clear-btn:hover {
+  @apply text-luxury-text
+    border-luxury-borderStrong
+    bg-luxury-accent/5;
+}
+
+.price-group {
+  @apply flex
+    items-center
+    gap-3
+    px-3
+    py-2
+    rounded-2xl
+    bg-luxury-accent/5
+    border
+    border-luxury-border;
+}
+
+.filter-group {
+  @apply flex
+    items-center
+    gap-3
+    px-4
+    py-3
+    rounded-xl
+    bg-luxury-surface/25
+    border
+    border-luxury-border;
+}
+
+.filter-divider {
+  @apply hidden lg:block
+    w-px
+    h-10
+    bg-luxury-border/60
+    mx-3;
+}
+
+.input-shell,
+.filter-input {
+  @apply shadow-sm;
+}
+
+.price-label {
+  @apply text-xs
+    text-luxury-muted
+    uppercase
+    tracking-wide
+    mr-1;
+}
+
+.price-input {
+  @apply relative w-[110px];
+}
+
+.price-currency {
+  @apply absolute
+    left-3
+    top-1/2
+    -translate-y-1/2
+    text-luxury-muted
+    text-sm
+    pointer-events-none;
+}
+
+/* .price-filter-wrapper {
+  @apply flex flex-col sm:flex-row items-center gap-2 sm:gap-3 sm:min-h-[56px];
+}    */
+
+.price-filter-wrapper {
+  @apply flex flex-col sm:flex-row items-center
+    gap-2 sm:gap-3
+
+    /* desktop / tablet only */
+    sm:px-3
+    sm:py-2
+    sm:rounded-xl
+    sm:border
+    sm:border-luxury-border
+    sm:bg-luxury-surface/40;
+}
+
+.price-controls {
+  @apply flex items-center gap-3 sm:gap-4;
+}
+
+.price-input {
+  @apply w-[84px] sm:w-[96px];
+}
+
+/* ============================
+   DARK LUXURY CAR CARD
+   ============================ */
+
+.car-card-dark {
+  @apply relative
+    flex
+    flex-col
+    p-4 sm:p-5 md:p-6
+    rounded-3xl
+    bg-luxury-surface
+    border
+    border-luxury-border
+    text-luxury-text
+    transition-all
+    duration-200
+    ease-out;
+}
+
+/* Hover = premium lift + glow */
+/* .car-card-dark:hover {
+  @apply -translate-y-1
+    border-luxury-borderStrong
+    shadow-[0_20px_60px_rgba(0,0,0,0.45)];
+} */
+
+.car-card-dark:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.car-card-dark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(
+      60% 60% at 50% 100%,
+      rgba(180, 150, 255, 0.18),
+      transparent 70%
+    );
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.car-card-dark:hover::after {
+  opacity: 1;
+}
+
+/* Header */
+.car-card-dark__content {
+  @apply w-full
+    flex
+    justify-between
+    items-start
+    gap-2;
+}
+
+.car-card-dark__title {
+  @apply text-[18px]
+    sm:text-[20px]
+    md:text-[22px]
+    font-bold
+    tracking-tight
+    text-luxury-text;
+}
+
+/* Price */
+.car-card-dark__price {
+  @apply flex
+    mt-5
+    text-[28px]
+    sm:text-[30px]
+    font-extrabold
+    text-luxury-text;
+}
+
+.car-card-dark__price-dollar {
+  @apply self-start
+    text-sm
+    font-semibold
+    text-luxury-muted;
+}
+
+.car-card-dark__price-day {
+  @apply self-end
+    text-sm
+    font-medium
+    text-luxury-muted;
+}
+
+/* Image container */
+.car-card-dark__media {
+  @apply relative
+    w-full
+    aspect-[4/3]
+    my-3
+    rounded-xl
+    overflow-hidden
+    bg-black/30
+    border
+    border-luxury-border;
+}
+
+/* Specs row */
+.car-card-dark__specs {
+  @apply flex
+    w-full
+    justify-between
+    mt-3
+    text-luxury-muted;
+}
+
+/* .car-card-dark__spec {
+  @apply
+    flex
+    flex-col
+    items-center
+    gap-2
+    text-xs;
+} */
+
+/* .car-card-dark__specs {
+  @apply flex
+    w-full
+    justify-between
+    items-center
+    h-[56px]
+    text-luxury-muted;
+} */
+
+.car-card-dark__specs {
+  @apply flex
+    w-full
+    justify-between
+    items-center
+    h-[56px]
+    text-luxury-muted
+    transition-all
+    duration-200
+    ease-out;
+}
+
+/* Hover state */
+.group:hover .car-card-dark__specs {
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+}
+
+/* CTA button container */
+/* .car-card-dark__btn-container {
+  @apply
+    hidden
+    group-hover:flex
+    absolute
+    inset-x-0
+    bottom-0
+    p-4
+    bg-gradient-to-t
+    from-black/70
+    via-black/30
+    to-transparent;
+} */
+
+/* .car-card-dark__btn-container {
+  @apply hidden
+    group-hover:flex
+    absolute
+    bottom-0
+    left-0
+    w-full
+    h-[56px]
+    items-center
+    justify-center
+    bg-luxury-surface
+    rounded-b-3xl
+    z-20;
+} */
+
+.car-card-dark__btn-container {
+  @apply absolute
+    bottom-0
+    left-0
+    w-full
+    h-[56px]
+    flex
+    items-center
+    justify-center
+    bg-luxury-surface
+    rounded-b-3xl
+    z-20
+    opacity-0
+    translate-y-2
+    pointer-events-none
+    transition-all
+    duration-200
+    ease-out;
+}
+
+/* Hover state */
+.group:hover .car-card-dark__btn-container {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.certified-badge {
+  position: relative;
+  transition: box-shadow 200ms ease-out, background-color 200ms ease-out;
+}
+
+.car-card-dark:hover .certified-badge {
+  box-shadow:
+    0 0 0 1px rgba(180, 150, 255, 0.25),
+    0 4px 14px rgba(180, 150, 255, 0.35);
+  background-color: rgba(180, 150, 255, 0.22);
+}
 
 
