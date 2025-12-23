@@ -36,6 +36,7 @@ export interface CarProps {
   fuelType?: string;
   transmission?: string;
   mileage?: number;
+  price: number;
   pricePerDay: number;
   images: CarImage[];
   description?: string;

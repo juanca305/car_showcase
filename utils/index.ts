@@ -84,6 +84,7 @@ export async function fetchCars(
       model: car.model,
       trim: car.trim || "",
       year: car.year,
+      price: car.price,
       color: car.color || "Unknown",
       seats: car.seats ?? 0,
       fuelType: car.fuelType || "Gasoline",

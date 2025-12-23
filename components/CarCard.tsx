@@ -124,6 +124,7 @@ import { useState } from "react";
 import { CarProps } from "@/types";
 import CarDetails from "./CarDetails";
 import CustomButton from './CustomButton';
+import { formatPrice } from "@/utils/formatPrice";
 
 interface CarCardProps {
   car: CarProps;
@@ -185,10 +186,14 @@ const CarCard = ({ car }: CarCardProps) => {
         <span className="self-end text-[14px] font-medium">/day</span>
       </p> */}
 
-      <p className="car-card-dark__price">
+      {/* <p className="car-card-dark__price">
         <span className="car-card-dark__price-dollar">$</span>
         {car.pricePerDay}
         <span className="car-card-dark__price-day">/day</span>
+      </p> */}
+
+      <p className="car-card-dark__price">
+        {formatPrice(car.price)}
       </p>
 
 
