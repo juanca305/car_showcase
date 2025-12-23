@@ -55,7 +55,7 @@ export default function PriceFilter() {
             value={minPrice}
             onChange={(e) => setMinPrice(e.target.value)}
           /> */}
-          <span className="price-currency">$</span>
+          {/* <span className="price-currency">$</span> */}
           <input
             type="number"
             placeholder="Min"
@@ -78,7 +78,7 @@ export default function PriceFilter() {
             value={maxPrice}
             onChange={(e) => setMaxPrice(e.target.value)}
           /> */}
-          <span className="price-currency">$</span>
+          {/* <span className="price-currency">$</span> */}
           <input
             type="number"
             placeholder="Max"
