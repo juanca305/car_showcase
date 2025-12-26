@@ -1,4 +1,4 @@
-import BranchFilter from "@/components/BranchFilter";
+//import BranchFilter from "@/components/BranchFilter";
 import { CarProps, FilterProps } from "@/types";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -31,19 +31,10 @@ export async function fetchCars(
       category,
       branch,
       condition,
+      sort,
     } = filters;
 
     const query = new URLSearchParams();
-
-    // if (seats) query.append("seats", seats.toString());
-    // if (make) query.append("make", encodeURIComponent(make));
-    // if (model) query.append("model", encodeURIComponent(model));
-    // if (fuelType) query.append("fuelType", encodeURIComponent(fuelType));
-    // if (transmission) query.append("transmission", encodeURIComponent(transmission));
-    // if (year) query.append("year", year.toString());
-    // if (priceMin) query.append("priceMin", priceMin.toString());
-    // if (priceMax) query.append("priceMax", priceMax.toString());
-    // if (category) query.append("category", encodeURIComponent(category));
 
     if (seats) query.append("seats", seats.toString());
     if (make) query.append("make", make);
@@ -56,6 +47,8 @@ export async function fetchCars(
     if (category) query.append("category", category);
     if (branch) query.append("branch", branch);
     if (condition) query.append("condition", condition);
+    if (sort) query.append("sort", sort);
+
 
 
     query.append("page", page.toString());
@@ -99,7 +92,7 @@ export async function fetchCars(
       slug: car.slug || "",
       condition: car.condition,
       certified: car.certified ?? false,
-      branch: car.branch,
+      location: car.location,
     }));
 
     return {

@@ -44,23 +44,10 @@ export interface CarProps {
   available: boolean;
   createdAt?: string;
   slug?: string;
-  branch: Location;
+  location: Location;
   condition?: "new" | "used";
   certified?: boolean;
 }
-
-// export interface FilterProps {
-//   make?: string;
-//   model?: string;
-//   fuelType?: string;
-//   transmission?: string;
-//   year?: string | number;
-//   priceMin?: number;
-//   priceMax?: number;
-//   page?: number;
-//   limit?: number;
-// }
-
 export type FuelType = "gasoline" | "diesel" | "electric" | "hybrid" | "other";
 export type Transmission = "automatic" | "manual" | "semi-automatic";
 
@@ -78,6 +65,7 @@ export interface FilterProps {
   category?: string;
   branch?: string;
   condition?: string;
+  sort?: SortOption;
 }
 
 export interface OptionProps {
@@ -96,3 +84,6 @@ export interface ShowMoreProps {
   pageNumber: number;
   isNext: boolean;
 }
+
+export type SortOption = "price-asc" | "price-desc";
+

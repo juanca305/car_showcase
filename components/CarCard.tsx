@@ -146,37 +146,22 @@ const CarCard = ({ car }: CarCardProps) => {
 
   return (
     <div className="car-card-dark group">
-      {/* <div className="car-card__content">
-        <h2 className="car-card__content-title">{car.make} {car.model}</h2>
-      </div> */}
 
       <div className="car-card-dark__content flex items-center justify-between gap-2">
-        <h2 className="car-card-dark__title">
-          {car.make} {car.model}
-        </h2>
-
+        <div className="flex items-center gap-2 min-w-0">
+          <span className="car-year-badge">{car.year}</span>
+          <h2 className="car-card-dark__title">
+            {car.make} {car.model}
+          </h2>
+        </div>
         {isCertified && (
           <span
-            className="
-              certified-badge
-              inline-flex
-              items-center
-              px-2.5
-              py-1
-              text-[11px]
-              font-semibold
-              tracking-wide
-              rounded-full
-              border
-              border-luxury-border
-              bg-luxury-accent/15
-              text-luxury-text
-              whitespace-nowrap
-            "
+            className="certified-badge"
           >
             Certified
           </span>
         )}
+        
       </div>
 
 

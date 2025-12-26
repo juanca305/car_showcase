@@ -169,7 +169,6 @@
 }
 /* END: Home styles */
 
-
 /*===========================
   LEGACY LIGHT CARD (DEPRECATED
  =============================== */
@@ -240,7 +239,6 @@
   @apply relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg;
 } */
 /* END: Car Details styles */
-
 
 /* START: Footer styles */
 .footer {
@@ -525,7 +523,7 @@
 
 .input-shell,
 .filter-input {
-  @apply shadow-sm
+  @apply shadow-sm;
 }
 
 .price-label {
@@ -627,13 +625,29 @@
     gap-2;
 }
 
-.car-card-dark__title {
-  @apply text-[18px]
-    sm:text-[20px]
-    md:text-[22px]
+/* .car-card-dark__title {
+  @apply text-[16px]
+     sm:text-[20px]
+    md:text-[16px] 
     font-bold
     tracking-tight
     text-luxury-text;
+} */
+
+.car-card-dark__title {
+  @apply text-[14px]           
+    sm:text-[17px]         
+    md:text-[19px]        
+    font-semibold
+    tracking-tight
+    text-luxury-text
+    leading-snug
+    truncate;
+}
+
+.car-card-dark:hover .car-card-dark__title {
+  transform: translateY(-1px) scale(1.03);
+  letter-spacing: 0.2px;
 }
 
 /* Price */
@@ -644,6 +658,20 @@
     sm:text-[30px]
     font-extrabold
     text-luxury-text;
+}
+
+/* Price subtle fade-in + lift effect */
+.car-card-dark__price {
+  opacity: 0;
+  transform: translateY(4px);
+  animation: priceReveal 0.45s ease-out forwards;
+}
+
+@keyframes priceReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .car-card-dark__price-dollar {
@@ -733,3 +761,148 @@
     0 4px 14px rgba(180, 150, 255, 0.35);
   background-color: rgba(180, 150, 255, 0.22);
 }
+
+/* .car-year-badge {
+  @apply
+    px-2 py-0.5
+    rounded-md
+    text-[11px]
+    font-semibold
+    bg-luxury-accent/10
+    text-luxury-accent
+    border border-luxury-accent/30
+    select-none;
+} */
+
+/* YEAR BADGE — subtle, neutral info */
+.car-year-badge {
+  @apply px-2 py-[3px]
+    rounded-md
+    text-[11px] font-semibold
+    text-luxury-muted
+    bg-white/5
+    border border-white/10
+    backdrop-blur-sm
+    whitespace-nowrap
+    tracking-wide;
+}
+
+/* CERTIFIED BADGE — premium highlight */
+.certified-badge {
+  @apply px-2.5 py-[3px]
+    rounded-md
+    text-[11px] font-semibold
+    text-emerald-300                           /* more luxurious tone */
+    bg-emerald-400/10
+    border border-emerald-300/30
+    backdrop-blur-sm
+    whitespace-nowrap
+    tracking-wide
+    transition-all;
+}
+
+/* Hover effect only for CERTIFIED — premium touch */
+.car-card-dark:hover .certified-badge {
+  @apply shadow-[0_0_10px_rgba(16,185,129,0.35)] bg-emerald-400/20;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.25s ease-out;
+}
+
+/* ============================
+   FILTER BAR BUTTON STYLE (MOBILE)
+   ============================ */
+
+.refinement-btn {
+  @apply h-[48px] px-4 w-full
+    rounded-xl
+    bg-luxury-surface
+    border border-luxury-border
+    text-luxury-text text-sm font-medium
+    flex items-center justify-between
+    whitespace-nowrap overflow-hidden text-ellipsis
+    transition-all duration-200 ease-out;
+}
+
+/* Hover / active (touch-friendly + subtle glow) */
+.refinement-btn:hover {
+  @apply border-luxury-borderStrong bg-luxury-surface/80;
+  transform: translateY(-1px);
+}
+
+/* Tap feedback for mobile */
+.refinement-btn:active {
+  transform: scale(0.98);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* =============================
+   REFINEMENT BAR BUTTON STYLE
+   (mobile, Price + Sort unified)
+   ============================= */
+.refinement-btn_2 {
+  @apply w-full h-[48px] 
+    px-4 rounded-xl text-sm font-medium
+    bg-luxury-surface border border-luxury-border 
+    text-luxury-text flex items-center justify-between
+    whitespace-nowrap overflow-hidden text-ellipsis
+    transition duration-200;
+}
+
+.refinement-btn_2:hover,
+.refinement-btn_2:focus-within {
+  @apply border-luxury-accent ring-2 ring-luxury-accent/20;
+}
+
+.clear-filters-btn {
+  @apply inline-flex
+    items-center
+    gap-2
+    h-[40px]
+    px-4
+    rounded-full
+    border
+    border-luxury-border
+    bg-luxury-surface/70
+    text-[11px] sm:text-xs
+    font-semibold
+    tracking-wide
+    uppercase
+    text-luxury-muted
+    shadow-sm
+    transition
+    cursor-pointer;
+}
+
+.clear-filters-btn:hover {
+  @apply border-luxury-accent
+    bg-luxury-accent/15
+    text-luxury-text
+    shadow-md;
+  transform: translateY(-1px);
+}
+
+.clear-filters-btn:active {
+  transform: translateY(0);
+  @apply shadow-sm;
+}
+
+.clear-filters-pill {
+  @apply w-2 h-2
+    rounded-full
+    bg-luxury-accent/80;
+}
+
+

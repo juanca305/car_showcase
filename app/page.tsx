@@ -4,6 +4,8 @@ import BranchFilter from "@/components/BranchFilter";
 import ClearFiltersButton from "@/components/ClearFiltersButton";
 import ConditionFilter from "@/components/ConditionFilter";
 import FiltersPanelWrapper from "@/components/FiltersPanelWrapper";
+import RefinementBar from "@/components/RefinementBar";
+import ResultsHeader from "@/components/ResultsHeader";
 import { fuels, yearsOfProduction } from "@/constants";
 import { fetchCars } from "@/utils";
 
@@ -23,6 +25,8 @@ export default async function Home({ searchParams }: { searchParams: any }) {
   const page = Number(searchParams?.page) || 1;
   const branch = searchParams?.branch || "";
   const condition = searchParams?.condition || "";
+  
+  const sort = searchParams?.sort || "";
 
   // Set the amount of car cards per page ***/
   const limit = Number(searchParams?.limit) || 8;
@@ -42,6 +46,7 @@ export default async function Home({ searchParams }: { searchParams: any }) {
     category,
     branch,
     condition,
+    sort,
   });
 
   // 3️⃣ Compute helper booleans
@@ -125,15 +130,15 @@ export default async function Home({ searchParams }: { searchParams: any }) {
           </div>
         </div>
 
-
-
         {/* Clear Filters Button */}
-        <div className="flex justify-end mt-4">
+        {/* <div className="flex justify-end mt-4">
           <ClearFiltersButton />
-        </div>
+        </div> */}
 
         {!isDataEmpty ? (
-          <section>
+          <section>    
+            <ResultsHeader total={meta.total} />
+            <RefinementBar />
             <div className="home__cars-wrapper">
               {allCars.map((car, index) => (
                 <CarCard key={car._id || index} car={car} />

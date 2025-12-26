@@ -16,6 +16,7 @@ export default function ClearFiltersButton() {
     "priceMax",
     "branch",
     "condition",
+    "sort",
   ];
 
   const hasFilters = filterKeys.some((key) => searchParams.has(key));
@@ -33,10 +34,18 @@ export default function ClearFiltersButton() {
   if (!hasFilters) return null;
 
   return (
+    // <button
+    //   onClick={handleClear}
+    //   className="filter-clear-btn"
+    // >
+    //   Clear filters
+    // </button>
     <button
+      type="button"
       onClick={handleClear}
-      className="filter-clear-btn"
+      className="clear-filters-btn"
     >
+      <span className="clear-filters-pill" />
       Clear filters
     </button>
   );

@@ -44,7 +44,7 @@ const Hero = () => {
 
         <div className="hero__image-container">
           <div className="hero__image">
-            <Image src="/jeep_gray.png" alt="hero" fill className="object-contain" />
+            <Image src="/Lincoln_Navigator_Burgundy.png" alt="hero" fill className="object-contain" />
             
           </div>
           <div className="hero__image-overlay" />
