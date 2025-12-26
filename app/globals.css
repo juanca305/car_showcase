@@ -60,6 +60,22 @@
     leading-tight;
 }
 
+/* ======================================================
+   HERO TITLE STYLES — PICK ONE PER USE
+   ====================================================== */
+
+/* OPTION A — White + soft gold accent (balanced luxury) */
+.hero-title--lux-white {
+  @apply text-white font-bold leading-tight tracking-tight;
+  text-shadow: 0 3px 6px rgba(0,0,0,0.35);
+}
+
+.hero-title--lux-white .lux-highlight {
+  background: linear-gradient(to right, #f0cf7e, #ecd8a6);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
 .hero__subtitle {
   @apply text-[16px]
     sm:text-[18px]
@@ -83,29 +99,36 @@
 
 .hero__image {
   @apply relative
-    w-[90%]
+    w-[100%]       /* was 90% */
+    h-[320px]      /* was 280px */
     sm:w-[85%]
-    xl:w-full
-    h-[280px]
     sm:h-[380px]
     md:h-[420px]
     xl:h-full
     z-0;
 }
 
+
 .hero__image {
   transform: translateY(8%);
 }
 
+@media (max-width: 640px) {
+  .hero__image {
+    transform: translateX(-1.5%) translateY(5%) scale(1);
+  }
+}
+
+
 @media (min-width: 768px) and (max-width: 1279px) {
   .hero__image {
-    transform: translateY(2%);
+    transform: translateX(1%) translateY(3.5%) scale(1.25);
   }
 }
 
 @media (min-width: 1280px) {
   .hero__image {
-    transform: translateY(16%);
+    transform: translateX(-7%) translateY(34%) scale(1.35);
   }
 }
 
@@ -139,7 +162,7 @@
 /* Desktop */
 @media (min-width: 1280px) {
   .hero__image-overlay {
-    transform: translateX(-6%) translateY(18%) scale(1.3);
+    transform: translateX(-6%) translateY(24%) scale(1.15);
     background-position: right -18% center;
     filter: drop-shadow(0 30px 80px rgba(0, 0, 0, 0.35));
   }
@@ -904,5 +927,29 @@
     rounded-full
     bg-luxury-accent/80;
 }
+
+/* ==============================
+   HERO CAR ANIMATION
+============================== */
+
+@keyframes heroCarReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(25px) scale(.94);
+  }
+  60% {
+    opacity: .8;
+    transform: translateY(5px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hero-car-animate {
+  animation: heroCarReveal 1.2s ease-out forwards;
+}
+
 
 
