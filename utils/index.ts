@@ -26,6 +26,10 @@ export async function fetchCars(
       year,
       priceMin,
       priceMax,
+
+      mileageMin,
+      mileageMax,
+
       page = 1,
       limit = 12,
       category,
@@ -49,7 +53,8 @@ export async function fetchCars(
     if (condition) query.append("condition", condition);
     if (sort) query.append("sort", sort);
 
-
+    if (mileageMin) query.append("mileageMin", mileageMin.toString());
+    if (mileageMax) query.append("mileageMax", mileageMax.toString());
 
     query.append("page", page.toString());
     query.append("limit", limit.toString());

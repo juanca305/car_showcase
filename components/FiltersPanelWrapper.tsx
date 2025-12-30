@@ -140,6 +140,7 @@ import TransmissionFilter from "./TransmissionFilter";
 import YearFilter from "./YearFilter";
 import BranchFilter from "./BranchFilter";
 
+
 export default function FiltersPanelWrapper() {
   const [open, setOpen] = useState(false);
 
@@ -221,6 +222,7 @@ export default function FiltersPanelWrapper() {
               <FuelFilter />
               <TransmissionFilter />
               <YearFilter />
+              {/* <MileageFilter /> */}
             </div>
 
             {/* Confirm Button */}

@@ -25,6 +25,9 @@ export default async function Home({ searchParams }: { searchParams: any }) {
   const page = Number(searchParams?.page) || 1;
   const branch = searchParams?.branch || "";
   const condition = searchParams?.condition || "";
+
+  const mileageMin = searchParams?.mileageMin || "";
+  const mileageMax = searchParams.mileageMax || "";
   
   const sort = searchParams?.sort || "";
 
@@ -41,6 +44,8 @@ export default async function Home({ searchParams }: { searchParams: any }) {
     seats,
     priceMin,
     priceMax,
+    mileageMin,
+    mileageMax,
     page,
     limit,
     category,

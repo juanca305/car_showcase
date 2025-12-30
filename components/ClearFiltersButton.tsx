@@ -17,6 +17,8 @@ export default function ClearFiltersButton() {
     "branch",
     "condition",
     "sort",
+    "mileageMin",
+    "mileageMax",
   ];
 
   const hasFilters = filterKeys.some((key) => searchParams.has(key));
@@ -34,12 +36,6 @@ export default function ClearFiltersButton() {
   if (!hasFilters) return null;
 
   return (
-    // <button
-    //   onClick={handleClear}
-    //   className="filter-clear-btn"
-    // >
-    //   Clear filters
-    // </button>
     <button
       type="button"
       onClick={handleClear}

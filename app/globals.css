@@ -67,7 +67,7 @@
 /* OPTION A — White + soft gold accent (balanced luxury) */
 .hero-title--lux-white {
   @apply text-white font-bold leading-tight tracking-tight;
-  text-shadow: 0 3px 6px rgba(0,0,0,0.35);
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.35);
 }
 
 .hero-title--lux-white .lux-highlight {
@@ -108,7 +108,6 @@
     z-0;
 }
 
-
 .hero__image {
   transform: translateY(8%);
 }
@@ -119,7 +118,6 @@
   }
 }
 
-
 @media (min-width: 768px) and (max-width: 1279px) {
   .hero__image {
     transform: translateX(1%) translateY(3.5%) scale(1.25);
@@ -128,7 +126,7 @@
 
 @media (min-width: 1280px) {
   .hero__image {
-    transform: translateX(-7%) translateY(34%) scale(1.35);
+    transform: translateX(-7%) translateY(34%) scale(1.03);
   }
 }
 
@@ -162,7 +160,7 @@
 /* Desktop */
 @media (min-width: 1280px) {
   .hero__image-overlay {
-    transform: translateX(-6%) translateY(24%) scale(1.15);
+    transform: translateX(-6%) translateY(18%) scale(1);
     background-position: right -18% center;
     filter: drop-shadow(0 30px 80px rgba(0, 0, 0, 0.35));
   }
@@ -512,18 +510,6 @@
     bg-luxury-accent/5;
 }
 
-.price-group {
-  @apply flex
-    items-center
-    gap-3
-    px-3
-    py-2
-    rounded-2xl
-    bg-luxury-accent/5
-    border
-    border-luxury-border;
-}
-
 .filter-group {
   @apply flex
     items-center
@@ -547,6 +533,18 @@
 .input-shell,
 .filter-input {
   @apply shadow-sm;
+}
+
+.price-group {
+  @apply flex
+    items-center
+    gap-3
+    px-3
+    py-2
+    rounded-2xl
+    bg-luxury-accent/5
+    border
+    border-luxury-border;
 }
 
 .price-label {
@@ -935,10 +933,10 @@
 @keyframes heroCarReveal {
   0% {
     opacity: 0;
-    transform: translateY(25px) scale(.94);
+    transform: translateY(25px) scale(0.94);
   }
   60% {
-    opacity: .8;
+    opacity: 0.8;
     transform: translateY(5px) scale(1.01);
   }
   100% {
@@ -951,5 +949,123 @@
   animation: heroCarReveal 1.2s ease-out forwards;
 }
 
+/* ============================
+   MILEAGE FILTER
+   ============================ */
 
+.mileage-filter {
+  @apply flex
+    flex-col
+    gap-2
+    px-3
+    py-2
+    rounded-xl
+    bg-luxury-surface/40
+    border
+    border-luxury-border
+    min-w-[220px];
+}
 
+.mileage-label {
+  @apply text-xs font-semibold tracking-wide uppercase text-luxury-muted;
+}
+
+.mileage-slider {
+  @apply relative w-full flex flex-col gap-1 mb-1 py-2;
+}
+
+/* Base slider track */
+/* .mileage-slider__range {
+  -webkit-appearance: none;
+  appearance: none;
+  @apply w-full h-1.5 rounded-full bg-luxury-border/60 cursor-pointer;
+} */
+
+/* Hide original browser track — we will draw our own */
+.mileage-slider__range {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute; /* BOTH sliders overlay each other */
+  width: 100%;
+  height: 6px; /* match track height */
+  background: transparent; /* remove default track */
+  pointer-events: auto;
+}
+
+/* Remove default track for WebKit */
+.mileage-slider__range::-webkit-slider-runnable-track {
+  background: transparent !important;
+  height: 6px;
+}
+
+/* Remove default track in Firefox */
+.mileage-slider__range::-moz-range-track {
+  background: transparent !important;
+  height: 6px;
+}
+
+/* Thumb */
+.mileage-slider__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  @apply h-4 w-4 rounded-full bg-luxury-accent border border-white shadow;
+}
+.mileage-slider__range::-moz-range-thumb {
+  @apply h-4 w-4 rounded-full bg-luxury-accent border border-white shadow;
+}
+
+/* Upper slider sits on top (for better feel) */
+.mileage-slider__range--upper {
+  @apply mt-0;
+}
+
+/* Footer row */
+.mileage-footer {
+  @apply flex items-center mt-1 gap-2;
+}
+
+.mileage-chip {
+  @apply text-xs
+    px-2
+    py-1
+    rounded-full
+    bg-luxury-surface
+    border border-luxury-border
+    text-luxury-muted
+    whitespace-nowrap;
+}
+
+.mileage-apply-btn {
+  @apply h-[32px]
+    px-3
+    rounded-lg
+    bg-luxury-accent
+    text-black
+    text-xs
+    font-semibold
+    whitespace-nowrap
+    transition;
+}
+
+.mileage-apply-btn:hover {
+  @apply bg-luxury-accentHover;
+}
+
+/* =========================================
+   SLIDER ACTIVE RANGE HIGHLIGHT (Option A)
+========================================= */
+.slider-track {
+  position: relative;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.07); /* base rail */
+  border-radius: 999px;
+}
+
+.slider-track-fill {
+  position: absolute;
+  height: 100%;
+  background: linear-gradient(90deg, #d4b26a, #e8d6a0); /* goldish gradient */
+  border-radius: inherit;
+  transition: all 200ms ease-out; /* smooth animation */
+  box-shadow: 0 0 6px rgba(255, 220, 150, 0.45);
+}

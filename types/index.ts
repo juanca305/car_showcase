@@ -59,6 +59,10 @@ export interface FilterProps {
   year?: string | number;
   priceMin?: number;
   priceMax?: number;
+
+  mileageMin?: number;
+  mileageMax?: number;
+  
   page?: number;
   limit?: number;
   seats?: number;
