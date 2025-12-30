@@ -117,13 +117,150 @@
 
 //*************************************************** */
 
+// "use client";
+
+// import Image from "next/image";
+// import { useState } from "react";
+// import { CarProps } from "@/types";
+// import CarDetails from "./CarDetails";
+// import CustomButton from './CustomButton';
+// import { formatPrice } from "@/utils/formatPrice";
+
+// interface CarCardProps {
+//   car: CarProps;
+// }
+
+// const CarCard = ({ car }: CarCardProps) => {
+//   const [isOpen, setIsOpen] = useState(false);
+
+//   const isCertified =
+//     car.condition?.toLowerCase() === "used" && car.certified === true;
+
+
+//   // Getting the main image
+
+//   const mainImage =
+//     car.images?.find(img => img.angle === "main")?.url ??
+//     car.images?.[0]?.url ??
+//     "/hero.png";
+
+//   return (
+//     <div className="car-card-dark group">
+//       <div className="car-card-dark__content flex items-center justify-between gap-2">
+//         <div className="flex items-center gap-2 min-w-0">
+//           <span className="car-year-badge">{car.year}</span>
+//           <h2 className="car-card-dark__title">
+//             {car.make} {car.model}
+//           </h2>
+//         </div>
+//         {isCertified && (
+//           <span
+//             className="certified-badge"
+//           >
+//             Certified
+//           </span>
+// <<<<<<< HEAD
+//         )}
+//       </div>
+
+//       {/* <p className="car-card-dark__price">
+//         {formatPrice(car.price)}
+//       </p> */}
+
+//       {/* Price + Mileage row */}
+// =======
+//         )}       
+//       </div>
+
+//             {/* Price + Mileage row */}
+// >>>>>>> feature/Year-slider
+//       <div className="car-price-row">
+//         <p className="car-card-dark__price">
+//           {formatPrice(car.price)}
+//         </p>
+// <<<<<<< HEAD
+// =======
+
+//         {typeof car.mileage === "number" && (
+//           <span className="mileage-inline">
+//             {Math.round(car.mileage / 1000)}k mi
+//           </span>
+//         )}
+//       </div>
+// >>>>>>> feature/Year-slider
+
+//         {typeof car.mileage === "number" && (
+//           <span className="mileage-inline">
+//             {Math.round(car.mileage / 1000)}k mi
+//           </span>
+//         )}
+//       </div>
+
+//       {/* Main image */}
+//       <div className="car-card-dark__media">
+//         {/* Shimmer placeholder */}
+//         {/* Loading shimmer (appears under the image while loading) */}
+//         <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 z-10" />
+//         <Image
+//           src={mainImage}
+//           alt={`${car.make} ${car.model}`}
+//           fill
+//           priority
+//           className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-[1.015] p-[4px] z-20"
+//         />
+//       </div>
+
+//       <div className="relative flex w-full mt-2">
+//         <div className="car-card-dark__specs group-hover:invisible">
+//           <div className="car-card-dark__spec">
+//             <Image src="/steering-wheel.svg" width={20} height={20} alt="transmission" />
+//             <p className="text-[14px]">{car.transmission || "Manual"}</p>
+//           </div>
+//           <div className="car-card-dark__spec">
+//             <Image src="/tire.svg" width={20} height={20} alt="tires" />
+//             <p className="text-[14px]">FWD</p>
+//           </div>
+//           <div className="car-card-dark__spec">
+//             <Image src="/gas.svg" width={20} height={20} alt="fuel" />
+//             <p className="text-[14px]">{car.fuelType || "Gasoline"}</p>
+//           </div>
+//         </div>
+
+//         <div className="car-card-dark__btn-container">
+//           <CustomButton
+//             title="View More"
+//             containerStyles="
+//               w-[90%]
+//               py-[14px]
+//               rounded-full
+//               bg-luxury-accent
+//               hover:bg-luxury-accentHover
+//               transition
+//             "
+//             textStyles="text-black text-[14px] font-semibold"
+//             rightIcon="/right-arrow.svg"
+//             handleClick={() => setIsOpen(true)}
+//           />
+//         </div>
+//       </div>
+
+//       {/* Modal */}
+//       <CarDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} car={car} />
+//     </div>
+//   );
+// };
+
+// export default CarCard;
+
+//************************************************ */
+
 "use client";
 
 import Image from "next/image";
 import { useState } from "react";
 import { CarProps } from "@/types";
 import CarDetails from "./CarDetails";
-import CustomButton from './CustomButton';
+import CustomButton from "./CustomButton";
 import { formatPrice } from "@/utils/formatPrice";
 
 interface CarCardProps {
@@ -136,11 +273,8 @@ const CarCard = ({ car }: CarCardProps) => {
   const isCertified =
     car.condition?.toLowerCase() === "used" && car.certified === true;
 
-
-  // Getting the main image
-
   const mainImage =
-    car.images?.find(img => img.angle === "main")?.url ??
+    car.images?.find((img) => img.angle === "main")?.url ??
     car.images?.[0]?.url ??
     "/hero.png";
 
@@ -153,37 +287,23 @@ const CarCard = ({ car }: CarCardProps) => {
             {car.make} {car.model}
           </h2>
         </div>
-        {isCertified && (
-          <span
-            className="certified-badge"
-          >
-            Certified
-          </span>
-        )}
-      </div>
 
-      {/* <p className="car-card-dark__price">
-        {formatPrice(car.price)}
-      </p> */}
+        {isCertified && <span className="certified-badge">Certified</span>}
+      </div>
 
       {/* Price + Mileage row */}
       <div className="car-price-row">
-        <p className="car-card-dark__price">
-          {formatPrice(car.price)}
-        </p>
+        <p className="car-card-dark__price">{formatPrice(car.price)}</p>
 
         {typeof car.mileage === "number" && (
-          <span className="mileage-inline">
-            {Math.round(car.mileage / 1000)}k mi
-          </span>
+          <span className="mileage-inline">{Math.round(car.mileage / 1000)}k mi</span>
         )}
       </div>
 
       {/* Main image */}
       <div className="car-card-dark__media">
-        {/* Shimmer placeholder */}
-        {/* Loading shimmer (appears under the image while loading) */}
         <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 z-10" />
+
         <Image
           src={mainImage}
           alt={`${car.make} ${car.model}`}
@@ -199,10 +319,12 @@ const CarCard = ({ car }: CarCardProps) => {
             <Image src="/steering-wheel.svg" width={20} height={20} alt="transmission" />
             <p className="text-[14px]">{car.transmission || "Manual"}</p>
           </div>
+
           <div className="car-card-dark__spec">
             <Image src="/tire.svg" width={20} height={20} alt="tires" />
             <p className="text-[14px]">FWD</p>
           </div>
+
           <div className="car-card-dark__spec">
             <Image src="/gas.svg" width={20} height={20} alt="fuel" />
             <p className="text-[14px]">{car.fuelType || "Gasoline"}</p>
@@ -227,12 +349,12 @@ const CarCard = ({ car }: CarCardProps) => {
         </div>
       </div>
 
-      {/* Modal */}
       <CarDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} car={car} />
     </div>
   );
 };
 
 export default CarCard;
+
 
 

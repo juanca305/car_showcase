@@ -9,7 +9,8 @@ export default function ClearFiltersButton() {
   const filterKeys = [
     "fuelType",
     "transmission",
-    "year",
+    "yearMin",
+    "yearMax",
     "seats",
     "category",
     "priceMin",

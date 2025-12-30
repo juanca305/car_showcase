@@ -43,13 +43,14 @@
 //     />
 //   );
 // }
-/************************************* */
+/******************************************** */
 "use client";
 
-import RangeFilter from "./RangeFilter";  
+import RangeFilter from "./RangeFilter";  // adjust path if needed
 
 const CURRENT_YEAR = new Date().getFullYear();
 const MIN_YEAR = 1990;
+
 
 export default function YearFilter() {
   return (

@@ -18,7 +18,8 @@ export default async function Home({ searchParams }: { searchParams: any }) {
   const category = searchParams?.category || "";
   const fuelType = searchParams?.fuelType || "";
   const transmission = searchParams?.transmission || "";
-  const year = searchParams?.year || "";
+  const yearMin = searchParams?.yearMin || "";
+  const yearMax = searchParams?.yearMax || "";
   const seats = searchParams?.seats || "";
   const priceMin = searchParams?.priceMin || "";
   const priceMax = searchParams?.priceMax || "";
@@ -40,7 +41,8 @@ export default async function Home({ searchParams }: { searchParams: any }) {
     model,
     fuelType,
     transmission,
-    year,
+    yearMin,
+    yearMax,
     seats,
     priceMin,
     priceMax,
@@ -134,11 +136,6 @@ export default async function Home({ searchParams }: { searchParams: any }) {
             <FiltersPanelWrapper />
           </div>
         </div>
-
-        {/* Clear Filters Button */}
-        {/* <div className="flex justify-end mt-4">
-          <ClearFiltersButton />
-        </div> */}
 
         {!isDataEmpty ? (
           <section>    
