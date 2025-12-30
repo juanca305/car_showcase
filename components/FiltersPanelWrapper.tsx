@@ -176,7 +176,7 @@ export default function FiltersPanelWrapper() {
         >
           <BranchFilter />
           <CategoryFilter />
-          <YearFilter />
+          {/* <YearFilter /> */}
           <SeatsFilter />
           <FuelFilter />
           <TransmissionFilter />
@@ -221,7 +221,7 @@ export default function FiltersPanelWrapper() {
               <SeatsFilter />
               <FuelFilter />
               <TransmissionFilter />
-              <YearFilter />
+              {/* <YearFilter /> */}
               {/* <MileageFilter /> */}
             </div>
 

@@ -40,9 +40,9 @@ export default function ClearFiltersButton() {
     <button
       type="button"
       onClick={handleClear}
-      className="clear-filters-btn"
+      className="clear-filters--chip"
     >
-      <span className="clear-filters-pill" />
+      {/* <span className="clear-filters-pill" /> */}
       Clear filters
     </button>
   );

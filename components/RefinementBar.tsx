@@ -3,6 +3,7 @@
 import PriceFilter from "./PriceFilter";
 import MileageFilter from "./MileageFilter";
 import SortFilter from "./SortFilter";
+import YearFilter from "./YearFilter";
 
 export default function RefinementBar() {
   return (
@@ -18,16 +19,6 @@ export default function RefinementBar() {
         "
       >
         {/* Main layout wrapper */}
-        {/* <div
-          className="
-            flex flex-col
-            gap-4
-            lg:flex-row
-            lg:items-center
-            lg:justify-between
-          "
-        > */}
-
         <div
           className="
             flex flex-col gap-4
@@ -37,18 +28,7 @@ export default function RefinementBar() {
         >
 
           {/* LEFT SIDE: Price + Mileage */}
-          {/* <div
-            className="
-              flex
-              flex-col
-              gap-4
-              sm:flex-row
-              sm:flex-wrap
-              sm:gap-6
-              flex-1
-            "
-          > */}
-
+          
           <div
             className="
               flex flex-col gap-4
@@ -57,23 +37,12 @@ export default function RefinementBar() {
               flex-1
             "
           >
-
             <PriceFilter />
             <MileageFilter />
+            <YearFilter />
           </div>
 
           {/* RIGHT SIDE: Sort */}
-          {/* <div
-            className="
-              w-full
-              sm:w-auto
-              flex
-              justify-start
-              sm:justify-end
-              mt-2 sm:mt-0
-            "
-          > */}
-
           <div
             className="
               w-full md:w-auto
@@ -82,7 +51,6 @@ export default function RefinementBar() {
               shrink-0
             "
           >
-
             <SortFilter />
           </div>
         </div>

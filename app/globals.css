@@ -646,15 +646,6 @@
     gap-2;
 }
 
-/* .car-card-dark__title {
-  @apply text-[16px]
-     sm:text-[20px]
-    md:text-[16px] 
-    font-bold
-    tracking-tight
-    text-luxury-text;
-} */
-
 .car-card-dark__title {
   @apply text-[14px]           
     sm:text-[17px]         
@@ -807,18 +798,6 @@
   background-color: rgba(180, 150, 255, 0.22);
 }
 
-/* .car-year-badge {
-  @apply
-    px-2 py-0.5
-    rounded-md
-    text-[11px]
-    font-semibold
-    bg-luxury-accent/10
-    text-luxury-accent
-    border border-luxury-accent/30
-    select-none;
-} */
-
 /* YEAR BADGE — subtle, neutral info */
 .car-year-badge {
   @apply px-2 py-[3px]
@@ -911,7 +890,7 @@
   @apply border-luxury-accent ring-2 ring-luxury-accent/20;
 }
 
-.clear-filters-btn {
+/* .clear-filters-btn {
   @apply inline-flex
     items-center
     gap-2
@@ -929,6 +908,32 @@
     shadow-sm
     transition
     cursor-pointer;
+} */
+
+.clear-filters-btn {
+  @apply inline-flex items-center gap-2
+    h-[40px] px-4 rounded-full
+    border border-luxury-borderStrong
+    bg-gradient-to-r from-[#2e2a36]/70 to-[#1f1b25]/70
+    text-[11px] sm:text-xs font-semibold uppercase tracking-wider
+    text-luxury-text/90
+    shadow-[0_0_14px_rgba(255,210,100,0.08)]
+    backdrop-blur-md
+    transition-all duration-300;
+}
+
+/* Hover — elegant glow + gold tint */
+.clear-filters-btn:hover {
+  @apply border-luxury-accent
+    text-white
+    bg-luxury-accent/20
+    shadow-[0_0_18px_rgba(255,215,130,0.35)]
+    translate-y-[-1px];
+}
+
+/* Tiny gold pill indicator (keep as is or upgrade below) */
+.clear-filters-pill {
+  @apply w-2 h-2 rounded-full bg-luxury-accent shadow-[0_0_5px_rgba(255,220,140,0.8)];
 }
 
 .clear-filters-btn:hover {
@@ -949,6 +954,53 @@
     rounded-full
     bg-luxury-accent/80;
 }
+
+.clear-filters--glass {
+  @apply flex items-center gap-2 px-5 h-[40px]
+    rounded-full text-xs font-semibold tracking-wide uppercase
+    backdrop-blur-md transition-all duration-300;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.85);
+}
+
+.clear-filters--glass:hover {
+  background: rgba(255,255,255,0.10);
+  border-color: rgba(240,207,126,0.50);
+  box-shadow: 0 4px 18px rgba(240,207,126,0.25);
+  transform: translateY(-2px);
+}
+
+.clear-filters--gold {
+  @apply inline-flex items-center gap-2 px-4 h-[38px]
+    rounded-full border text-xs font-semibold tracking-wide
+    transition-all duration-200 uppercase;
+  border-color: rgba(240, 207, 126, 0.55);
+  color: rgba(240, 207, 126, 0.75);
+  background-color: transparent;
+}
+
+.clear-filters--gold:hover {
+  background: rgba(240, 207, 126, 0.12);
+  border-color: rgba(240, 207, 126, 0.9);
+  color: #f0cf7e;
+  box-shadow: 0 0 14px rgba(240, 207, 126, 0.35);
+  transform: translateY(-1px);
+}
+
+.clear-filters--chip {
+  @apply inline-flex items-center gap-2 px-5 h-[40px]
+    rounded-full text-xs font-semibold tracking-wider uppercase
+    text-black transition-all duration-200;
+  background: linear-gradient(90deg,#f0cf7e,#e7d4a7);
+  box-shadow: 0 4px 12px rgba(240,207,126,0.35);
+}
+
+.clear-filters--chip:hover {
+  box-shadow: 0 6px 22px rgba(240,207,126,0.45);
+  transform: translateY(-2px) scale(1.03);
+}
+
 
 /* ==============================
    HERO CAR ANIMATION
@@ -1038,7 +1090,9 @@
   width: 100%;
   height: 6px; /* match track height */
   background: transparent;
-  pointer-events: auto;
+  z-index: 1;
+
+  pointer-events: none;
 }
 
 /* Remove default track (WebKit) */
@@ -1064,6 +1118,8 @@
     border
     border-white
     shadow;
+
+  pointer-events: auto;
 }
 
 .range-slider__range::-moz-range-thumb {
@@ -1074,11 +1130,14 @@
     border
     border-white
     shadow;
+
+  pointer-events: auto;
 }
 
 /* Upper slider sits on top (same idea as mileage) */
 .range-slider__range--upper {
   @apply mt-0;
+  z-index: 2;
 }
 
 /* Footer row (chips, Apply button, etc.) */

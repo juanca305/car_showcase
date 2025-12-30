@@ -28,6 +28,8 @@ export default function RangeFilter({
   const [minValue, setMinValue] = useState<number>(min);
   const [maxValue, setMaxValue] = useState<number>(max);
 
+  //const GAP = step;
+
   // Sync local state with URL when searchParams changes
   useEffect(() => {
     const minParam = searchParams.get(paramKeyMin);
