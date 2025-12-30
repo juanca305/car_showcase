@@ -949,110 +949,8 @@
   animation: heroCarReveal 1.2s ease-out forwards;
 }
 
-/* ============================
-   MILEAGE FILTER
-   ============================ */
-
-.mileage-filter {
-  @apply flex
-    flex-col
-    gap-2
-    px-3
-    py-2
-    rounded-xl
-    bg-luxury-surface/40
-    border
-    border-luxury-border
-    min-w-[220px];
-}
-
-.mileage-label {
-  @apply text-xs font-semibold tracking-wide uppercase text-luxury-muted;
-}
-
-.mileage-slider {
-  @apply relative w-full flex flex-col gap-1 mb-1 py-2;
-}
-
-/* Base slider track */
-/* .mileage-slider__range {
-  -webkit-appearance: none;
-  appearance: none;
-  @apply w-full h-1.5 rounded-full bg-luxury-border/60 cursor-pointer;
-} */
-
-/* Hide original browser track — we will draw our own */
-.mileage-slider__range {
-  -webkit-appearance: none;
-  appearance: none;
-  position: absolute; /* BOTH sliders overlay each other */
-  width: 100%;
-  height: 6px; /* match track height */
-  background: transparent; /* remove default track */
-  pointer-events: auto;
-}
-
-/* Remove default track for WebKit */
-.mileage-slider__range::-webkit-slider-runnable-track {
-  background: transparent !important;
-  height: 6px;
-}
-
-/* Remove default track in Firefox */
-.mileage-slider__range::-moz-range-track {
-  background: transparent !important;
-  height: 6px;
-}
-
-/* Thumb */
-.mileage-slider__range::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  @apply h-4 w-4 rounded-full bg-luxury-accent border border-white shadow;
-}
-.mileage-slider__range::-moz-range-thumb {
-  @apply h-4 w-4 rounded-full bg-luxury-accent border border-white shadow;
-}
-
-/* Upper slider sits on top (for better feel) */
-.mileage-slider__range--upper {
-  @apply mt-0;
-}
-
-/* Footer row */
-.mileage-footer {
-  @apply flex items-center mt-1 gap-2;
-}
-
-.mileage-chip {
-  @apply text-xs
-    px-2
-    py-1
-    rounded-full
-    bg-luxury-surface
-    border border-luxury-border
-    text-luxury-muted
-    whitespace-nowrap;
-}
-
-.mileage-apply-btn {
-  @apply h-[32px]
-    px-3
-    rounded-lg
-    bg-luxury-accent
-    text-black
-    text-xs
-    font-semibold
-    whitespace-nowrap
-    transition;
-}
-
-.mileage-apply-btn:hover {
-  @apply bg-luxury-accentHover;
-}
-
 /* =========================================
-   SLIDER ACTIVE RANGE HIGHLIGHT (Option A)
+   SLIDER ACTIVE RANGE HIGHLIGHT 
 ========================================= */
 .slider-track {
   position: relative;
@@ -1068,4 +966,135 @@
   border-radius: inherit;
   transition: all 200ms ease-out; /* smooth animation */
   box-shadow: 0 0 6px rgba(255, 220, 150, 0.45);
+}
+
+/* ============================
+   GENERIC RANGE FILTER (NEW)
+   ============================ */
+
+/* Container */
+.range-filter {
+  @apply flex
+    flex-col
+    gap-2
+    px-3
+    py-2
+    rounded-xl
+    bg-luxury-surface/40
+    border
+    border-luxury-border
+    min-w-[220px];
+}
+
+/* Label (“Mileage”, “Price”, etc.) */
+.range-label {
+  @apply text-xs
+    font-semibold
+    tracking-wide
+    uppercase
+    text-luxury-muted;
+}
+
+/* Slider wrapper */
+.range-slider {
+  @apply relative
+    w-full
+    flex
+    flex-col
+    gap-1
+    mb-1
+    py-2;
+}
+
+/* Base input (overlaid sliders) */
+.range-slider__range {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute; /* both sliders overlap */
+  width: 100%;
+  height: 6px; /* match track height */
+  background: transparent;
+  pointer-events: auto;
+}
+
+/* Remove default track (WebKit) */
+.range-slider__range::-webkit-slider-runnable-track {
+  background: transparent !important;
+  height: 6px;
+}
+
+/* Remove default track (Firefox) */
+.range-slider__range::-moz-range-track {
+  background: transparent !important;
+  height: 6px;
+}
+
+/* Thumb styling */
+.range-slider__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  @apply h-4
+    w-4
+    rounded-full
+    bg-luxury-accent
+    border
+    border-white
+    shadow;
+}
+
+.range-slider__range::-moz-range-thumb {
+  @apply h-4
+    w-4
+    rounded-full
+    bg-luxury-accent
+    border
+    border-white
+    shadow;
+}
+
+/* Upper slider sits on top (same idea as mileage) */
+.range-slider__range--upper {
+  @apply mt-0;
+}
+
+/* Footer row (chips, Apply button, etc.) */
+.range-footer {
+  @apply flex
+    items-center
+    mt-1
+    gap-2;
+}
+
+/* Optional chip (generic version of mileage-chip) */
+.range-chip {
+  @apply text-xs
+    px-2
+    py-1
+    rounded-full
+    bg-luxury-surface
+    border
+    border-luxury-border
+    text-luxury-muted
+    whitespace-nowrap;
+}
+
+/* Apply button */
+.range-apply-btn {
+  @apply h-[32px]
+    px-3
+    rounded-lg
+    bg-luxury-accent
+    text-black
+    text-xs
+    font-semibold
+    whitespace-nowrap
+    transition;
+}
+
+.range-apply-btn:hover {
+  @apply bg-luxury-accentHover
+    transition-all duration-300
+   hover:bg-luxury-accentHover
+    hover:shadow-[0_6px_22px_rgba(180,150,255,0.35)]
+    active:scale-[.97];
 }
