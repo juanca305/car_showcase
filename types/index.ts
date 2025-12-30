@@ -56,10 +56,10 @@ export interface FilterProps {
   model?: string;
   fuelType?: FuelType;
   transmission?: Transmission;
-  year?: string | number;
+  yearMin?: number;
+  yearMax?: number;
   priceMin?: number;
   priceMax?: number;
-
   mileageMin?: number;
   mileageMax?: number;
   

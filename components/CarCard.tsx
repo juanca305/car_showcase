@@ -160,26 +160,21 @@ const CarCard = ({ car }: CarCardProps) => {
           >
             Certified
           </span>
-        )}
-        
+        )}       
       </div>
 
+            {/* Price + Mileage row */}
+      <div className="car-price-row">
+        <p className="car-card-dark__price">
+          {formatPrice(car.price)}
+        </p>
 
-      {/* <p className="flex mt-6 text-[32px] font-extrabold">
-        <span className="self-start text-[14px] font-semibold">$</span>
-        {car.pricePerDay}
-        <span className="self-end text-[14px] font-medium">/day</span>
-      </p> */}
-
-      {/* <p className="car-card-dark__price">
-        <span className="car-card-dark__price-dollar">$</span>
-        {car.pricePerDay}
-        <span className="car-card-dark__price-day">/day</span>
-      </p> */}
-
-      <p className="car-card-dark__price">
-        {formatPrice(car.price)}
-      </p>
+        {typeof car.mileage === "number" && (
+          <span className="mileage-inline">
+            {Math.round(car.mileage / 1000)}k mi
+          </span>
+        )}
+      </div>
 
 
       {/* Main image */}
@@ -224,13 +219,6 @@ const CarCard = ({ car }: CarCardProps) => {
         </div>
 
         <div className="car-card-dark__btn-container">
-          {/* <CustomButton
-            title="View More"
-            containerStyles="w-full py-[16px] rounded-full bg-primary-blue"
-            textStyles="text-white text-[14px] leading-[17px] font-bold"
-            rightIcon="/right-arrow.svg"
-            handleClick={() => setIsOpen(true)}
-          /> */}
           <CustomButton
             title="View More"
             containerStyles="

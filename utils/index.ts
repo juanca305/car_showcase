@@ -23,13 +23,12 @@ export async function fetchCars(
       fuelType,
       transmission,
       seats,
-      year,
+      yearMin,
+      yearMax,
       priceMin,
       priceMax,
-
       mileageMin,
       mileageMax,
-
       page = 1,
       limit = 12,
       category,
@@ -45,7 +44,8 @@ export async function fetchCars(
     if (model) query.append("model", model);
     if (fuelType) query.append("fuelType", fuelType);
     if (transmission) query.append("transmission", transmission);
-    if (year) query.append("year", year.toString());
+    if (yearMin) query.append("yearMin", yearMin.toString());
+    if (yearMax) query.append("yearMax", yearMax.toString());
     if (priceMin) query.append("priceMin", priceMin.toString());
     if (priceMax) query.append("priceMax", priceMax.toString());
     if (category) query.append("category", category);

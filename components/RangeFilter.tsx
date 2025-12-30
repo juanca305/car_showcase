@@ -1,112 +1,3 @@
-// "use client";
-
-// import { useState, useEffect } from "react";
-// import { useSearchParams, useRouter } from "next/navigation";
-
-// type Props = {
-//   label: string;
-//   paramKeyMin: string;       // "mileageMin" | "priceMin" | ...
-//   paramKeyMax: string;
-//   min: number;
-//   max: number;
-//   step: number;
-//   format?: (v: number) => string;  
-// };
-
-// export default function RangeFilter({
-//   label,
-//   paramKeyMin,
-//   paramKeyMax,
-//   min,
-//   max,
-//   step,
-//   format = (v) => `${v}`,   // default fallback
-// }: Props) {
-//   const searchParams = useSearchParams();
-//   const router = useRouter();
-
-//   const [minValue, setMinValue] = useState(min);
-//   const [maxValue, setMaxValue] = useState(max);
-
-//   // Sync URL state
-//   useEffect(() => {
-//     const minParam = searchParams.get(paramKeyMin);
-//     const maxParam = searchParams.get(paramKeyMax);
-
-//     setMinValue(minParam ? Number(minParam) : min);
-//     setMaxValue(maxParam ? Number(maxParam) : max);
-//   }, [searchParams, paramKeyMin, paramKeyMax, min, max]);
-
-//   const handleMinChange = (val: number) =>
-//     setMinValue(Math.min(val, maxValue));
-
-//   const handleMaxChange = (val: number) =>
-//     setMaxValue(Math.max(val, minValue));
-
-//   const applyFilter = () => {
-//     const params = new URLSearchParams(window.location.search);
-
-//     minValue > min ? params.set(paramKeyMin, String(minValue)) : params.delete(paramKeyMin);
-//     maxValue < max ? params.set(paramKeyMax, String(maxValue)) : params.delete(paramKeyMax);
-
-//     params.delete("page"); // reset pagination
-
-//     router.push(`/?${params.toString()}`, { scroll: false });
-//   };
-
-//   return (
-//     <div className="range-filter">
-//       <div className="flex items-center justify-between mb-1">
-//         <span className="range-label">{label}</span>
-//         <span className="text-xs text-luxury-muted">
-//           {minValue > min || maxValue < max
-//             ? `${format(minValue)} – ${format(maxValue)}`
-//             : "Any"}
-//         </span>
-//       </div>
-
-//       <div className="range-slider mt-2 mb-1 relative">
-//         <div className="slider-track">
-//           <div
-//             className="slider-track-fill"
-//             style={{
-//               left: `${(minValue / max) * 100}%`,
-//               width: `${((maxValue - minValue) / max) * 100}%`,
-//             }}
-//           />
-//         </div>
-
-//         <input
-//           type="range"
-//           min={min}
-//           max={max}
-//           step={step}
-//           value={minValue}
-//           onChange={(e) => handleMinChange(Number(e.target.value))}
-//           className="range-slider__range"
-//         />
-
-//         <input
-//           type="range"
-//           min={min}
-//           max={max}
-//           step={step}
-//           value={maxValue}
-//           onChange={(e) => handleMaxChange(Number(e.target.value))}
-//           className="range-slider__range range-slider__range--upper"
-//         />
-//       </div>
-
-//       <div className="range-footer flex justify-end">
-//         <button type="button" onClick={applyFilter} className="range-apply-btn">
-//           Apply
-//         </button>
-//       </div>
-//     </div>
-//   );
-// }
-
-/***************************************** */
 "use client";
 
 import { useState, useEffect } from "react";
@@ -162,6 +53,9 @@ export default function RangeFilter({
   const applyFilter = () => {
     const params = new URLSearchParams(window.location.search);
 
+    /* Fix for YearFilter visual scaling */
+    const range = max - min;
+
     if (minValue > min) {
       params.set(paramKeyMin, String(minValue));
     } else {
@@ -179,6 +73,11 @@ export default function RangeFilter({
 
     router.push(`/?${params.toString()}`, { scroll: false });
   };
+
+  /* Fix for YearFilter visual scaling */
+  const range = max - min;
+  const leftPct = ((minValue - min) / range) * 100;
+  const widthPct = ((maxValue - minValue) / range) * 100;
 
   return (
     <div className="range-filter">
@@ -199,8 +98,8 @@ export default function RangeFilter({
           <div
             className="slider-track-fill"
             style={{
-              left: `${(minValue / max) * 100}%`,
-              width: `${((maxValue - minValue) / max) * 100}%`,
+              left: `${leftPct}%`,
+              width: `${widthPct}%`,
             }}
           />
         </div>

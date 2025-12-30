@@ -674,7 +674,6 @@
 /* Price */
 .car-card-dark__price {
   @apply flex
-    mt-5
     text-[28px]
     sm:text-[30px]
     font-extrabold
@@ -687,6 +686,32 @@
   transform: translateY(4px);
   animation: priceReveal 0.45s ease-out forwards;
 }
+
+/* =========================================
+   PRICE + MILEAGE INLINE ROW
+   ========================================= */
+.car-price-row {
+  @apply flex items-center gap-3 mt-5;
+}
+
+/* Inline Mileage Badge — subtle but premium */
+.mileage-inline {
+  @apply text-[13px] font-semibold tracking-wide
+    text-luxury-accent/90
+    bg-luxury-accent/10
+    px-2 py-[2px]
+    rounded-md
+    border border-luxury-accent/30
+    whitespace-nowrap
+    select-none;
+  transition: all 180ms ease-out;
+}
+
+/* Subtle lift-glow hover in sync with card hover */
+.car-card-dark:hover .mileage-inline {
+  @apply bg-luxury-accent/20 shadow-[0_0_10px_rgba(218,165,32,0.35)];
+}
+
 
 @keyframes priceReveal {
   to {
