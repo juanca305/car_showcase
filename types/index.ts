@@ -89,5 +89,13 @@ export interface ShowMoreProps {
   isNext: boolean;
 }
 
-export type SortOption = "price-asc" | "price-desc";
+// export type SortOption = "price-asc" | "price-desc";
+export type SortOption =
+  | "price-asc"
+  | "price-desc"
+  | "year-asc"
+  | "year-desc"
+  | "mileage-asc"        
+  | "mileage-desc";     
+
 

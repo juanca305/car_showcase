@@ -36,6 +36,8 @@ export default function SortFilter() {
         { title: "Price: High → Low", value: "price-desc" },
         { title: "Year: Oldest → Newest", value: "year-asc" },
         { title: "Year: Newest → Oldest", value: "year-desc" },
+        { title: "Mileage: Low → High", value: "mileage-asc" },
+        { title: "Mileage: High → Low", value: "mileage-desc" },
       ]}
       handleChange={handleChange}
     />
