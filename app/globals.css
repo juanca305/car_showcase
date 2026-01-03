@@ -11,6 +11,12 @@
   font-family: "Manrope", sans-serif;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
+
 /* START: General styles */
 .max-width {
   @apply max-w-[1440px] mx-auto;
@@ -1181,3 +1187,65 @@
     hover:shadow-[0_6px_22px_rgba(180,150,255,0.35)]
     active:scale-[.97];
 }
+
+.results-text--gold {
+  @apply text-[22px] sm:text-[24px] 
+    font-semibold tracking-tight 
+    text-luxury-text;
+}
+
+.results-count--gold {
+  background: linear-gradient(90deg,#f0cf7e,#e7d7a1);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 800;
+}
+
+.results-text--badge {
+  @apply text-[22px] sm:text-[24px] 
+    font-bold tracking-wide px-4 py-1
+    rounded-xl inline-block backdrop-blur-sm;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.92);
+  box-shadow: 0 0 12px rgba(240,207,126,0.16);
+}
+
+.results-number--strong {
+  @apply font-extrabold;
+  color: #f0cf7e;
+}
+
+/* Fade + slide-up — luxury subtle motion */
+@keyframes luxuryReveal {
+  0% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.results-animate {
+  animation: luxuryReveal 0.45s ease forwards;
+}
+
+/* Hide scrollbar for horizontal scroll navigation */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.refinement-bar {
+  isolation: isolate; /* allows overlay to escape stacking traps */
+}
+
+/* Prevent layout shift when scrollbars appear (tablet dropdown issue) */
+/* html {
+  scrollbar-gutter: stable;
+} */
+
+
+
+
+
+

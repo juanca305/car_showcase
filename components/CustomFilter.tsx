@@ -86,16 +86,16 @@ const CustomFilter = ({ title, options, value, handleChange }: CustomFilterProps
           >
             <Listbox.Options
               className="
-      absolute
-      top-full left-0 mt-2
-      w-full max-h-64 overflow-auto
-      rounded-xl
-      bg-luxury-surface border border-luxury-border
-      shadow-xl
-      text-sm z-[2000]
-      backdrop-blur-md
-      ring-1 ring-black/5
-    "
+                absolute
+                top-full left-0 mt-2
+                w-full max-h-64 overflow-auto
+                rounded-xl
+                bg-luxury-surface border border-luxury-border
+                shadow-xl
+                text-sm z-[2000]
+                backdrop-blur-md
+                ring-1 ring-black/5
+              "
             >
               {options.map(option => (
                 <Listbox.Option

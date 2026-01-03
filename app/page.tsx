@@ -138,9 +138,10 @@ export default async function Home({ searchParams }: { searchParams: any }) {
         </div>
 
         {!isDataEmpty ? (
-          <section>    
+          <section> 
+            <RefinementBar />   
             <ResultsHeader total={meta.total} />
-            <RefinementBar />
+            
             <div className="home__cars-wrapper">
               {allCars.map((car, index) => (
                 <CarCard key={car._id || index} car={car} />
