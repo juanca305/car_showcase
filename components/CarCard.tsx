@@ -278,6 +278,25 @@ const CarCard = ({ car }: CarCardProps) => {
     car.images?.[0]?.url ??
     "/hero.png";
 
+  const specs = [
+    {
+      key: "transmission",
+      label: car.transmission ?? "—",
+      icon: "/steering-wheel.svg",
+    },
+    {
+      key: "drivetrain",
+      label: car.drivetrain ?? "—",
+      icon: "/tire.svg", // you can reuse tire icon if needed
+    },
+    {
+      key: "fuel",
+      label: car.fuelType ?? "—",
+      icon: "/gas.svg",
+    },
+  ];
+
+
   return (
     <div className="car-card-dark group">
       <div className="car-card-dark__content flex items-center justify-between gap-2">
@@ -314,7 +333,7 @@ const CarCard = ({ car }: CarCardProps) => {
       </div>
 
       <div className="relative flex w-full mt-2">
-        <div className="car-card-dark__specs group-hover:invisible">
+        {/* <div className="car-card-dark__specs group-hover:invisible">
           <div className="car-card-dark__spec">
             <Image src="/steering-wheel.svg" width={20} height={20} alt="transmission" />
             <p className="text-[14px]">{car.transmission || "Manual"}</p>
@@ -322,16 +341,74 @@ const CarCard = ({ car }: CarCardProps) => {
 
           <div className="car-card-dark__spec">
             <Image src="/tire.svg" width={20} height={20} alt="tires" />
-            <p className="text-[14px]">FWD</p>
+            <p className="text-[14px]">{car.drivetrain}</p>
           </div>
 
           <div className="car-card-dark__spec">
             <Image src="/gas.svg" width={20} height={20} alt="fuel" />
             <p className="text-[14px]">{car.fuelType || "Gasoline"}</p>
           </div>
+        </div> */}
+
+        {/* <div className="car-card-dark__specs"> */}
+        <div
+          className="
+            car-card-dark__specs
+            transition-all duration-300
+            group-hover:opacity-60
+            group-hover:scale-[0.97]
+          "
+        >
+          {specs.map((spec) => (
+            <div key={spec.key} className="car-card-dark__spec">
+              <Image
+                src={spec.icon}
+                width={20}
+                height={20}
+                alt={spec.key}
+              />
+              <p className="text-[14px] font-medium text-luxury-muted">
+                {spec.label}
+              </p>
+            </div>
+          ))}
         </div>
 
-        <div className="car-card-dark__btn-container">
+        {/* <div className="car-card-dark__btn-container"> */}
+        {/* <div className="
+              car-card-dark__btn-container
+              opacity-0 translate-y-2
+              group-hover:opacity-100
+              group-hover:translate-y-0
+              transition-all duration-300
+            "> */}
+
+        {/* Wrapper behind CTA  */}
+        <div
+          className="
+            absolute inset-0
+            rounded-2xl
+            bg-black/10
+            opacity-0
+            group-hover:opacity-100
+            transition-opacity duration-300
+            pointer-events-none
+          "
+        />
+
+
+        <div
+          className="
+              car-card-dark__btn-container
+              relative z-10
+              pointer-events-none
+              group-hover:pointer-events-auto
+              opacity-0 translate-y-4
+              group-hover:opacity-100
+              group-hover:translate-y-0
+              transition-all duration-300
+            "
+        >
           <CustomButton
             title="View More"
             containerStyles="
@@ -340,6 +417,7 @@ const CarCard = ({ car }: CarCardProps) => {
               rounded-full
               bg-luxury-accent
               hover:bg-luxury-accentHover
+              shadow-[0_8px_24px_rgba(240,207,126,0.45)]
               transition
             "
             textStyles="text-black text-[14px] font-semibold"

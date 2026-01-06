@@ -98,6 +98,7 @@ export async function fetchCars(
       condition: car.condition,
       certified: car.certified ?? false,
       location: car.location,
+      drivetrain: car.drivetrain
     }));
 
     return {

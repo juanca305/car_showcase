@@ -47,6 +47,7 @@ export interface CarProps {
   location: Location;
   condition?: "new" | "used";
   certified?: boolean;
+  drivetrain?: Drivetrain;
 }
 export type FuelType = "gasoline" | "diesel" | "electric" | "hybrid" | "other";
 export type Transmission = "automatic" | "manual" | "semi-automatic";
@@ -96,6 +97,8 @@ export type SortOption =
   | "year-asc"
   | "year-desc"
   | "mileage-asc"        
-  | "mileage-desc";     
+  | "mileage-desc";   
+  
+  export type Drivetrain = "FWD" | "RWD" | "AWD" | "4WD"
 
 
