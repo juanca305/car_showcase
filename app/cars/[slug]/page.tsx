@@ -8,7 +8,6 @@ import CarCTA from "@/components/CarCTA";
 
 import Link from "next/link";
 
-
 export default async function CarDetailsPage({
     params,
 }: {
