@@ -1,5 +1,6 @@
 import { CarProps } from "@/types";
-import { formatPrice } from "@/utils/formatPrice";
+
+//import { formatPrice } from "@/utils/formatPrice";
 
 interface CarSpecsProps {
   car: CarProps;
