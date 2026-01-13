@@ -48,6 +48,8 @@ export interface CarProps {
   condition?: "new" | "used";
   certified?: boolean;
   drivetrain?: Drivetrain;
+  isDeleted?: boolean;
+  deletedAt?: string | null;
 }
 export type FuelType = "gasoline" | "diesel" | "electric" | "hybrid" | "other";
 export type Transmission = "automatic" | "manual" | "semi-automatic";
@@ -63,7 +65,6 @@ export interface FilterProps {
   priceMax?: number;
   mileageMin?: number;
   mileageMax?: number;
-  
   page?: number;
   limit?: number;
   seats?: number;
@@ -71,6 +72,7 @@ export interface FilterProps {
   branch?: string;
   condition?: string;
   sort?: SortOption;
+  includeDeleted?: boolean;
 }
 
 export interface OptionProps {

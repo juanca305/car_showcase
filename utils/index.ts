@@ -35,6 +35,7 @@ export async function fetchCars(
       branch,
       condition,
       sort,
+      includeDeleted,
     } = filters;
 
     const query = new URLSearchParams();
@@ -56,6 +57,8 @@ export async function fetchCars(
     if (mileageMin) query.append("mileageMin", mileageMin.toString());
     if (mileageMax) query.append("mileageMax", mileageMax.toString());
 
+    if (includeDeleted) query.append("includeDeleted", "true");
+
     query.append("page", page.toString());
     query.append("limit", limit.toString());
 
@@ -75,6 +78,9 @@ export async function fetchCars(
       console.warn("Unexpected backend response:", json);
       return { data: [], meta: { total: 0, page, limit, pages: 1 } };
     }
+
+    console.log("RAW car from API:", json.data[0]);
+
 
     const cars: CarProps[] = json.data.map((car) => ({
       _id: car._id,
@@ -98,7 +104,9 @@ export async function fetchCars(
       condition: car.condition,
       certified: car.certified ?? false,
       location: car.location,
-      drivetrain: car.drivetrain
+      drivetrain: car.drivetrain,
+
+      isDeleted: car.isDeleted,
     }));
 
     return {

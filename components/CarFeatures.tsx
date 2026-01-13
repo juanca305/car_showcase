@@ -10,29 +10,18 @@ export default function CarFeatures({ car }: Props) {
     <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-10">
 
       {/* DESCRIPTION */}
-      {/* <div className="flex flex-col gap-3">
-        <h2 className="text-xl font-semibold text-luxury-text">
-          Description
-        </h2>
-
-        <p className="text-luxury-muted leading-relaxed">
-          {car.description || "No description available for this vehicle."}
-        </p>
-      </div> */}
-
-      {/* DESCRIPTION */}
       <div className="flex flex-col gap-4">
         <h2 className="text-xl font-semibold text-luxury-text tracking-tight">
           Description
         </h2>
 
         <p className="
-    text-[15px]
-    sm:text-[16px]
-    leading-[1.75]
-    text-luxury-muted
-    max-w-prose
-  ">
+          text-[15px]
+          sm:text-[16px]
+          leading-[1.75]
+          text-luxury-muted
+          max-w-prose
+        ">
           {car.description || (
             <span className="italic opacity-80">
               No description available for this vehicle.
