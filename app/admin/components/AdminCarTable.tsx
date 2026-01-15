@@ -4,6 +4,9 @@ import { useRouter } from "next/navigation";
 import { CarProps } from "@/types";
 import Link from "next/link";
 
+import { useState } from "react";
+import ConfirmModal from "./ConfirmModal";
+
 import toast from "react-hot-toast";
 
 interface AdminCarTableProps {
@@ -17,26 +20,32 @@ export default function AdminCarTable({
 }: AdminCarTableProps) {
   const router = useRouter();
 
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [confirmTitle, setConfirmTitle] = useState("");
+  const [confirmDescription, setConfirmDescription] = useState("");
+  const [confirmVariant, setConfirmVariant] = useState<"default" | "danger">("default");
+  const [confirmText, setConfirmText] = useState("Confirm");
+
+  const [pendingId, setPendingId] = useState<string | null>(null);
+  const [pendingAction, setPendingAction] = useState<
+    "delete" | "restore" | "permanent"
+  >("delete");
+
+  const [isWorking, setIsWorking] = useState(false);
+
   async function handleDelete(id: string) {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this car?"
-    );
-
-    if (!confirmDelete) return;
-
+    if (isWorking) return;
     const loadingToast = toast.loading("Deleting car...");
 
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/cars/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cars/${id}`, {
+        method: "DELETE",
+      });
+
+      const json = await res.json().catch(() => null);
 
       if (!res.ok) {
-        const err = await res.json().catch(() => null);
-        toast.error(err?.message || "Delete failed. Please try again.");
+        toast.error(json?.message || "Delete failed. Please try again.");
         return;
       }
 
@@ -51,14 +60,13 @@ export default function AdminCarTable({
   }
 
   async function handleRestore(id: string) {
+    if (isWorking) return;
     const loadingToast = toast.loading("Restoring car...");
 
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/cars/${id}/restore`,
-        {
-          method: "PUT",
-        }
+        { method: "PUT" }
       );
 
       const json = await res.json().catch(() => null);
@@ -79,12 +87,7 @@ export default function AdminCarTable({
   }
 
   async function handlePermanentDelete(id: string) {
-    const confirm = window.confirm(
-      "⚠️ PERMANENT DELETE: This will remove the car forever. Continue?"
-    );
-
-    if (!confirm) return;
-
+    if (isWorking) return;
     const loadingToast = toast.loading("Deleting car forever...");
 
     try {
@@ -109,7 +112,6 @@ export default function AdminCarTable({
       toast.dismiss(loadingToast);
     }
   }
-
 
   return (
     <div className="rounded-2xl border border-luxury-border bg-luxury-surface/80 overflow-hidden">
@@ -251,37 +253,76 @@ export default function AdminCarTable({
                     {mode === "trash" ? (
                       <div className="flex items-center gap-3">
                         <button
-                          onClick={() => handleRestore(car._id)}
-                          className="
+                          disabled={isWorking}
+                          // onClick={() => handleRestore(car._id)}
+                          onClick={() => {
+                            if (isWorking) return;
+                            setPendingId(car._id);
+                            setPendingAction("restore");
+
+                            setConfirmTitle("Restore this car?");
+                            setConfirmDescription("This car will return to Active Inventory.");
+                            setConfirmVariant("default");
+                            setConfirmText("Restore");
+
+                            setConfirmOpen(true);
+                          }}
+
+                          className={`
                             px-3 py-1.5 rounded-md text-xs font-medium
                             text-emerald-400 border border-emerald-400/30
                             hover:bg-emerald-400/10 transition
-                          "
+                            ${isWorking ? "opacity-50 cursor-not-allowed" : ""}
+                          `}
                         >
                           Restore
                         </button>
 
                         <button
-                           onClick={() => handlePermanentDelete(car._id)}
-                          
-                          className="
+                          disabled={isWorking}
+                          onClick={() => {
+                            if (isWorking) return;
+                            setPendingId(car._id);
+                            setPendingAction("permanent");
+
+                            setConfirmTitle("Delete forever?");
+                            setConfirmDescription("This will permanently remove the car and cannot be undone.");
+                            setConfirmVariant("danger");
+                            setConfirmText("Delete Forever");
+
+                            setConfirmOpen(true);
+                          }}
+
+                          className={`
                             px-3 py-1.5 rounded-md text-xs font-medium
                             text-red-400 border border-red-400/30
                             hover:bg-red-400/10 transition
-                          "
+                            ${isWorking ? "opacity-50 cursor-not-allowed" : ""}
+                          `}
                         >
                           Delete Forever
                         </button>
                       </div>
                     ) : (
                       <button
-                         onClick={() => handleDelete(car._id)}
-                        
-                        className="
+                        disabled={isWorking}
+                        onClick={() => {
+                          if (isWorking) return;
+                          setPendingId(car._id);
+                          setPendingAction("delete");
+
+                          setConfirmTitle("Delete this car?");
+                          setConfirmDescription("This will move the car to Trash. You can restore it later.");
+                          setConfirmVariant("danger");
+                          setConfirmText("Delete");
+
+                          setConfirmOpen(true);
+                        }}
+                        className={`${isWorking ? "opacity-50 cursor-not-allowed" : ""}
                           px-3 py-1.5 rounded-md text-xs font-medium
                           text-red-400 border border-red-400/30
                           hover:bg-red-400/10 transition
-                        "
+                        `}
                       >
                         Delete
                       </button>
@@ -293,8 +334,49 @@ export default function AdminCarTable({
           </tbody>
         </table>
       </div>
-      
-      
+
+      <ConfirmModal
+        open={confirmOpen}
+        title={confirmTitle}
+        description={confirmDescription}
+        confirmText={confirmText}
+        cancelText="Cancel"
+        variant={confirmVariant}
+        loading={isWorking}
+        onCancel={() => {
+          if (isWorking) return;
+
+          setConfirmOpen(false);
+          setPendingId(null);
+          setPendingAction("delete");
+
+          setConfirmTitle("");
+          setConfirmDescription("");
+          setConfirmVariant("default");
+          setConfirmText("Confirm");
+        }}
+        onConfirm={async () => {
+          if (!pendingId || isWorking) return;
+
+          setIsWorking(true);
+          setConfirmOpen(false); // ✅ close immediately (best UX)
+
+          try {
+            if (pendingAction === "delete") await handleDelete(pendingId);
+            if (pendingAction === "restore") await handleRestore(pendingId);
+            if (pendingAction === "permanent") await handlePermanentDelete(pendingId);
+          } finally {
+            setConfirmTitle("");
+            setConfirmDescription("");
+            setConfirmVariant("default");
+            setConfirmText("Confirm");
+
+            setPendingId(null);
+            setPendingAction("delete");
+            setIsWorking(false);
+          }
+        }}
+      />
     </div>
   );
 }
