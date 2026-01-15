@@ -73,6 +73,8 @@ export interface FilterProps {
   condition?: string;
   sort?: SortOption;
   includeDeleted?: boolean;
+  onlyDeleted?: boolean;
+  onlyActive?: boolean;
 }
 
 export interface OptionProps {

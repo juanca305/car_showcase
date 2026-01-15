@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Footer, Navbar } from "@/components";
+import { Toaster } from "react-hot-toast";
+import   Navbar  from "@/components/Navbar";
+import   Footer  from "@/components/Footer";
+
 
 export const metadata: Metadata = {
   title: "Car Hub",
@@ -15,6 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="relative bg-luxury-bg text-luxury-text">
+         <Toaster position="top-right" toastOptions={{
+            duration: 3000,
+          }} />
         <Navbar />
         {children}
         <Footer />

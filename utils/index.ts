@@ -36,6 +36,8 @@ export async function fetchCars(
       condition,
       sort,
       includeDeleted,
+      onlyDeleted,
+      onlyActive,
     } = filters;
 
     const query = new URLSearchParams();
@@ -58,6 +60,13 @@ export async function fetchCars(
     if (mileageMax) query.append("mileageMax", mileageMax.toString());
 
     if (includeDeleted) query.append("includeDeleted", "true");
+    if (onlyDeleted) query.append("onlyDeleted", "true");
+    if (onlyActive) query.append("onlyActive", "true");
+
+    if (onlyDeleted && onlyActive) {
+  console.warn("⚠️ onlyDeleted and onlyActive cannot both be true. Defaulting to onlyDeleted.");
+}
+
 
     query.append("page", page.toString());
     query.append("limit", limit.toString());
@@ -80,7 +89,6 @@ export async function fetchCars(
     }
 
     console.log("RAW car from API:", json.data[0]);
-
 
     const cars: CarProps[] = json.data.map((car) => ({
       _id: car._id,

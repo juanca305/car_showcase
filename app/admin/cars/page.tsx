@@ -48,18 +48,32 @@ import { fetchCars } from "@/utils";
 import AdminCarTable from "../components/AdminCarTable";
 
 export default async function AdminCarsPage() {
-  const { data: cars } = await fetchCars({
-    includeDeleted: false, // ✅ only active
+
+  // const { data: cars } = await fetchCars({
+  //   includeDeleted: false, // ✅ only active
+  //   page: 1,
+  //   limit: 50,
+  // });
+
+  const { data: cars, meta } = await fetchCars({
+    onlyActive: true,
     page: 1,
     limit: 50,
   });
+
 
   return (
     <main className="pt-[96px]">
       <section className="max-width padding-x padding-y">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold text-white">Cars Inventory</h1>
 
+          <h1 className="text-2xl font-bold text-white">Cars Inventory</h1>
+          <p className="text-md text-luxury-muted mt-1">
+            Active cars:{" "}
+            <span className="text-white font-semibold">
+              {meta.total ?? cars.length}
+            </span>
+          </p>
           <div className="flex items-center gap-3">
             <a
               href="/admin/cars/trash"

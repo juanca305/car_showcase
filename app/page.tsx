@@ -1,5 +1,5 @@
 
-import { CarCard, CustomFilter, Hero, SearchBar, ShowMore, BackToTop, PriceFilter, FuelFilter, SeatsFilter, TransmissionFilter, YearFilter, CategoryFilter } from "@/components";
+import  { Hero, SearchBar, CarCard, ShowMore, BackToTop, CustomFilter, PriceFilter, FuelFilter, SeatsFilter, TransmissionFilter, YearFilter, CategoryFilter}  from "@/components";
 import BranchFilter from "@/components/BranchFilter";
 import ClearFiltersButton from "@/components/ClearFiltersButton";
 import ConditionFilter from "@/components/ConditionFilter";
@@ -8,11 +8,14 @@ import RefinementBar from "@/components/RefinementBar";
 import ResultsHeader from "@/components/ResultsHeader";
 import { fuels, yearsOfProduction } from "@/constants";
 import { fetchCars } from "@/utils";
-
 import { useRouter } from 'next/navigation';
+
 
 export default async function Home({ searchParams }: { searchParams: any }) {
   // 1️⃣ Extract filters with defaults
+
+  //console.log("COMPONENTS OBJECT:", Components);
+
   const make = searchParams?.make || "";
   const model = searchParams?.model || "";
   const category = searchParams?.category || "";

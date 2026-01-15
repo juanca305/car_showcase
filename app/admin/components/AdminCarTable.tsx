@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import { CarProps } from "@/types";
 import Link from "next/link";
 
+import toast from "react-hot-toast";
+
 interface AdminCarTableProps {
   cars: CarProps[];
   mode?: "active" | "trash";
@@ -16,34 +18,110 @@ export default function AdminCarTable({
   const router = useRouter();
 
   async function handleDelete(id: string) {
-    const confirm = window.confirm("Are you sure you want to delete this car?");
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this car?"
+    );
 
-    if (!confirm) return;
+    if (!confirmDelete) return;
 
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cars/${id}`, {
-      method: "DELETE",
-    });
+    const loadingToast = toast.loading("Deleting car...");
 
-    router.refresh();
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/cars/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => null);
+        toast.error(err?.message || "Delete failed. Please try again.");
+        return;
+      }
+
+      toast.success("Car moved to trash ✅");
+      router.refresh();
+    } catch (error) {
+      console.error("handleDelete error:", error);
+      toast.error("Something went wrong while deleting the car.");
+    } finally {
+      toast.dismiss(loadingToast);
+    }
   }
 
   async function handleRestore(id: string) {
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cars/${id}/restore`, {
-      method: "PUT",
-    });
+    const loadingToast = toast.loading("Restoring car...");
 
-    router.refresh();
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/cars/${id}/restore`,
+        {
+          method: "PUT",
+        }
+      );
+
+      const json = await res.json().catch(() => null);
+
+      if (!res.ok) {
+        toast.error(json?.message || "Restore failed.");
+        return;
+      }
+
+      toast.success("Car restored ✅");
+      router.refresh();
+    } catch (error) {
+      console.error("handleRestore error:", error);
+      toast.error("Something went wrong.");
+    } finally {
+      toast.dismiss(loadingToast);
+    }
   }
+
+  async function handlePermanentDelete(id: string) {
+    const confirm = window.confirm(
+      "⚠️ PERMANENT DELETE: This will remove the car forever. Continue?"
+    );
+
+    if (!confirm) return;
+
+    const loadingToast = toast.loading("Deleting car forever...");
+
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/cars/${id}/permanent`,
+        { method: "DELETE" }
+      );
+
+      const json = await res.json().catch(() => null);
+
+      if (!res.ok) {
+        toast.error(json?.message || "Permanent delete failed.");
+        return;
+      }
+
+      toast.success("Car permanently deleted ✅");
+      router.refresh();
+    } catch (error) {
+      console.error("handlePermanentDelete error:", error);
+      toast.error("Something went wrong while deleting forever.");
+    } finally {
+      toast.dismiss(loadingToast);
+    }
+  }
+
 
   return (
     <div className="rounded-2xl border border-luxury-border bg-luxury-surface/80 overflow-hidden">
       {/* TABLE HEADER */}
       <div className="px-6 py-4 border-b border-luxury-border">
         <h2 className="text-lg font-semibold text-luxury-text">
-          Inventory Cars
+          {mode === "trash" ? "Trash Cars" : "Active Cars"}
         </h2>
         <p className="text-sm text-luxury-muted">
-          Manage vehicles, pricing, and availability
+          {mode === "trash"
+            ? "Restore or permanently delete vehicles"
+            : "Manage vehicles, pricing, and availability"}
         </p>
       </div>
 
@@ -97,10 +175,9 @@ export default function AdminCarTable({
                 <td className="px-6 py-4">
                   <span
                     className={`px-2 py-1 rounded-md text-xs font-medium
-                      ${
-                        car.condition === "new"
-                          ? "bg-emerald-500/15 text-emerald-400"
-                          : "bg-blue-500/15 text-blue-400"
+                      ${car.condition === "new"
+                        ? "bg-emerald-500/15 text-emerald-400"
+                        : "bg-blue-500/15 text-blue-400"
                       }`}
                   >
                     {car.condition === "new" ? "New" : "Used"}
@@ -120,16 +197,31 @@ export default function AdminCarTable({
 
                 {/* STATUS */}
                 <td className="px-6 py-4">
-                  <span
-                    className={`inline-flex items-center gap-2 text-xs font-medium
-                      ${car.available ? "text-emerald-400" : "text-red-400"}`}
-                  >
+                  <div className="flex flex-col gap-2">
+                    {/* Inventory status: Active vs Deleted */}
                     <span
-                      className={`h-2 w-2 rounded-full
-                        ${car.available ? "bg-emerald-400" : "bg-red-400"}`}
-                    />
-                    {car.available ? "Visible" : "Hidden"}
-                  </span>
+                      className={`inline-flex items-center gap-2 text-xs font-medium w-fit
+                      ${car.isDeleted ? "text-red-400" : "text-emerald-400"}`}
+                    >
+                      <span
+                        className={`h-2 w-2 rounded-full
+                        ${car.isDeleted ? "bg-red-400" : "bg-emerald-400"}`}
+                      />
+                      {car.isDeleted ? "Deleted" : "Active"}
+                    </span>
+
+                    {/* Visibility status: Visible vs Hidden */}
+                    <span
+                      className={`inline-flex items-center gap-2 text-xs font-medium w-fit
+                       ${car.available ? "text-blue-400" : "text-zinc-400"}`}
+                    >
+                      <span
+                        className={`h-2 w-2 rounded-full
+                        ${car.available ? "bg-blue-400" : "bg-zinc-500"}`}
+                      />
+                      {car.available ? "Visible" : "Hidden"}
+                    </span>
+                  </div>
                 </td>
 
                 {/* ACTIONS (single column) */}
@@ -156,45 +248,35 @@ export default function AdminCarTable({
                     <span className="h-5 w-px bg-white/10" />
 
                     {/* delete/restore */}
-                    {/* {car.isDeleted ? (
-                      <button
-                        onClick={() => handleRestore(car._id)}
-                        className="
-                          px-3 py-1.5 rounded-md text-xs font-medium
-                          text-emerald-400 border border-emerald-400/30
-                          hover:bg-emerald-400/10 transition
-                        "
-                      >
-                        Restore
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => handleDelete(car._id)}
-                        className="
-                        px-3 py-1.5 rounded-md text-xs font-medium
-                        text-red-400 border border-red-400/30
-                        hover:bg-red-400/10 transition
-                      "
-                      >
-                        Delete
-                      </button>
-                    )} */}
-
-                    {/* delete/restore */}
                     {mode === "trash" ? (
-                      <button
-                        onClick={() => handleRestore(car._id)}
-                        className="
-                          px-3 py-1.5 rounded-md text-xs font-medium
-                          text-emerald-400 border border-emerald-400/30
-                          hover:bg-emerald-400/10 transition
-                        "
-                      >
-                        Restore
-                      </button>
+                      <div className="flex items-center gap-3">
+                        <button
+                          onClick={() => handleRestore(car._id)}
+                          className="
+                            px-3 py-1.5 rounded-md text-xs font-medium
+                            text-emerald-400 border border-emerald-400/30
+                            hover:bg-emerald-400/10 transition
+                          "
+                        >
+                          Restore
+                        </button>
+
+                        <button
+                           onClick={() => handlePermanentDelete(car._id)}
+                          
+                          className="
+                            px-3 py-1.5 rounded-md text-xs font-medium
+                            text-red-400 border border-red-400/30
+                            hover:bg-red-400/10 transition
+                          "
+                        >
+                          Delete Forever
+                        </button>
+                      </div>
                     ) : (
                       <button
-                        onClick={() => handleDelete(car._id)}
+                         onClick={() => handleDelete(car._id)}
+                        
                         className="
                           px-3 py-1.5 rounded-md text-xs font-medium
                           text-red-400 border border-red-400/30
@@ -211,6 +293,8 @@ export default function AdminCarTable({
           </tbody>
         </table>
       </div>
+      
+      
     </div>
   );
 }
