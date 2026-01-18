@@ -38,8 +38,11 @@ export default function AdminCarTable({
     const loadingToast = toast.loading("Deleting car...");
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cars/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/cars/${id}`, {
         method: "DELETE",
+        headers: {
+          "x-api-key": process.env.NEXT_PUBLIC_ADMIN_API_KEY!,
+        }
       });
 
       const json = await res.json().catch(() => null);
@@ -65,8 +68,12 @@ export default function AdminCarTable({
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/cars/${id}/restore`,
-        { method: "PUT" }
+        `${process.env.NEXT_PUBLIC_API_URL}/api/admin/cars/${id}/restore`,
+        { method: "PUT",
+          headers: {
+            "x-api-key": process.env.NEXT_PUBLIC_ADMIN_API_KEY!,
+          }
+         }
       );
 
       const json = await res.json().catch(() => null);
@@ -92,8 +99,12 @@ export default function AdminCarTable({
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/cars/${id}/permanent`,
-        { method: "DELETE" }
+        `${process.env.NEXT_PUBLIC_API_URL}/api/admin/cars/${id}/permanent`,
+        { method: "DELETE",
+          headers: {
+            "x-api-key": process.env.NEXT_PUBLIC_ADMIN_API_KEY!,
+          }
+        }
       );
 
       const json = await res.json().catch(() => null);
