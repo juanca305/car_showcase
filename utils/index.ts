@@ -67,6 +67,7 @@ export async function fetchCars(
   console.warn("⚠️ onlyDeleted and onlyActive cannot both be true. Defaulting to onlyDeleted.");
 }
 
+    if (filters.includeHidden) query.append("includeHidden", "true");
 
     query.append("page", page.toString());
     query.append("limit", limit.toString());

@@ -57,6 +57,7 @@ export default async function AdminCarsPage() {
 
   const { data: cars, meta } = await fetchCars({
     onlyActive: true,
+    includeHidden: true,
     page: 1,
     limit: 50,
   });

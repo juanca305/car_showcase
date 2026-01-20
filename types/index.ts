@@ -75,6 +75,7 @@ export interface FilterProps {
   includeDeleted?: boolean;
   onlyDeleted?: boolean;
   onlyActive?: boolean;
+  includeHidden?: boolean;
 }
 
 export interface OptionProps {

@@ -227,6 +227,7 @@
 // }
 /**************************************** */
 import Link from "next/link";
+import AdminDashboardCharts from "../components/AdminDashboardCharts";
 
 type AdminStatsResponse = {
   data: {
@@ -361,6 +362,10 @@ export default async function AdminDashboardPage() {
                 variant="danger"
               />
             </div>
+
+            
+            <AdminDashboardCharts stats={stats} />
+    
 
             {/* BRANCH BREAKDOWN */}
             <div className="rounded-2xl border border-luxury-border bg-luxury-surface/80 overflow-hidden">
