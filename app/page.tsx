@@ -1,9 +1,10 @@
 
-import  { Hero, SearchBar, CarCard, ShowMore, BackToTop, CustomFilter, PriceFilter, FuelFilter, SeatsFilter, TransmissionFilter, YearFilter, CategoryFilter}  from "@/components";
+import { Hero, SearchBar, CarCard, ShowMore, BackToTop, CustomFilter, PriceFilter, FuelFilter, SeatsFilter, TransmissionFilter, YearFilter, CategoryFilter } from "@/components";
 import BranchFilter from "@/components/BranchFilter";
 import ClearFiltersButton from "@/components/ClearFiltersButton";
 import ConditionFilter from "@/components/ConditionFilter";
 import FiltersPanelWrapper from "@/components/FiltersPanelWrapper";
+import Pagination from "@/components/Pagination";
 import RefinementBar from "@/components/RefinementBar";
 import ResultsHeader from "@/components/ResultsHeader";
 import { fuels, yearsOfProduction } from "@/constants";
@@ -32,7 +33,7 @@ export default async function Home({ searchParams }: { searchParams: any }) {
 
   const mileageMin = searchParams?.mileageMin || "";
   const mileageMax = searchParams.mileageMax || "";
-  
+
   const sort = searchParams?.sort || "";
 
   // Set the amount of car cards per page ***/
@@ -128,7 +129,7 @@ export default async function Home({ searchParams }: { searchParams: any }) {
                   items-center
                   justify-center
                 "
-              > 
+              >
                 <ConditionFilter />
               </div>
             </div>
@@ -141,10 +142,16 @@ export default async function Home({ searchParams }: { searchParams: any }) {
         </div>
 
         {!isDataEmpty ? (
-          <section> 
-            <RefinementBar />   
-            <ResultsHeader total={meta.total} />
-            
+          <section>
+            <RefinementBar />
+            {/* <ResultsHeader total={meta.total} /> */}
+            <ResultsHeader
+              total={meta.total}
+              page={meta.page}
+              limit={meta.limit}
+            />
+
+
             <div className="home__cars-wrapper">
               {allCars.map((car, index) => (
                 <CarCard key={car._id || index} car={car} />
@@ -152,10 +159,13 @@ export default async function Home({ searchParams }: { searchParams: any }) {
             </div>
 
             {/* ✅ Updated ShowMore with true pagination logic */}
-            <ShowMore
+            {/* <ShowMore
               pageNumber={page}
               isNext={isNext}
-            />
+            /> */}
+            {/* ✅ Pagination (Prev / Next) */}
+            <Pagination page={meta.page} pages={meta.pages} />
+
           </section>
         ) : (
           <div className="home__error-container">

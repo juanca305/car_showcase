@@ -3,11 +3,21 @@
 //import SortFilter from "@/components/SortFilter";
 import ClearFiltersButton from "./ClearFiltersButton";
 
+// interface ResultsHeaderProps {
+//   total: number;
+// }
+
 interface ResultsHeaderProps {
   total: number;
+  page: number;
+  limit: number;
 }
 
-export default function ResultsHeader({ total }: ResultsHeaderProps) {
+export default function ResultsHeader({ total, page, limit }: ResultsHeaderProps) {
+
+  const start = (page - 1) * limit + 1;
+  const end = Math.min(page * limit, total);
+
   return (
     <div
       className="
@@ -23,9 +33,21 @@ export default function ResultsHeader({ total }: ResultsHeaderProps) {
       {/* Left: results count */}
       <div className="flex items-center gap-3">
 
-        <p className="results-text--badge results-animate">
+        {/* <p className="results-text--badge results-animate">
           Showing <span className="results-number--strong">{total}</span> vehicles
+        </p> */}
+        <p className="results-text--badge results-animate">
+          Showing{" "}
+          <span className="results-number--strong">
+            {start}–{end}
+          </span>{" "}
+          of{" "}
+          <span className="results-number--strong">
+            {total}
+          </span>{" "}
+          vehicles
         </p>
+
       </div>
 
       <div className="flex justify-start">

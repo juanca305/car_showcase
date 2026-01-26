@@ -53,10 +53,7 @@ const Hero = () => {
           </div>
           <div className="hero__image-overlay" />
         </div>
-
-        {/* <div className="bg-blue-500 text-white p-8">
-        Tailwind is working!
-      </div> */}
+        
       </div>
     </div>
   )

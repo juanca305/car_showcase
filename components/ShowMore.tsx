@@ -1,3 +1,4 @@
+/*
 "use client";
 
 import { ShowMoreProps } from "@/types";
@@ -37,50 +38,47 @@ const ShowMore = ({ pageNumber, isNext }: ShowMoreProps) => {
   );
 };
 
-export default ShowMore;
+export default ShowMore;*/
 
 //****************************************************************** */
-// "use client";
 
-// import { ShowMoreProps } from "@/types";
-// import { useRouter } from "next/navigation";
-// import CustomButton from "./CustomButton";
+"use client";
 
-// const ShowMore = ({ pageNumber, isNext }: ShowMoreProps) => {
-//   const router = useRouter();
+import { ShowMoreProps } from "@/types";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import CustomButton from "./CustomButton";
 
-//   const handleNavigation = () => {
-//     try {
-//       // read current querystring
-//       const searchParams = new URLSearchParams(window.location.search);
+const ShowMore = ({ pageNumber, isNext }: ShowMoreProps) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-//       // increment page
-//       const current = Number(searchParams.get("page") || pageNumber || 1);
-//       const nextPage = current + 1;
+  const handleNavigation = () => {
+    const params = new URLSearchParams(searchParams.toString());
 
-//       searchParams.set("page", String(nextPage));
+    // ✅ always rely on the URL first (source of truth)
+    const currentPage = Number(params.get("page") || pageNumber || 1);
 
-//       // keep other params and navigate
-//       const newPath = `${window.location.pathname}?${searchParams.toString()}`;
-//       router.push(newPath);
-//     } catch (err) {
-//       console.error("ShowMore navigation error:", err);
-//     }
-//   };
+    params.set("page", String(currentPage + 1));
 
-//   // Show the button only when 'isNext' === true
-//   if (!isNext) return null;
+    // ✅ preserve ALL filters in the URL + no scroll jump
+    router.push(`${pathname}?${params.toString()}`, { scroll: false });
+  };
 
-//   return (
-//     <div className="w-full flex-center gap-5 mt-10">
-//       <CustomButton
-//         title="Show More"
-//         btnType="button"
-//         containerStyles="bg-primary-blue rounded-full text-white"
-//         handleClick={handleNavigation}
-//       />
-//     </div>
-//   );
-// };
+  if (!isNext) return null;
 
-// export default ShowMore;
+  return (
+    <div className="w-full flex-center gap-5 mt-10">
+      <CustomButton
+        title="Show More"
+        btnType="button"
+        containerStyles="bg-primary-blue rounded-full text-white"
+        handleClick={handleNavigation}
+      />
+    </div>
+  );
+};
+
+export default ShowMore;
+
+
