@@ -14,7 +14,7 @@ interface FetchCarsResponse {
 }
 
 export async function fetchCars(
-  filters: FilterProps
+  filters: FilterProps,
 ): Promise<{ data: CarProps[]; meta: FetchCarsResponse["meta"] }> {
   try {
     const {
@@ -64,9 +64,15 @@ export async function fetchCars(
     if (onlyDeleted) query.append("onlyDeleted", "true");
     if (onlyActive) query.append("onlyActive", "true");
 
+    // if (onlyDeleted && onlyActive) {
+    //   console.warn(
+    //     "⚠️ onlyDeleted and onlyActive cannot both be true. Defaulting to onlyDeleted.",
+    //   );
+    // }
+
     if (onlyDeleted && onlyActive) {
-  console.warn("⚠️ onlyDeleted and onlyActive cannot both be true. Defaulting to onlyDeleted.");
-}
+      query.delete("onlyActive");
+    }
 
     if (includeHidden) query.append("includeHidden", "true");
 

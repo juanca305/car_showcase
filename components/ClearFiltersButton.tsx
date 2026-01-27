@@ -1,12 +1,67 @@
+// "use client";
+
+// import { useRouter, useSearchParams } from "next/navigation";
+
+// export default function ClearFiltersButton() {
+//   const router = useRouter();
+//   const searchParams = useSearchParams();
+
+//   const filterKeys = [
+//     "fuelType",
+//     "transmission",
+//     "yearMin",
+//     "yearMax",
+//     "seats",
+//     "category",
+//     "priceMin",
+//     "priceMax",
+//     "branch",
+//     "condition",
+//     "sort",
+//     "mileageMin",
+//     "mileageMax",
+//   ];
+
+//   const hasFilters = filterKeys.some((key) => searchParams.has(key));
+
+//   const handleClear = () => {
+//     const params = new URLSearchParams(searchParams.toString());
+
+//     filterKeys.forEach((key) => params.delete(key));
+//     params.delete("page");
+//     params.delete("limit");
+
+//     router.replace(`/?${params.toString()}`, { scroll: false });
+//   };
+
+//   if (!hasFilters) return null;
+
+//   return (
+//     <button
+//       type="button"
+//       onClick={handleClear}
+//       className="clear-filters--chip"
+//     >
+//       {/* <span className="clear-filters-pill" /> */}
+//       Clear filters
+//     </button>
+//   );
+// }
+/************************************ */
+
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
+import { useQueryParams } from "@/hooks/useQueryParams";
 
 export default function ClearFiltersButton() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { makeUrl } = useQueryParams();
 
   const filterKeys = [
+    "make",
+    "model",
     "fuelType",
     "transmission",
     "yearMin",
@@ -25,13 +80,20 @@ export default function ClearFiltersButton() {
   const hasFilters = filterKeys.some((key) => searchParams.has(key));
 
   const handleClear = () => {
-    const params = new URLSearchParams(searchParams.toString());
+    const updates: Record<string, null> = {};
 
-    filterKeys.forEach((key) => params.delete(key));
-    params.delete("page");
-    params.delete("limit");
+    filterKeys.forEach((key) => {
+      updates[key] = null;
+    });
 
-    router.replace(`/?${params.toString()}`, { scroll: false });
+    router.replace(
+      makeUrl({
+        ...updates,
+        page: null,
+        limit: null,
+      }),
+      { scroll: false }
+    );
   };
 
   if (!hasFilters) return null;
@@ -42,8 +104,8 @@ export default function ClearFiltersButton() {
       onClick={handleClear}
       className="clear-filters--chip"
     >
-      {/* <span className="clear-filters-pill" /> */}
       Clear filters
     </button>
   );
 }
+
