@@ -185,7 +185,6 @@ export default function AdminCarTable({
           <tbody className="divide-y divide-white/5">
             {cars.map((car) => (
               <tr key={car._id} className="hover:bg-white/5 transition">
-
                 {/* VEHICLE */}
                 {/* <td className="px-6 py-4">
                   <div className="flex items-center gap-4">
@@ -219,8 +218,8 @@ export default function AdminCarTable({
                 {/* VEHICLE */}
                 <td className="px-6 py-4">
                   {/* ✅ CHANGE: Tablet stacks image + text vertically to save horizontal space
-      - md:flex-col   (iPad/tablet)
-      - lg:flex-row   (desktop keeps original layout) */}
+                  - md:flex-col   (iPad/tablet)
+                  - lg:flex-row   (desktop keeps original layout) */}
                   <div className="flex lg:flex-row md:flex-col flex-row md:items-start items-center gap-4">
                     {/* Thumbnail */}
                     <div className="relative h-14 w-14 rounded-lg overflow-hidden border border-white/10 bg-black/20 shrink-0">
@@ -238,27 +237,28 @@ export default function AdminCarTable({
                     </div>
 
                     {/* ✅ CHANGE: remove forced min width on tablet (it steals space)
-        - md:min-w-0 allows shrinking */}
+                     - md:min-w-0 allows shrinking */}
                     <div className="flex flex-col md:min-w-0 min-w-[140px]">
                       <span className="font-medium text-luxury-text">
                         {car.make} {car.model}
                       </span>
 
-                      <span className="text-xs text-luxury-muted">{car.year}</span>
+                      <span className="text-xs text-luxury-muted">
+                        {car.year}
+                      </span>
                     </div>
                   </div>
                 </td>
-
-
 
                 {/* CONDITION */}
                 <td className="px-6 py-4">
                   <div className="flex flex-col gap-3 items-start">
                     <span
                       className={`px-2 py-1 rounded-md text-xs font-medium w-fit
-                        ${car.condition === "new"
-                          ? "bg-emerald-500/15 text-emerald-400"
-                          : "bg-blue-500/15 text-blue-400"
+                        ${
+                          car.condition === "new"
+                            ? "bg-emerald-500/15 text-emerald-400"
+                            : "bg-blue-500/15 text-blue-400"
                         }`}
                     >
                       {car.condition === "new" ? "New" : "Used"}
@@ -369,7 +369,6 @@ export default function AdminCarTable({
                     // ✅ ACTIVE MODE: Full actions
                     // <div className="flex flex-wrap items-center justify-end gap-3 md:gap-5 py-1">
                     <div className="hidden md:grid lg:flex grid-cols-2 gap-x-6 gap-y-3 justify-end">
-
                       {/* Edit / Images */}
                       <Link
                         href={`/admin/cars/${car._id}/edit`}
@@ -394,9 +393,10 @@ export default function AdminCarTable({
                         onClick={() => handleToggleVisibility(car._id)}
                         className={`
                           px-3 py-1.5 rounded-md text-xs font-medium
-                          ${car.available
-                            ? "text-blue-400 border border-blue-400/30 hover:bg-blue-400/10"
-                            : "text-zinc-400 border border-zinc-400/30 hover:bg-zinc-400/10"
+                          ${
+                            car.available
+                              ? "text-blue-400 border border-blue-400/30 hover:bg-blue-400/10"
+                              : "text-zinc-400 border border-zinc-400/30 hover:bg-zinc-400/10"
                           }
                           transition
                           ${isWorking ? "opacity-50 cursor-not-allowed" : ""}
@@ -473,10 +473,3 @@ export default function AdminCarTable({
     </div>
   );
 }
-
-
-
-
-
-
-

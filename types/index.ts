@@ -16,6 +16,7 @@ export interface SearchManufacturerProps {
 }
 
 export interface CarImage {
+  _id: string;
   angle: "main" | "front" | "rear" | "roof";
   url: string;
 }

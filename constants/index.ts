@@ -42,6 +42,33 @@ export const manufacturers = [
   "Volvo",
 ];
 
+// src/constants/vehicleCatalog.ts
+
+export type VehicleCatalogItem = {
+  make: string;
+  models: string[];
+};
+
+export const vehicleCatalog: VehicleCatalogItem[] = [
+  { make: "Honda", models: ["Civic", "Accord", "CR-V", "Pilot"] },
+  { make: "Ford", models: ["Focus", "Mustang", "Explorer", "F-150"] },
+  { make: "Chevrolet", models: ["Cruze", "Equinox", "Tahoe", "Silverado", "Corvette"] },
+  { make: "Tesla", models: ["Model 3", "Model X", "Model S", "Model Y"] },
+  { make: "Jeep", models: ["Wrangler", "Grand Cherokee", "Compass"] },
+  { make: "BMW", models: ["3 Series", "5 Series", "X3", "i8"] },
+  { make: "Porsche", models: ["911", "Cayenne", "Macan"] },
+  { make: "Kia", models: ["Carnival", "Sorento", "Sportage"] },
+  { make: "Audi", models: ["R8", "A4", "Q5"] },
+  { make: "Mercedes-Benz", models: ["C-Class", "E-Class", "GLC"] },
+  { make: "Lincoln", models: ["Navigator", "Nautilus", "Aviator"] },
+  { make: "Toyota", models: ["Corolla", "RAV4", "Camry", "Highlander"] },
+
+  // Optional extra brands to make catalog feel “real” without bloating
+  { make: "Nissan", models: ["Altima", "Rogue", "Sentra"] },
+  { make: "Hyundai", models: ["Elantra", "Tucson", "Santa Fe"] },
+];
+
+
 export const yearsOfProduction = [
   // { title: "Year", value: "" },
   { title: "2015", value: "2015" },
@@ -55,6 +82,7 @@ export const yearsOfProduction = [
   { title: "2023", value: "2023" },
   { title: "2024", value: "2024" },
   { title: "2025", value: "2025" },
+  { title: "2026", value: "2026" },
 ];
 
 export const fuels = [

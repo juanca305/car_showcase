@@ -141,38 +141,30 @@ export default async function Home({ searchParams }: { searchParams: any }) {
           </div>
         </div>
 
-        {!isDataEmpty ? (
-          <section>
-            <RefinementBar />
-            {/* <ResultsHeader total={meta.total} /> */}
-            <ResultsHeader
-              total={meta.total}
-              page={meta.page}
-              limit={meta.limit}
-            />
+        <section>
+          <RefinementBar />
+          <ResultsHeader
+            total={meta.total}
+            page={meta.page}
+            limit={meta.limit}
+          />
 
-
-            <div className="home__cars-wrapper">
-              {allCars.map((car, index) => (
-                <CarCard key={car._id || index} car={car} />
-              ))}
+          {!isDataEmpty ? (
+            <>
+              <div className="home__cars-wrapper">
+                {allCars.map((car, index) => (
+                  <CarCard key={car._id || index} car={car} />
+                ))}
+              </div>
+              <Pagination page={meta.page} pages={meta.pages} />
+            </>
+          ) : (
+            <div className="home__error-container">
+              <h2 className="text-white text-xl font-bold">Ooops, no results</h2>
+              <p>Try adjusting or clearing your filters.</p>
             </div>
-
-            {/* ✅ Updated ShowMore with true pagination logic */}
-            {/* <ShowMore
-              pageNumber={page}
-              isNext={isNext}
-            /> */}
-            {/* ✅ Pagination (Prev / Next) */}
-            <Pagination page={meta.page} pages={meta.pages} />
-
-          </section>
-        ) : (
-          <div className="home__error-container">
-            <h2 className="text-black text-xl font-bold">Ooops, no results</h2>
-            <p>{allCars?.message}</p>
-          </div>
-        )}
+          )}
+        </section>
       </div>
       <BackToTop />
     </main>

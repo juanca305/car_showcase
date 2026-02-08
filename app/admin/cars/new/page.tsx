@@ -1,9 +1,16 @@
-import React from 'react'
+// app/admin/cars/new/page.tsx
+import AddCarForm from "../../components/AddCarForm";
 
-const New_Car = () => {
+export default function NewCarPage() {
   return (
-    <div><p className='font-white '>New Car</p></div>
-  )
-}
+    <main className="pt-[96px]">
+      <section className="max-width padding-x padding-y">
+        <h1 className="text-2xl font-bold text-white mb-6">
+          Add New Car
+        </h1>
 
-export default New_Car
+        <AddCarForm />
+      </section>
+    </main>
+  );
+}
