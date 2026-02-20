@@ -27,54 +27,7 @@ const CustomFilter = ({ title, options, value, handleChange }: CustomFilterProps
                 "
             />
           </Listbox.Button>
-          {/* <Transition
-            as={Fragment}
-            leave='transition ease-in duration-100'
-            leaveFrom='opacity-100'
-            leaveTo='opacity-0'
-          >
-            <Listbox.Options className="
-                absolute
-                top-full
-                left-0
-                mt-2
-                w-full
-                max-h-64
-                overflow-auto
-                rounded-xl
-                bg-luxury-surface
-                border
-                border-luxury-border
-                shadow-xl
-                text-sm
-                z-[2000]
-              ">
-              {options.map(option => (
-                <Listbox.Option
-                  // key={option.title}
-                  key={`${option.title}-${option.value}`}
-                  value={option.value} // ✅ pass value string
-                  disabled={option.value === ""}
-                  className={({ active, disabled }) =>
-                    `relative cursor-default select-none py-2 px-4 ${disabled ? 'text-gray-400 cursor-not-allowed' :
-                      active
-                        ? "bg-luxury-accent/15 text-luxury-text"
-                        : "text-luxury-muted hover:bg-luxury-accent/10 hover:text-luxury-text"
-                    }`
-                  }
-                >
-                  {({ selected }) => (
-                    <span className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}>
-                      {option.title}
-                    </span>
-                  )}
-                </Listbox.Option>
-              ))}
-            </Listbox.Options>
-
-
-          </Transition> */}
-
+          
           <Transition
             as={Fragment}
             enter="transition ease-out duration-200"

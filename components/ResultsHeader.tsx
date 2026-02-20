@@ -1,11 +1,6 @@
 "use client";
 
-//import SortFilter from "@/components/SortFilter";
 import ClearFiltersButton from "./ClearFiltersButton";
-
-// interface ResultsHeaderProps {
-//   total: number;
-// }
 
 interface ResultsHeaderProps {
   total: number;

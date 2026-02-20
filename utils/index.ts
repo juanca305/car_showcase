@@ -1,4 +1,3 @@
-//import BranchFilter from "@/components/BranchFilter";
 import { CarProps, FilterProps } from "@/types";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -14,9 +13,20 @@ interface FetchCarsResponse {
 }
 
 export async function fetchCars(
-  filters: FilterProps,
+  filters: FilterProps
 ): Promise<{ data: CarProps[]; meta: FetchCarsResponse["meta"] }> {
+
+  
+  if (!BASE_URL) {
+    console.error("Missing NEXT_PUBLIC_API_URL");
+    return {
+      data: [],
+      meta: { total: 0, page: 1, limit: 12, pages: 1 },
+    };
+  }
+
   try {
+
     const {
       make,
       model,
@@ -44,32 +54,33 @@ export async function fetchCars(
     const query = new URLSearchParams();
 
     if (seats) query.append("seats", seats.toString());
+
     if (make) query.append("make", make);
     if (model) query.append("model", model);
     if (fuelType) query.append("fuelType", fuelType);
     if (transmission) query.append("transmission", transmission);
+
     if (yearMin) query.append("yearMin", yearMin.toString());
     if (yearMax) query.append("yearMax", yearMax.toString());
+
     if (priceMin) query.append("priceMin", priceMin.toString());
     if (priceMax) query.append("priceMax", priceMax.toString());
+
+    if (mileageMin) query.append("mileageMin", mileageMin.toString());
+    if (mileageMax) query.append("mileageMax", mileageMax.toString());
+
     if (category) query.append("category", category);
     if (branch) query.append("branch", branch);
     if (condition) query.append("condition", condition);
     if (sort) query.append("sort", sort);
 
-    if (mileageMin) query.append("mileageMin", mileageMin.toString());
-    if (mileageMax) query.append("mileageMax", mileageMax.toString());
-
     if (includeDeleted) query.append("includeDeleted", "true");
+
     if (onlyDeleted) query.append("onlyDeleted", "true");
+
     if (onlyActive) query.append("onlyActive", "true");
 
-    // if (onlyDeleted && onlyActive) {
-    //   console.warn(
-    //     "⚠️ onlyDeleted and onlyActive cannot both be true. Defaulting to onlyDeleted.",
-    //   );
-    // }
-
+    // Prevent conflicting flags
     if (onlyDeleted && onlyActive) {
       query.delete("onlyActive");
     }
@@ -79,24 +90,30 @@ export async function fetchCars(
     query.append("page", page.toString());
     query.append("limit", limit.toString());
 
-    console.log("Fetching cars with query:", query.toString());
-
-    const response = await fetch(`${BASE_URL}/api/cars?${query.toString()}`, {
-      cache: "no-store",
-    });
+    const response = await fetch(
+      `${BASE_URL}/api/cars?${query.toString()}`,
+      {
+        cache: "no-store",
+      }
+    );
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch cars: ${response.statusText}`);
+      throw new Error(
+        `fetchCars failed: ${response.status} ${response.statusText}`
+      );
     }
 
     const json: FetchCarsResponse = await response.json();
 
     if (!json || !Array.isArray(json.data)) {
-      console.warn("Unexpected backend response:", json);
-      return { data: [], meta: { total: 0, page, limit, pages: 1 } };
-    }
 
-    console.log("RAW car from API:", json.data[0]);
+      console.error("Invalid fetchCars response:", json);
+
+      return {
+        data: [],
+        meta: { total: 0, page, limit, pages: 1 },
+      };
+    }
 
     const cars: CarProps[] = json.data.map((car) => ({
       _id: car._id,
@@ -121,23 +138,40 @@ export async function fetchCars(
       certified: car.certified ?? false,
       location: car.location,
       drivetrain: car.drivetrain,
-
-      isDeleted: car.isDeleted,
+      isDeleted: car.isDeleted ?? false,
     }));
 
     return {
       data: cars,
-      meta: json.meta || { total: cars.length, page, limit, pages: 1 },
+      meta: json.meta || {
+        total: cars.length,
+        page,
+        limit,
+        pages: 1,
+      },
     };
+
   } catch (error) {
-    console.error("Error fetching cars:", error);
-    return { data: [], meta: { total: 0, page: 1, limit: 12, pages: 1 } };
+
+    console.error("fetchCars exception:", error);
+
+    return {
+      data: [],
+      meta: { total: 0, page: 1, limit: 12, pages: 1 },
+    };
+
   }
 }
 
-export const updateSearchParams = (type: string, value: string) => {
-  const searchParams = new URLSearchParams(window.location.search);
+export function updateSearchParams(type: string, value: string) {
+
+  if (typeof window === "undefined") return "";
+
+  const searchParams = new URLSearchParams(
+    window.location.search
+  );
+
   searchParams.set(type, value);
-  const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
-  return newPathname;
-};
+
+  return `${window.location.pathname}?${searchParams.toString()}`;
+}

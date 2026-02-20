@@ -13,10 +13,6 @@ const Hero = () => {
       <div className="hero">
         <div className="flex-1 pt-24 sm:pt-28 lg:pt-32 xl:pt-36 pb-16 sm:pb-20 padding-x">
 
-          {/* <h1 className="hero__title">
-            A Smarter Way to Buy Your Next Car
-          </h1> */}
-
           <h1 className="hero-title--lux-white text-[36px] sm:text-[48px] lg:text-[60px]">
             A Smarter Way to
             <span className="lux-highlight block">Buy Your Next Car</span>

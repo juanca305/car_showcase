@@ -1,7 +1,5 @@
 import { CarProps } from "@/types";
 
-//import { formatPrice } from "@/utils/formatPrice";
-
 interface CarSpecsProps {
   car: CarProps;
 }
@@ -26,14 +24,6 @@ export default function CarSpecs({ car }: CarSpecsProps) {
 
       {/* CORE SPECS GRID */}
       <div className="grid grid-cols-2 gap-4 pt-2">
-        {/* <Spec
-          label="Mileage"
-          value={
-            car.mileage
-              ? `${Math.round(car.mileage / 1000)}k mi`
-              : "—"
-          }
-        /> */}
 
         <Spec
           label="Mileage"
@@ -44,8 +34,7 @@ export default function CarSpecs({ car }: CarSpecsProps) {
                 : `${Math.round(car.mileage / 1000)}k mi`
               : "—"
           }
-        />
-        
+        /> 
         <Spec label="Drivetrain" value={car.drivetrain ?? "—"} />
         <Spec label="Transmission" value={car.transmission ?? "—"} />
         <Spec label="Fuel Type" value={car.fuelType ?? "—"} />
