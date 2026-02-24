@@ -53,9 +53,12 @@ export default function SearchBar() {
 
   const fetchModels = async () => {
     try {
-      const res = await fetch(
-        `http://localhost:5000/api/cars/models/distinct?make=${encodeURIComponent(make)}`
-      );
+      // const res = await fetch(
+      //   `http://localhost:5000/api/cars/models/distinct?make=${encodeURIComponent(make)}`
+      // );
+
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cars/models/distinct?make=${encodeURIComponent(make)}`);
+      
       const data = await res.json();
       setModelOptions(data.data || []);
     } catch {
