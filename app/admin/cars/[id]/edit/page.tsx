@@ -59,7 +59,7 @@ export default async function EditCarPage({
      * Defensive programming prevents runtime crashes if images array is missing.
      */
     const mainImageUrl =
-        car.images?.find((img) => img.angle === "main")?.url ?? null;
+        car.images?.find((img) => img.angle === "main")?.url;
 
     const carTitle = `${car.make} ${car.model} ${car.year}`;
 
