@@ -34,10 +34,16 @@ import CarMainImagePreview from "@/app/admin/components/CarMainImagePreview";
 
 //export default async function EditCarPage({ params }: PageProps) {
 
+// export default async function EditCarPage({
+//     params,
+// }: {
+//     params: { id: string };
+// }) {
+
 export default async function EditCarPage({
     params,
 }: {
-    params: { id: string };
+    params: Promise<{ id: string }>;
 }) {
 
     /**
