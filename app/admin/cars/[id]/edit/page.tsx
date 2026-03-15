@@ -26,11 +26,11 @@ import { fetchCarById } from "@/utils/fetchCarById";
 import EditCarForm from "@/app/admin/components/EditCarForm";
 import CarMainImagePreview from "@/app/admin/components/CarMainImagePreview";
 
-// interface PageProps {
-//     params: {
-//         id: string;
-//     };
-// }
+interface PageProps {
+    params: {
+        id: string;
+    };
+}
 
 //export default async function EditCarPage({ params }: PageProps) {
 
@@ -40,12 +40,7 @@ import CarMainImagePreview from "@/app/admin/components/CarMainImagePreview";
 //     params: { id: string };
 // }) {
 
-export default async function EditCarPage({
-    params,
-}: {
-    params: Promise<{ id: string }>;
-}) {
-
+export default async function EditCarPage({ params }: any) {
     /**
      * Fetch car from backend/database.
      * This executes on the server and avoids exposing sensitive logic to client.
