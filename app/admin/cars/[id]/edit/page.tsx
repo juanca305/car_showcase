@@ -26,13 +26,19 @@ import { fetchCarById } from "@/utils/fetchCarById";
 import EditCarForm from "@/app/admin/components/EditCarForm";
 import CarMainImagePreview from "@/app/admin/components/CarMainImagePreview";
 
-interface PageProps {
-    params: {
-        id: string;
-    };
-}
+// interface PageProps {
+//     params: {
+//         id: string;
+//     };
+// }
 
-export default async function EditCarPage({ params }: PageProps) {
+//export default async function EditCarPage({ params }: PageProps) {
+
+export default async function EditCarPage({
+    params,
+}: {
+    params: { id: string };
+}) {
 
     /**
      * Fetch car from backend/database.
