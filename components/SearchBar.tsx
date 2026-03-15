@@ -28,46 +28,47 @@ export default function SearchBar() {
 
 
   useEffect(() => {
-  const prevMake = prevMakeRef.current;
+    const prevMake = prevMakeRef.current;
 
-  // 🛑 Do nothing if make didn't actually change
-  if (prevMake === make) return;
+    // 🛑 Do nothing if make didn't actually change
+    if (prevMake === make) return;
 
-  prevMakeRef.current = make;
+    prevMakeRef.current = make;
 
-  if (!make) {
-    setModel("");
-    setModelOptions([]);
+    if (!make) {
+      setModel("");
+      setModelOptions([]);
+
+      router.replace(
+        makeUrl({ make: null, model: null, page: null }),
+        { scroll: false }
+      );
+      return;
+    }
 
     router.replace(
-      makeUrl({ make: null, model: null, page: null }),
+      makeUrl({ make: make.toLowerCase(), page: null }),
       { scroll: false }
     );
-    return;
-  }
 
-  router.replace(
-    makeUrl({ make: make.toLowerCase(), page: null }),
-    { scroll: false }
-  );
+    const fetchModels = async () => {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cars/models/distinct?make=${encodeURIComponent(make)}`);
 
-  const fetchModels = async () => {
-    try {
-      // const res = await fetch(
-      //   `http://localhost:5000/api/cars/models/distinct?make=${encodeURIComponent(make)}`
-      // );
+        if (!res.ok) {
+          setModelOptions([]);
+          return;
+        }
 
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cars/models/distinct?make=${encodeURIComponent(make)}`);
-      
-      const data = await res.json();
-      setModelOptions(data.data || []);
-    } catch {
-      setModelOptions([]);
-    }
-  };
+        const data = await res.json();
+        setModelOptions(data.data || []);
+      } catch {
+        setModelOptions([]);
+      }
+    };
 
-  fetchModels();
-}, [make, makeUrl, router]);
+    fetchModels();
+  }, [make, makeUrl, router]);
 
   // Close dropdown on outside click
   useEffect(() => {

@@ -13,44 +13,42 @@ interface FetchCarsResponse {
 }
 
 export async function fetchCars(
-  filters: FilterProps
+  filters: FilterProps,
 ): Promise<{ data: CarProps[]; meta: FetchCarsResponse["meta"] }> {
+  const {
+    make,
+    model,
+    fuelType,
+    transmission,
+    seats,
+    yearMin,
+    yearMax,
+    priceMin,
+    priceMax,
+    mileageMin,
+    mileageMax,
+    page = 1,
+    limit = 12,
+    category,
+    branch,
+    condition,
+    sort,
+    includeDeleted,
+    includeHidden,
+    onlyDeleted,
+    onlyActive,
+  } = filters;
 
-  
   if (!BASE_URL) {
     console.error("Missing NEXT_PUBLIC_API_URL");
     return {
       data: [],
-      meta: { total: 0, page: 1, limit: 12, pages: 1 },
+      // meta: { total: 0, page: 1, limit: 12, pages: 1 },
+      meta: { total: 0, page, limit, pages: 1 },
     };
   }
 
   try {
-
-    const {
-      make,
-      model,
-      fuelType,
-      transmission,
-      seats,
-      yearMin,
-      yearMax,
-      priceMin,
-      priceMax,
-      mileageMin,
-      mileageMax,
-      page = 1,
-      limit = 12,
-      category,
-      branch,
-      condition,
-      sort,
-      includeDeleted,
-      includeHidden,
-      onlyDeleted,
-      onlyActive,
-    } = filters;
-
     const query = new URLSearchParams();
 
     if (seats) query.append("seats", seats.toString());
@@ -90,23 +88,29 @@ export async function fetchCars(
     query.append("page", page.toString());
     query.append("limit", limit.toString());
 
-    const response = await fetch(
-      `${BASE_URL}/api/cars?${query.toString()}`,
-      {
-        cache: "no-store",
-      }
-    );
+    const response = await fetch(`${BASE_URL}/api/cars?${query.toString()}`, {
+      cache: "no-store",
+    });
+
+    // if (!response.ok) {
+    //   throw new Error(
+    //     `fetchCars failed: ${response.status} ${response.statusText}`,
+    //   );
+    // }
 
     if (!response.ok) {
-      throw new Error(
-        `fetchCars failed: ${response.status} ${response.statusText}`
+      console.error(
+        `fetchCars failed: ${response.status} ${response.statusText}`,
       );
+      return {
+        data: [],
+        meta: { total: 0, page, limit, pages: 1 },
+      };
     }
 
     const json: FetchCarsResponse = await response.json();
 
     if (!json || !Array.isArray(json.data)) {
-
       console.error("Invalid fetchCars response:", json);
 
       return {
@@ -150,26 +154,25 @@ export async function fetchCars(
         pages: 1,
       },
     };
-
   } catch (error) {
-
     console.error("fetchCars exception:", error);
+
+    // return {
+    //   data: [],
+    //   meta: { total: 0, page: 1, limit: 12, pages: 1 },
+    // };
 
     return {
       data: [],
-      meta: { total: 0, page: 1, limit: 12, pages: 1 },
+      meta: { total: 0, page, limit, pages: 1 },
     };
-
   }
 }
 
 export function updateSearchParams(type: string, value: string) {
-
   if (typeof window === "undefined") return "";
 
-  const searchParams = new URLSearchParams(
-    window.location.search
-  );
+  const searchParams = new URLSearchParams(window.location.search);
 
   searchParams.set(type, value);
 

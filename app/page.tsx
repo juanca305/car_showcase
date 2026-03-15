@@ -1,45 +1,40 @@
+import { Hero, SearchBar, CarCard, BackToTop } from "@/components";
 
-import { Hero, SearchBar, CarCard, ShowMore, BackToTop, CustomFilter, PriceFilter, FuelFilter, SeatsFilter, TransmissionFilter, YearFilter, CategoryFilter } from "@/components";
-import BranchFilter from "@/components/BranchFilter";
-import ClearFiltersButton from "@/components/ClearFiltersButton";
 import ConditionFilter from "@/components/ConditionFilter";
 import FiltersPanelWrapper from "@/components/FiltersPanelWrapper";
 import Pagination from "@/components/Pagination";
 import RefinementBar from "@/components/RefinementBar";
 import ResultsHeader from "@/components/ResultsHeader";
-import { fuels, yearsOfProduction } from "@/constants";
-import { fetchCars } from "@/utils";
-import { useRouter } from 'next/navigation';
 
+import { fetchCars } from "@/utils";
 
 export default async function Home({ searchParams }: { searchParams: any }) {
-  // 1️⃣ Extract filters with defaults
-
-  //console.log("COMPONENTS OBJECT:", Components);
-
+  // Extract filters with defaults
   const make = searchParams?.make || "";
   const model = searchParams?.model || "";
   const category = searchParams?.category || "";
   const fuelType = searchParams?.fuelType || "";
   const transmission = searchParams?.transmission || "";
+
   const yearMin = searchParams?.yearMin || "";
   const yearMax = searchParams?.yearMax || "";
+
   const seats = searchParams?.seats || "";
+
   const priceMin = searchParams?.priceMin || "";
   const priceMax = searchParams?.priceMax || "";
-  const page = Number(searchParams?.page) || 1;
-  const branch = searchParams?.branch || "";
-  const condition = searchParams?.condition || "";
 
   const mileageMin = searchParams?.mileageMin || "";
-  const mileageMax = searchParams.mileageMax || "";
+  const mileageMax = searchParams?.mileageMax || ""; // ✅ fixed optional chaining
 
+  const branch = searchParams?.branch || "";
+  const condition = searchParams?.condition || "";
   const sort = searchParams?.sort || "";
 
-  // Set the amount of car cards per page ***/
+  const page = Number(searchParams?.page) || 1;
   const limit = Number(searchParams?.limit) || 8;
 
-  // 2️⃣ Fetch filtered cars (now destructure data + meta)
+  // Fetch filtered cars
   const { data: allCars, meta } = await fetchCars({
     make,
     model,
@@ -60,23 +55,26 @@ export default async function Home({ searchParams }: { searchParams: any }) {
     sort,
   });
 
-  // 3️⃣ Compute helper booleans
+  // Safe meta defaults (prevents crashes)
+  const safeMeta = {
+    total: meta?.total ?? 0,
+    page: meta?.page ?? page,
+    limit: meta?.limit ?? limit,
+    pages: meta?.pages ?? 1,
+  };
+
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1;
-  const isNext = meta && page < meta.pages; // ✅ only true if another page exists
 
   return (
     <main className="overflow-visible">
       <Hero />
-      <div id="discover" className="
-          mt-12
-          sm:mt-16
-          xl:mt-20
-          padding-x
-          padding-y
-          max-width
-          bg-luxury-bg
-          border-t
-          border-luxury-divider
+
+      <div
+        id="discover"
+        className="
+          mt-12 sm:mt-16 xl:mt-20
+          padding-x padding-y max-width
+          bg-luxury-bg border-t border-luxury-divider
         "
       >
         <div className="home__text-container">
@@ -86,77 +84,59 @@ export default async function Home({ searchParams }: { searchParams: any }) {
           </p>
         </div>
 
+        {/* Filters */}
         <div className="home__filters">
           <div
             className="
-                w-full
-                mt-8
-                p-4 
-                sm:p-5
-                rounded-2xl
-                bg-luxury-surface
-                border
-                border-luxury-border
-                shadow-sm
-              "
+              w-full mt-8 p-4 sm:p-5 rounded-2xl
+              bg-luxury-surface border border-luxury-border shadow-sm
+            "
           >
-            {/* Top row: Make / Model / Condition */}
             <div
               className="
-                flex
-                flex-col
-                xl:flex-row
-                gap-4 
-                xl:gap-6
+                flex flex-col xl:flex-row
+                gap-4 xl:gap-6
                 items-stretch
               "
             >
-              {/* Make + Model */}
               <div className="flex-1 flex items-center">
                 <SearchBar />
               </div>
 
-              {/* 🔹 Divider (mobile + tablet only) */}
               <div className="block xl:hidden">
                 <div className="my-2 h-px bg-luxury-border/60" />
               </div>
 
-              {/* Condition */}
-              <div
-                className="
-                  xl:w-[260px]
-                  flex
-                  items-center
-                  justify-center
-                "
-              >
+              <div className="xl:w-[260px] flex items-center justify-center">
                 <ConditionFilter />
               </div>
             </div>
           </div>
 
-          {/* Secondary filters panel */}
           <div className="w-full block mt-4">
             <FiltersPanelWrapper />
           </div>
         </div>
 
+        {/* Results */}
         <section>
           <RefinementBar />
+
           <ResultsHeader
-            total={meta.total}
-            page={meta.page}
-            limit={meta.limit}
+            total={safeMeta.total}
+            page={safeMeta.page}
+            limit={safeMeta.limit}
           />
 
           {!isDataEmpty ? (
             <>
               <div className="home__cars-wrapper">
-                {allCars.map((car, index) => (
-                  <CarCard key={car._id || index} car={car} />
+                {allCars.map((car: any, index: number) => (
+                  <CarCard key={car?._id || index} car={car} />
                 ))}
               </div>
-              <Pagination page={meta.page} pages={meta.pages} />
+
+              <Pagination page={safeMeta.page} pages={safeMeta.pages} />
             </>
           ) : (
             <div className="home__error-container">
@@ -166,6 +146,7 @@ export default async function Home({ searchParams }: { searchParams: any }) {
           )}
         </section>
       </div>
+
       <BackToTop />
     </main>
   );
