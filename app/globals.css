@@ -16,7 +16,6 @@ body {
   overflow-x: hidden;
 }
 
-
 /* START: General styles */
 .max-width {
   @apply max-w-[1440px] mx-auto;
@@ -97,11 +96,22 @@ body {
     w-full
     flex
     justify-center
-    items-center
+    items-end
     xl:justify-end
     xl:items-end
     xl:flex-[1.4];
 }
+
+/* .hero__image-container {
+  @apply relative
+    w-full
+    flex
+    justify-center
+    items-center
+    xl:justify-end
+    xl:items-end
+    xl:flex-[1.4];
+} */
 
 .hero__image {
   @apply relative
@@ -112,27 +122,29 @@ body {
     md:h-[420px]
     xl:h-full
     z-0;
+
+    transform: translateY(8%);
 }
 
-.hero__image {
+/* .hero__image {
   transform: translateY(8%);
-}
+} */
 
 @media (max-width: 640px) {
   .hero__image {
-    transform: translateX(-1.5%) translateY(5%) scale(1);
+    transform: translateX(-1%) translateY(2%) scale(1.12);
   }
 }
 
 @media (min-width: 768px) and (max-width: 1279px) {
   .hero__image {
-    transform: translateX(1%) translateY(3.5%) scale(1.25);
+    transform: translateX(3%) translateY(-0.2%) scale(1.3);
   }
 }
 
 @media (min-width: 1280px) {
   .hero__image {
-    transform: translateX(-7%) translateY(34%) scale(1.03);
+    transform: translateX(-4%) translateY(30%) scale(1.1);
   }
 }
 
@@ -620,7 +632,9 @@ body {
 
 .car-card-dark:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(0, 0, 0, 0.25);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
 .car-card-dark::after {
@@ -795,11 +809,14 @@ body {
 
 .certified-badge {
   position: relative;
-  transition: box-shadow 200ms ease-out, background-color 200ms ease-out;
+  transition:
+    box-shadow 200ms ease-out,
+    background-color 200ms ease-out;
 }
 
 .car-card-dark:hover .certified-badge {
-  box-shadow: 0 0 0 1px rgba(180, 150, 255, 0.25),
+  box-shadow:
+    0 0 0 1px rgba(180, 150, 255, 0.25),
     0 4px 14px rgba(180, 150, 255, 0.35);
   background-color: rgba(180, 150, 255, 0.22);
 }
@@ -965,15 +982,15 @@ body {
   @apply flex items-center gap-2 px-5 h-[40px]
     rounded-full text-xs font-semibold tracking-wide uppercase
     backdrop-blur-md transition-all duration-300;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.15);
-  color: rgba(255,255,255,0.85);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .clear-filters--glass:hover {
-  background: rgba(255,255,255,0.10);
-  border-color: rgba(240,207,126,0.50);
-  box-shadow: 0 4px 18px rgba(240,207,126,0.25);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(240, 207, 126, 0.5);
+  box-shadow: 0 4px 18px rgba(240, 207, 126, 0.25);
   transform: translateY(-2px);
 }
 
@@ -998,15 +1015,14 @@ body {
   @apply inline-flex items-center gap-2 px-5 h-[40px]
     rounded-full text-xs font-semibold tracking-wider uppercase
     text-black transition-all duration-200;
-  background: linear-gradient(90deg,#f0cf7e,#e7d4a7);
-  box-shadow: 0 4px 12px rgba(240,207,126,0.35);
+  background: linear-gradient(90deg, #f0cf7e, #e7d4a7);
+  box-shadow: 0 4px 12px rgba(240, 207, 126, 0.35);
 }
 
 .clear-filters--chip:hover {
-  box-shadow: 0 6px 22px rgba(240,207,126,0.45);
+  box-shadow: 0 6px 22px rgba(240, 207, 126, 0.45);
   transform: translateY(-2px) scale(1.03);
 }
-
 
 /* ==============================
    HERO CAR ANIMATION
@@ -1195,7 +1211,7 @@ body {
 }
 
 .results-count--gold {
-  background: linear-gradient(90deg,#f0cf7e,#e7d7a1);
+  background: linear-gradient(90deg, #f0cf7e, #e7d7a1);
   -webkit-background-clip: text;
   color: transparent;
   font-weight: 800;
@@ -1205,10 +1221,10 @@ body {
   @apply text-[22px] sm:text-[24px] 
     font-bold tracking-wide px-4 py-1
     rounded-xl inline-block backdrop-blur-sm;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: rgba(255,255,255,0.92);
-  box-shadow: 0 0 12px rgba(240,207,126,0.16);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 0 12px rgba(240, 207, 126, 0.16);
 }
 
 .results-number--strong {
@@ -1218,8 +1234,14 @@ body {
 
 /* Fade + slide-up — luxury subtle motion */
 @keyframes luxuryReveal {
-  0% { opacity: 0; transform: translateY(6px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .results-animate {
@@ -1309,8 +1331,48 @@ body {
   }
 }
 
+/* .hero__spotlight {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(240, 207, 126, 0.25) 0%,
+    rgba(240, 207, 126, 0.12) 35%,
+    rgba(240, 207, 126, 0.05) 60%,
+    transparent 75%
+  );
+  filter: blur(40px);
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  pointer-events: none;
+} */
 
+/* .hero__spotlight {
+  position: absolute;
 
+  width: clamp(260px, 40vw, 480px);
+  height: clamp(260px, 40vw, 480px);
 
+  border-radius: 50%;
 
+  background: radial-gradient(
+    circle,
+    rgba(240, 207, 126, 0.25) 0%,
+    rgba(240, 207, 126, 0.12) 35%,
+    rgba(240, 207, 126, 0.05) 60%,
+    transparent 75%
+  );
 
+  filter: blur(40px);
+
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+
+  z-index: 0;
+  pointer-events: none;
+} */
