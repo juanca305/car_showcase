@@ -1,23 +1,4 @@
-// app/admin/cars/[id]/edit/page.tsx
-
-/**
- * EditCarPage (Server Component)
- *
- * Purpose:
- * Fetches a car by ID and renders the edit interface for administrators.
- *
- * Architecture notes:
- * - Runs on the server (async Server Component)
- * - Ensures data is fetched securely before rendering
- * - Uses Next.js notFound() for proper 404 handling
- * - Delegates form logic to EditCarForm (separation of concerns)
- * - Delegates image rendering to CarMainImagePreview
- *
- * UX considerations:
- * - Shows car status indicators (Deleted, Publicly Visible, Slug)
- * - Prevents editing if car is deleted
- * - Provides navigation for inventory and image management
- */
+export const dynamic = "force-dynamic";
 
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -26,17 +7,19 @@ import { fetchCarById } from "@/utils/fetchCarById";
 import EditCarForm from "@/app/admin/components/EditCarForm";
 import CarMainImagePreview from "@/app/admin/components/CarMainImagePreview";
 
-export default async function EditCarPage({ params }: any) {
-    /**
-     * Fetch car from backend/database.
-     * This executes on the server and avoids exposing sensitive logic to client.
-     */
-    const car = await fetchCarById(params.id);
 
-    /**
-     * If car does not exist, render Next.js 404 page.
-     * This is the correct pattern for dynamic routes in App Router.
-     */
+
+export default async function EditCarPage({
+    params,
+}: {
+    params: Promise<{ id: string }>;
+}) {
+
+    const { id } = await params;
+
+    const car = await fetchCarById(id);
+
+
     if (!car) {
         notFound();
     }

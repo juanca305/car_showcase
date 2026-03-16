@@ -8,49 +8,80 @@ import AdminFiltersPanelWrapper from "../components/AdminFiltersPanelWrapper";
 // Import or define SortOption type
 import type { SortOption } from "@/types"; // Adjust the path if needed
 
+// export default async function AdminCarsPage({
+//   searchParams,
+// }: {
+//   searchParams: {
+//     page?: string;
+//     limit?: string;
+
+//     make?: string;
+//     model?: string;
+//     condition?: string;
+//     branch?: string;
+//     sort?: string;
+//     transmission?: string;
+
+//     yearMin?: string;
+//     yearMax?: string;
+
+//     mileageMin?: string;
+//     mileageMax?: string;
+//   };
+// }) {
+//   const page = Number(searchParams.page || 1);
+//   const limit = Number(searchParams.limit || 10);
+
+//   const { data: cars, meta } = await fetchCars({
+//     onlyActive: true,
+//     includeHidden: true, // ✅ admin sees hidden too
+//     page,
+//     limit,
+
+//     // ✅ admin filters (optional)
+//     make: searchParams.make || "",
+//     model: searchParams.model || "",
+//     condition: searchParams.condition || "",
+//     branch: searchParams.branch || "",
+//     transmission: searchParams.transmission as any || undefined,
+//     sort: searchParams.sort as SortOption || undefined,
+
+//     yearMin: searchParams.yearMin ? Number(searchParams.yearMin) : undefined,
+//     yearMax: searchParams.yearMax ? Number(searchParams.yearMax) : undefined,
+
+//     mileageMin: searchParams.mileageMin ? Number(searchParams.mileageMin) : undefined,
+//     mileageMax: searchParams.mileageMax ? Number(searchParams.mileageMax) : undefined,
+//   });
+
 export default async function AdminCarsPage({
   searchParams,
 }: {
-  searchParams: {
-    page?: string;
-    limit?: string;
-
-    make?: string;
-    model?: string;
-    condition?: string;
-    branch?: string;
-    sort?: string;
-    transmission?: string;
-
-    yearMin?: string;
-    yearMax?: string;
-
-    mileageMin?: string;
-    mileageMax?: string;
-  };
+  searchParams: Promise<any>;
 }) {
-  const page = Number(searchParams.page || 1);
-  const limit = Number(searchParams.limit || 10);
+
+  const params = await searchParams;
+
+  const page = Number(params.page || 1);
+  const limit = Number(params.limit || 10);
 
   const { data: cars, meta } = await fetchCars({
     onlyActive: true,
-    includeHidden: true, // ✅ admin sees hidden too
+    includeHidden: true,
     page,
     limit,
 
-    // ✅ admin filters (optional)
-    make: searchParams.make || "",
-    model: searchParams.model || "",
-    condition: searchParams.condition || "",
-    branch: searchParams.branch || "",
-    transmission: searchParams.transmission as any || undefined,
-    sort: searchParams.sort as SortOption || undefined,
+    make: params.make || "",
+    model: params.model || "",
+    condition: params.condition || "",
+    branch: params.branch || "",
+    transmission: params.transmission || undefined,
+    sort: params.sort as SortOption || undefined,
 
-    yearMin: searchParams.yearMin ? Number(searchParams.yearMin) : undefined,
-    yearMax: searchParams.yearMax ? Number(searchParams.yearMax) : undefined,
+    yearMin: params.yearMin ? Number(params.yearMin) : undefined,
+    yearMax: params.yearMax ? Number(params.yearMax) : undefined,
 
-    mileageMin: searchParams.mileageMin ? Number(searchParams.mileageMin) : undefined,
-    mileageMax: searchParams.mileageMax ? Number(searchParams.mileageMax) : undefined,
+    mileageMin: params.mileageMin ? Number(params.mileageMin) : undefined,
+    mileageMax: params.mileageMax ? Number(params.mileageMax) : undefined,
   });
 
   return (

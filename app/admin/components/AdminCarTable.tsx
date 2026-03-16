@@ -21,6 +21,8 @@ export default function AdminCarTable({
 }: AdminCarTableProps) {
   const router = useRouter();
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [confirmTitle, setConfirmTitle] = useState("");
   const [confirmDescription, setConfirmDescription] = useState("");
@@ -57,7 +59,13 @@ export default function AdminCarTable({
     const loadingToast = toast.loading("Deleting car...");
 
     try {
-      const res = await fetch(`/api/admin/cars/${id}`, { method: "DELETE" });
+      //const res = await fetch(`/api/admin/cars/${id}`, { method: "DELETE" });
+      const res = await fetch(`${API_URL}/api/admin/cars/${id}`, {
+        method: "DELETE",
+        headers: {
+          "x-api-key": process.env.NEXT_PUBLIC_ADMIN_API_KEY!,
+        },
+      });
       const json = await res.json().catch(() => null);
 
       if (!res.ok) {
@@ -80,9 +88,17 @@ export default function AdminCarTable({
     const loadingToast = toast.loading("Restoring car...");
 
     try {
-      const res = await fetch(`/api/admin/cars/${id}/restore`, {
+      // const res = await fetch(`/api/admin/cars/${id}/restore`, {
+      //   method: "PUT",
+      // });
+
+      const res = await fetch(`${API_URL}/api/admin/cars/${id}/restore`, {
         method: "PUT",
+        headers: {
+          "x-api-key": process.env.NEXT_PUBLIC_ADMIN_API_KEY!,
+        },
       });
+
       const json = await res.json().catch(() => null);
 
       if (!res.ok) {
@@ -105,9 +121,17 @@ export default function AdminCarTable({
     const loadingToast = toast.loading("Deleting car forever...");
 
     try {
-      const res = await fetch(`/api/admin/cars/${id}/permanent`, {
+      // const res = await fetch(`/api/admin/cars/${id}/permanent`, {
+      //   method: "DELETE",
+      // });
+
+      const res = await fetch(`${API_URL}/api/admin/cars/${id}/permanent`, {
         method: "DELETE",
+        headers: {
+          "x-api-key": process.env.NEXT_PUBLIC_ADMIN_API_KEY!,
+        },
       });
+
       const json = await res.json().catch(() => null);
 
       if (!res.ok) {
@@ -130,9 +154,17 @@ export default function AdminCarTable({
     const loadingToast = toast.loading("Updating visibility...");
 
     try {
-      const res = await fetch(`/api/admin/cars/${id}/visibility`, {
+      // const res = await fetch(`/api/admin/cars/${id}/visibility`, {
+      //   method: "PUT",
+      // });
+
+      const res = await fetch(`${API_URL}/api/admin/cars/${id}/visibility`, {
         method: "PUT",
+        headers: {
+          "x-api-key": process.env.NEXT_PUBLIC_ADMIN_API_KEY!,
+        }
       });
+
       const json = await res.json().catch(() => null);
 
       if (!res.ok) {
