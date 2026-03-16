@@ -70,7 +70,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
 
                 {/* Imagen principal */}
                 <div className="flex-1 flex flex-col gap-3">
-                  <div className="relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg">
+                  <div className="relative w-full h-[220px] sm:h-[280px] bg-pattern bg-cover bg-center rounded-lg">
                     <Image
                       src={car.images.find(img => img.angle === "main")?.url || "/hero.png"}
                       alt={`${car.make} ${car.model}`}
