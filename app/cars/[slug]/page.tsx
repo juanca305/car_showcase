@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { fetchCarBySlug } from "@/utils/fetchCarBySlug";
 import { notFound } from "next/navigation";
 
@@ -8,13 +10,26 @@ import CarCTA from "@/components/CarCTA";
 
 import Link from "next/link";
 
-export default async function CarDetailsPage({
-    params,
+
+
+// export default async function CarDetailsPage({
+//     params,
+// }: {
+//     params: { slug: string };
+// }) {
+//     const car = await fetchCarBySlug(params.slug);
+    //console.log("CAR DETAILS:", car);
+
+    export default async function CarDetailsPage({
+  params,
 }: {
-    params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-    const car = await fetchCarBySlug(params.slug);
-    console.log("CAR DETAILS:", car);
+
+  const { slug } = await params;
+
+  const car = await fetchCarBySlug(slug);
+
 
     if (!car) {
         notFound();

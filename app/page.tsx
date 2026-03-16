@@ -10,31 +10,65 @@ import ResultsHeader from "@/components/ResultsHeader";
 
 import { fetchCars } from "@/utils";
 
-export default async function Home({ searchParams }: { searchParams: any }) {
-  // Extract filters with defaults
-  const make = searchParams?.make || "";
-  const model = searchParams?.model || "";
-  const category = searchParams?.category || "";
-  const fuelType = searchParams?.fuelType || "";
-  const transmission = searchParams?.transmission || "";
+// export default async function Home({ searchParams }: { searchParams: any }) {
+//   // Extract filters with defaults
+//   const make = searchParams?.make || "";
+//   const model = searchParams?.model || "";
+//   const category = searchParams?.category || "";
+//   const fuelType = searchParams?.fuelType || "";
+//   const transmission = searchParams?.transmission || "";
 
-  const yearMin = searchParams?.yearMin || "";
-  const yearMax = searchParams?.yearMax || "";
+//   const yearMin = searchParams?.yearMin || "";
+//   const yearMax = searchParams?.yearMax || "";
 
-  const seats = searchParams?.seats || "";
+//   const seats = searchParams?.seats || "";
 
-  const priceMin = searchParams?.priceMin || "";
-  const priceMax = searchParams?.priceMax || "";
+//   const priceMin = searchParams?.priceMin || "";
+//   const priceMax = searchParams?.priceMax || "";
 
-  const mileageMin = searchParams?.mileageMin || "";
-  const mileageMax = searchParams?.mileageMax || ""; // ✅ fixed optional chaining
+//   const mileageMin = searchParams?.mileageMin || "";
+//   const mileageMax = searchParams?.mileageMax || ""; // ✅ fixed optional chaining
 
-  const branch = searchParams?.branch || "";
-  const condition = searchParams?.condition || "";
-  const sort = searchParams?.sort || "";
+//   const branch = searchParams?.branch || "";
+//   const condition = searchParams?.condition || "";
+//   const sort = searchParams?.sort || "";
 
-  const page = Number(searchParams?.page) || 1;
-  const limit = Number(searchParams?.limit) || 8;
+//   const page = Number(searchParams?.page) || 1;
+//   const limit = Number(searchParams?.limit) || 8;
+
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<any>;
+}) {
+
+  const params = await searchParams;
+
+  const make = params?.make || "";
+  const model = params?.model || "";
+  const category = params?.category || "";
+  const fuelType = params?.fuelType || "";
+  const transmission = params?.transmission || "";
+
+  const yearMin = params?.yearMin || "";
+  const yearMax = params?.yearMax || "";
+
+  const seats = params?.seats || "";
+
+  const priceMin = params?.priceMin || "";
+  const priceMax = params?.priceMax || "";
+
+  const mileageMin = params?.mileageMin || "";
+  const mileageMax = params?.mileageMax || "";
+
+  const branch = params?.branch || "";
+  const condition = params?.condition || "";
+  const sort = params?.sort || "";
+
+  const page = Number(params?.page) || 1;
+  const limit = Number(params?.limit) || 8;
+
+
 
   // Fetch filtered cars
   const { data: allCars, meta } = await fetchCars({
