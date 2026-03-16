@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Hero, SearchBar, CarCard, BackToTop } from "@/components";
 
 import ConditionFilter from "@/components/ConditionFilter";

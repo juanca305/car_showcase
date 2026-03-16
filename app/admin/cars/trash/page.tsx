@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { fetchCars } from "@/utils";
 import AdminCarTable from "../../components/AdminCarTable";
 import Pagination from "../../../../components/Pagination";
